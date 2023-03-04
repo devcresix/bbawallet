@@ -1,0 +1,9 @@
+{
+  "translation": {
+    "hello":"Hello",
+    "this line is translated":"This line is translated"
+  },
+  "settings": {
+    "app_version": "Version v{{version}}"
+  }
+}
