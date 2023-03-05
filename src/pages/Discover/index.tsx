@@ -1,11 +1,11 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import HeaderComponent from '../../components/Header';
 
 function DiscoverPage(): JSX.Element {
   return (
-    <SafeAreaView>
-      <Text>Discover</Text>
-    </SafeAreaView>
+    <>
+      <HeaderComponent title="Discover" />
+    </>
   );
 }
 
