@@ -5,10 +5,10 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import HomePage from './pages/Home';
+import DiscoverPage from './pages/Discover';
+import WalletPage from './pages/Wallet';
 import BrowserPage from './pages/Browser';
 import SettingPage from './pages/Setting';
-import DiscoverPage from './pages/Discover';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -27,7 +27,7 @@ function AppRoutes(): JSX.Element {
         />
         <Tab.Screen
           name="Wallet"
-          component={HomePage}
+          component={WalletPage}
           options={{
             tabBarIcon: ({color}) => (
               <Ionicons name="wallet" color={color} size={26} />

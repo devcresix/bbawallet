@@ -4,7 +4,7 @@ import storage from '../utils/storage';
 import {IAccount} from '../utils/types';
 
 const useAccounts = () => {
-  // const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0);
   // const [accounts, setAccounts] = useState([]);
   // const [accountId, setAccountId] = useState({} as IAccount);
   // const [networkId, setNetworkId] = useState(null);
@@ -41,7 +41,7 @@ const useAccounts = () => {
     //   setRequiredLock(!!password);
   };
 
-  return [addAccount];
+  return [{counter}, {addAccount}];
 };
 
 export default useAccounts;
