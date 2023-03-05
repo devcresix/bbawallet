@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import type {RootState} from '../../store';
 import {decrement, increment} from '../../features/counter/counterSlice';
 
-function HomePage(): JSX.Element {
+function WalletPage(): JSX.Element {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
 
@@ -18,4 +18,4 @@ function HomePage(): JSX.Element {
   );
 }
 
-export default HomePage;
+export default WalletPage;
