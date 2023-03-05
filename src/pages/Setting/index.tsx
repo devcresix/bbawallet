@@ -2,7 +2,6 @@ import React from 'react';
 import GlobalLayout from '../../components/Global/GlobalLayout';
 import GlobalText from '../../components/Global/GlobalText';
 import CardButton from '../../components/Card/CardButton';
-import HeaderComponent from '../../components/Header';
 
 // const styles = StyleSheet.create({
 //   appVersion: {
@@ -17,7 +16,6 @@ import HeaderComponent from '../../components/Header';
 function SettingPage(): JSX.Element {
   return (
     <>
-      <HeaderComponent title="Wallet" />
       <GlobalLayout>
         <GlobalLayout.Header>
           <CardButton

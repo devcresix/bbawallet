@@ -1,3 +1,7 @@
-const BROWSER_DEFAULT_URL = 'https://google.com/';
+const constants = {
+  THEME_DARK: 'dark',
+  THEME_LIGHT: 'light',
+  BROWSER_DEFAULT_URL: 'https://google.com/',
+};
 
-export default BROWSER_DEFAULT_URL;
+export default {...constants};

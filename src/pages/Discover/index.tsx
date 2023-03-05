@@ -1,10 +1,10 @@
 import React from 'react';
-import HeaderComponent from '../../components/Header';
+import {Text} from 'react-native-paper';
 
 function DiscoverPage(): JSX.Element {
   return (
     <>
-      <HeaderComponent title="Discover" />
+      <Text>Increment/Decrement the number by 2, using Redux.</Text>
     </>
   );
 }

@@ -1,11 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
-import counterReducer from './features/counter/counterSlice';
-import themeSlice from './features/theme/themeSlice';
+import appSlice from './features/appSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    theme: themeSlice,
+    app: appSlice,
   },
 });
 
