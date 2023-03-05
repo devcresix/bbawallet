@@ -9,13 +9,22 @@ While you can use any editor of your choice to develop your app, you will need t
 * Clone BBA Wallet project from github
 ```
 git clone https://github.com/bbachain/bbawallet.git
-```
 
-* Install requirement dependencies
-```
 # install node_modules/
 yarn
+```
 
+## Start Android
+```
+# start project
+yarn start
+
+# or Android
+yarn android
+```
+
+## Start iOS
+```
 # install vendor/
 bundle install
 
@@ -27,7 +36,4 @@ yarn start
 
 # or iOS
 yarn ios
-
-# or Android
-yarn android
 ```
