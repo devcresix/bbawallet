@@ -22,5 +22,6 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: cd android && chmod +x gradlew
-    - name: Build with Gradle
-      run: cd android && ./gradlew build
+    - name: Generate App APK
+      run: |
+        cd android && ./gradlew assembleRelease --no-daemon
