@@ -1,19 +1,7 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 
-const styles = StyleSheet.create({
-  viewStyles: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'orange',
-  },
-  textStyles: {
-    color: 'white',
-    fontSize: 40,
-    fontWeight: 'bold',
-  },
-});
+const {height} = Dimensions.get('window');
 
 function LoadingScreen(): JSX.Element {
   useEffect(() => {
@@ -32,9 +20,32 @@ function LoadingScreen(): JSX.Element {
   };
   return (
     <View style={styles.viewStyles}>
-      <Text style={styles.textStyles}>LoadingScreen</Text>
+      <Image
+        resizeMode="contain"
+        source={require('../../assets/images/Logo.png')}
+        style={styles.logoStyle}
+      />
+      <Text style={styles.textStyles}>BBA Wallet</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  viewStyles: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'orange',
+  },
+  textStyles: {
+    color: 'black',
+    fontSize: 32,
+    fontWeight: 'bold',
+  },
+  logoStyle: {
+    height: height * 0.25,
+    width: '100%',
+  },
+});
 
 export default LoadingScreen;
