@@ -1,11 +1,11 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {Text} from 'react-native-paper';
 
 function DiscoverPage(): JSX.Element {
   return (
-    <SafeAreaView>
-      <Text>Discover</Text>
-    </SafeAreaView>
+    <>
+      <Text>Increment/Decrement the number by 2, using Redux.</Text>
+    </>
   );
 }
 

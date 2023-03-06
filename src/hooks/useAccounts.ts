@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {useState} from 'react';
+import {IAccount} from '../types';
 import storage from '../utils/storage';
-import {IAccount} from '../utils/types';
 
 const useAccounts = () => {
   const [counter, setCounter] = useState(0);

@@ -1,60 +1,58 @@
-/* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Provider as PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import DiscoverPage from './pages/Discover';
-import WalletPage from './pages/Wallet';
-import BrowserPage from './pages/Browser';
-import SettingPage from './pages/Setting';
+import InitialStackNavigation from './navigation/InitialStackNavigation';
+import MainStackNavigation from './navigation/MainStackNavigation';
+import SplashScreen from './screens/splash/SplashScreen';
 
-const Tab = createMaterialBottomTabNavigator();
+import themes from './config/theme';
+import storageKeys from './config/storageKeys';
+import storage from './utils/storage';
+import {RootState} from './store';
+
+const performTimeConsumingTask = async () => {
+  return new Promise(resolve =>
+    setTimeout(() => {
+      resolve('result');
+    }, 2000),
+  );
+};
 
 function AppRoutes(): JSX.Element {
+  const [isReady, setIsReady] = React.useState(false);
+  const theme = useSelector((state: RootState) => state.app.theme);
+  const _theme = themes[theme];
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const session = await storage.getItem(storageKeys.SESSION_KEY);
+        if (session) {
+          // dispatch();
+        }
+      } finally {
+        performTimeConsumingTask().then(result => {
+          if (result !== null) {
+            setIsReady(true);
+          }
+        });
+      }
+    })();
+  }, [dispatch]);
+
+  if (!isReady) {
+    return <SplashScreen />;
+  }
+
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen
-          name="Discover"
-          component={DiscoverPage}
-          options={{
-            tabBarIcon: ({color}) => (
-              <Ionicons name="stats-chart" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Wallet"
-          component={WalletPage}
-          options={{
-            tabBarIcon: ({color}) => (
-              <Ionicons name="wallet" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Browser"
-          component={BrowserPage}
-          options={{
-            tabBarIcon: ({color}) => (
-              <FontAwesome name="safari" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Setting"
-          component={SettingPage}
-          options={{
-            tabBarBadge: 3,
-            tabBarIcon: ({color}) => (
-              <Ionicons name="settings" color={color} size={26} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <PaperProvider theme={_theme}>
+      <NavigationContainer theme={_theme}>
+        {false ? <MainStackNavigation /> : <InitialStackNavigation />}
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
 
