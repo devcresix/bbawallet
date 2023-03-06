@@ -1,23 +1,16 @@
-import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  ActivityIndicator,
+} from 'react-native';
 
 const {height} = Dimensions.get('window');
 
 function LoadingScreen(): JSX.Element {
-  useEffect(() => {
-    performTimeConsumingTask().then(result => {
-      if (result !== null) {
-      }
-    });
-  });
-
-  const performTimeConsumingTask = async () => {
-    return new Promise(resolve =>
-      setTimeout(() => {
-        resolve('result');
-      }, 2000),
-    );
-  };
   return (
     <View style={styles.viewStyles}>
       <Image
@@ -26,6 +19,7 @@ function LoadingScreen(): JSX.Element {
         style={styles.logoStyle}
       />
       <Text style={styles.textStyles}>BBA Wallet</Text>
+      <ActivityIndicator animating={true} />
     </View>
   );
 }
@@ -35,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: '#ffc266',
   },
   textStyles: {
     color: 'black',

@@ -111,7 +111,7 @@ function WelcomeScreen(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'orange',
+    backgroundColor: '#ffc266',
   },
   positionAbsolute: {
     position: 'absolute',

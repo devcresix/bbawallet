@@ -21,7 +21,7 @@ function SettingPage(): JSX.Element {
           <CardButton
             title="Address Book"
             actionIcon="right"
-            image={require('../../assets/images/address-book.png')}
+            image={require('../../assets/images/icons/address-book.png')}
             onPress={() => {}}>
             <GlobalText type="caption">Address Book</GlobalText>
           </CardButton>
