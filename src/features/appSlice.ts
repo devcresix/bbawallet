@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit';
-
 import constants from '../config/constants';
 import {IAppState} from '../types';
 

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -16,21 +16,6 @@ const styles = StyleSheet.create({
 });
 
 function SplashScreen(): JSX.Element {
-  useEffect(() => {
-    performTimeConsumingTask().then(result => {
-      if (result !== null) {
-        // goto app
-      }
-    });
-  });
-
-  const performTimeConsumingTask = async () => {
-    return new Promise(resolve =>
-      setTimeout(() => {
-        resolve('result');
-      }, 2000),
-    );
-  };
   return (
     <View style={styles.viewStyles}>
       <Text style={styles.textStyles}>Blitz Reading</Text>
