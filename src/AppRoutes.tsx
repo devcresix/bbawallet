@@ -5,26 +5,26 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import InitialStackNavigation from './navigation/InitialStackNavigation';
 import MainStackNavigation from './navigation/MainStackNavigation';
-import SplashScreen from './screens/splash/SplashScreen';
 
 import themes from './config/theme';
 import storageKeys from './config/storageKeys';
 import storage from './utils/storage';
 import {RootState} from './store';
-
-const performTimeConsumingTask = async () => {
-  return new Promise(resolve =>
-    setTimeout(() => {
-      resolve('result');
-    }, 2000),
-  );
-};
+import LoadingScreen from './screens/initialize/LoadingScreen';
 
 function AppRoutes(): JSX.Element {
-  const [isReady, setIsReady] = React.useState(false);
-  const theme = useSelector((state: RootState) => state.app.theme);
-  const _theme = themes[theme];
   const dispatch = useDispatch();
+  const [isReady, setIsReady] = React.useState(false);
+  const {loading, theme} = useSelector((state: RootState) => state.app);
+  const _theme = themes[theme];
+
+  const performTimeConsumingTask = async () => {
+    return new Promise(resolve =>
+      setTimeout(() => {
+        resolve('result');
+      }, 2000),
+    );
+  };
 
   useEffect(() => {
     (async () => {
@@ -44,13 +44,13 @@ function AppRoutes(): JSX.Element {
   }, [dispatch]);
 
   if (!isReady) {
-    return <SplashScreen />;
+    return <LoadingScreen />;
   }
 
   return (
     <PaperProvider theme={_theme}>
       <NavigationContainer theme={_theme}>
-        {false ? <MainStackNavigation /> : <InitialStackNavigation />}
+        {loading ? <MainStackNavigation /> : <InitialStackNavigation />}
       </NavigationContainer>
     </PaperProvider>
   );

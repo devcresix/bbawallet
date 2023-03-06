@@ -1,10 +1,6 @@
 export interface IAppState {
-  loader: boolean;
+  loading: boolean;
   theme: string;
-}
-
-export interface IThemeState {
-  theme: any;
 }
 
 export interface IBarIcon {

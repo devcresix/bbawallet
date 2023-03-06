@@ -20,6 +20,7 @@ import BrowserPage from '../pages/Browser';
 import SettingPage from '../pages/Setting';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 import {RootState} from '../store';
+import constants from '../config/constants';
 
 const Sta = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,11 +52,17 @@ const BarLabel = ({color, children}: IBarLabel) => {
 
 function BottomBarNavigation() {
   const {colors} = useTheme();
-  // const _barStyle = useIsDark() ? 'light-content' : 'dark-content';
+  const {theme} = useSelector((state: RootState) => state.app);
+  const _barStyle =
+    theme === constants.THEME_DARK ? 'light-content' : 'dark-content';
 
   return (
     <>
-      <StatusBar backgroundColor={colors.background} animated />
+      <StatusBar
+        barStyle={_barStyle}
+        backgroundColor={colors.background}
+        animated
+      />
       <Tab.Navigator>
         <Tab.Screen
           name="Discover"
@@ -100,7 +107,7 @@ function BottomBarNavigation() {
 }
 
 function MainStackNavigation() {
-  const loader = useSelector((state: RootState) => state.app.loader);
+  const isLoading = useSelector((state: RootState) => state.app.loading);
   const {colors} = useTheme();
   return (
     <>
@@ -119,7 +126,7 @@ function MainStackNavigation() {
           }}
         />
       </Sta.Navigator>
-      {loader && (
+      {isLoading && (
         <Portal>
           <BlurView
             style={[

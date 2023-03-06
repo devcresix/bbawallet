@@ -3,7 +3,7 @@ import constants from '../config/constants';
 import {IAppState} from '../types';
 
 const initialState: IAppState = {
-  loader: false,
+  loading: false,
   theme: constants.THEME_LIGHT,
 };
 
@@ -12,7 +12,7 @@ export const appSlice = createSlice({
   initialState,
   reducers: {
     toggleLoader: state => {
-      state.loader = !state.loader;
+      state.loading = !state.loading;
     },
     light: state => {
       state.theme = constants.THEME_LIGHT;

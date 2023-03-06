@@ -19,7 +19,6 @@ function LoadingScreen(): JSX.Element {
   useEffect(() => {
     performTimeConsumingTask().then(result => {
       if (result !== null) {
-        // goto app
       }
     });
   });
@@ -33,7 +32,7 @@ function LoadingScreen(): JSX.Element {
   };
   return (
     <View style={styles.viewStyles}>
-      <Text style={styles.textStyles}>BBA Wallet</Text>
+      <Text style={styles.textStyles}>LoadingScreen</Text>
     </View>
   );
 }

@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
   },
 });
 
-function SplashScreen(): JSX.Element {
+function WelcomeScreen(): JSX.Element {
   return (
     <View style={styles.viewStyles}>
-      <Text style={styles.textStyles}>Blitz Reading</Text>
+      <Text style={styles.textStyles}>WelcomeScreen</Text>
     </View>
   );
 }
 
-export default SplashScreen;
+export default WelcomeScreen;
