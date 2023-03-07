@@ -36,7 +36,7 @@ function WelcomeScreen({navigation}: any): JSX.Element {
   );
 
   const _handleGetStarted = () => {
-    navigation.push('Loading');
+    navigation.push('Choose');
   };
 
   return (

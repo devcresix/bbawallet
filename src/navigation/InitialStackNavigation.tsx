@@ -1,13 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-// import BirthDateScreen from '../screens/initials/birth-date.screen';
-// import NameScreen from '../screens/initials/name.screen';
-// import NumberScreen from '../screens/initials/number.screen';
-// import RelationshipScreen from '../screens/initials/relationship.screen';
-// import SexScreen from '../screens/initials/sex.screen';
 import WelcomeScreen from '../screens/initialize/WelcomeScreen';
-import LoadingScreen from '../screens/initialize/LoadingScreen';
+import ChooseScreen from '../screens/initialize/ChooseScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,8 +15,8 @@ function InitialStackNavigation() {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="Loading"
-        component={LoadingScreen}
+        name="Choose"
+        component={ChooseScreen}
         options={{headerShown: false}}
       />
       {/*
