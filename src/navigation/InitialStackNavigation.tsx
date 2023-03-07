@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 // import RelationshipScreen from '../screens/initials/relationship.screen';
 // import SexScreen from '../screens/initials/sex.screen';
 import WelcomeScreen from '../screens/initialize/WelcomeScreen';
+import LoadingScreen from '../screens/initialize/LoadingScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,11 @@ function InitialStackNavigation() {
       <Stack.Screen
         name="Welcome"
         component={WelcomeScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Loading"
+        component={LoadingScreen}
         options={{headerShown: false}}
       />
       {/*

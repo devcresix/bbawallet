@@ -22,7 +22,7 @@ function AppRoutes(): JSX.Element {
     return new Promise(resolve =>
       setTimeout(() => {
         resolve('result');
-      }, 2000),
+      }, 2500),
     );
   };
 

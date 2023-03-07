@@ -19,7 +19,7 @@ function LoadingScreen(): JSX.Element {
         style={styles.logoStyle}
       />
       <Text style={styles.textStyles}>BBA Wallet</Text>
-      <ActivityIndicator animating={true} />
+      <ActivityIndicator animating={true} style={styles.indicatorStyle} />
     </View>
   );
 }
@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
   logoStyle: {
     height: height * 0.25,
     width: '100%',
+  },
+  indicatorStyle: {
+    top: 100,
   },
 });
 
