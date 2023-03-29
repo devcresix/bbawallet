@@ -107,8 +107,8 @@ function BottomBarNavigation() {
 }
 
 function MainStackNavigation() {
-  const isLoading = useSelector((state: RootState) => state.app.loading);
-  const {colors} = useTheme();
+  // const isLoading = useSelector((state: RootState) => state.app.loading);
+  // const {colors} = useTheme();
   return (
     <>
       <Sta.Navigator screenOptions={{headerShown: false}}>
@@ -126,7 +126,7 @@ function MainStackNavigation() {
           }}
         />
       </Sta.Navigator>
-      {isLoading && (
+      {/* {isLoading && (
         <Portal>
           <BlurView
             style={[
@@ -148,7 +148,7 @@ function MainStackNavigation() {
             </View>
           </BlurView>
         </Portal>
-      )}
+      )} */}
     </>
   );
 }

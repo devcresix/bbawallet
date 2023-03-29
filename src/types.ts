@@ -1,6 +1,6 @@
 export interface IAppState {
-  loading: boolean;
   theme: string;
+  session: any;
 }
 
 // UI Component Types

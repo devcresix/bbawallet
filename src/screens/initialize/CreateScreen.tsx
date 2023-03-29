@@ -1,10 +1,31 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
+import {setSession} from '../../features/appSlice';
+import {RootState} from '../../store';
+import storage from '../../utils/storage';
+import storageKeys from '../../config/storageKeys';
 
-function CreateScreen(): JSX.Element {
+function CreateScreen({navigation}: any): JSX.Element {
+  const dispatch = useDispatch();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState(
+    'blur fish result rule benefit grunt wish eye used hover fossil raw',
+  );
+
+  const {session} = useSelector((state: RootState) => state.app);
+
+  function handleClickStart() {
+    const preSession = {
+      ...session,
+      ...{basicsDone: true},
+    };
+    storage.setItem(storageKeys.SESSION_KEY, preSession).then(() => {
+      dispatch(setSession(preSession));
+    });
+    navigation.push('Welcome');
+  }
 
   return (
     <View style={styles.viewStyles}>
@@ -22,9 +43,7 @@ function CreateScreen(): JSX.Element {
             storage is cleared or your device is damaged or lost.
           </Text>
           <TextInput
-            value={
-              'blur fish result rule benefit grunt wish eye used hover fossil raw'
-            }
+            value={text}
             style={styles.inputSeedStyle}
             contentStyle={styles.inputSeedContentStyle}
             editable={false}
@@ -39,7 +58,10 @@ function CreateScreen(): JSX.Element {
 
         <View style={styles.optionsStyle}>
           <View style={styles.paddingStyle} />
-          <Button icon="play" mode="contained" onPress={() => {}}>
+          <Button
+            icon="play"
+            mode="contained"
+            onPress={() => handleClickStart()}>
             <Text style={styles.optionButtonTextStyle}>Start</Text>
           </Button>
         </View>
