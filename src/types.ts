@@ -3,6 +3,7 @@ export interface IAppState {
   theme: string;
 }
 
+// UI Component Types
 export interface IBarIcon {
   color: any;
   size: any;
@@ -17,4 +18,16 @@ export interface IBarLabel {
 export interface IAccount {
   id: number;
   networksAccounts: any;
+}
+
+export interface ITextSeed {
+  type: any;
+  color: any;
+  inverse: any;
+  center: any;
+  bold: any;
+  italic: any;
+  uppercase: any;
+  nospace: any;
+  style: any;
 }

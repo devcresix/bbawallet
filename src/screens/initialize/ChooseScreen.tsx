@@ -2,7 +2,11 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button} from 'react-native-paper';
 
-function ChooseScreen(): JSX.Element {
+function ChooseScreen({navigation}: any): JSX.Element {
+  const _handleCreateAccount = () => {
+    navigation.push('Warning');
+  };
+
   return (
     <View style={styles.viewStyles}>
       <View style={styles.containerStyles}>
@@ -16,7 +20,10 @@ function ChooseScreen(): JSX.Element {
         <View style={styles.paddingStyle} />
 
         <View style={styles.optionsStyle}>
-          <Button icon="plus-box" mode="contained" onPress={() => {}}>
+          <Button
+            icon="plus-box"
+            mode="contained"
+            onPress={_handleCreateAccount}>
             <Text style={styles.optionButtonTextStyle}>Create Account</Text>
           </Button>
           <View style={styles.paddingStyle} />

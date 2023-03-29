@@ -3,6 +3,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import WelcomeScreen from '../screens/initialize/WelcomeScreen';
 import ChooseScreen from '../screens/initialize/ChooseScreen';
+import WarningScreen from '../screens/initialize/WarningScreen';
+import CreateScreen from '../screens/initialize/CreateScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +19,16 @@ function InitialStackNavigation() {
       <Stack.Screen
         name="Choose"
         component={ChooseScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Warning"
+        component={WarningScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Create"
+        component={CreateScreen}
         options={{headerShown: false}}
       />
       {/*
