@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import Snackbar from 'react-native-snackbar';
+import {createAccount} from 'prolibbti';
+
+import 'react-native-get-random-values';
+import {v1 as uuid} from 'uuid';
 
 import {setSession} from '../../features/appSlice';
 import {RootState} from '../../store';
@@ -11,10 +15,9 @@ import storageKeys from '../../config/storageKeys';
 
 function CreateScreen({navigation}: any): JSX.Element {
   const dispatch = useDispatch();
+
   const [copied, setCopied] = React.useState(false);
-  const [text, _setText] = React.useState(
-    'blur fish result rule benefit grunt wish eye used hover fossil raw',
-  );
+  const [text, _setText] = React.useState('');
 
   const {session} = useSelector((state: RootState) => state.app);
 
@@ -41,6 +44,15 @@ function CreateScreen({navigation}: any): JSX.Element {
       },
     });
   }
+
+  useEffect(() => {
+    try {
+      const account = createAccount(uuid(), 'Account');
+      console.log(account);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <View style={styles.viewStyles}>
