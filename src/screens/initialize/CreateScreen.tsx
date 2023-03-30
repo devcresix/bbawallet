@@ -17,7 +17,7 @@ function CreateScreen({navigation}: any): JSX.Element {
   const dispatch = useDispatch();
 
   const [copied, setCopied] = React.useState(false);
-  const [text, _setText] = React.useState('');
+  const [text, setText] = React.useState('');
 
   const {session} = useSelector((state: RootState) => state.app);
 
@@ -46,12 +46,11 @@ function CreateScreen({navigation}: any): JSX.Element {
   }
 
   useEffect(() => {
-    try {
-      const account = createAccount(uuid(), 'Account');
-      console.log(account);
-    } catch (error) {
-      console.log(error);
-    }
+    const onCreatingAccount = async () => {
+      const account = await createAccount(uuid(), 'Account');
+      setText(account.mnemonic.toLowerCase());
+    };
+    onCreatingAccount();
   }, []);
 
   return (
