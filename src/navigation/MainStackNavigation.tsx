@@ -13,7 +13,6 @@ import DiscoverScreen from '../screens/Discover';
 import WalletScreen from '../screens/Wallet';
 import BrowserScreen from '../screens/Browser';
 import SettingScreen from '../screens/Setting';
-import ProfileScreen from '../screens/profile/ProfileScreen';
 
 // Store
 import constants from '../config/constants';
@@ -85,18 +84,6 @@ function MainStackNavigation() {
     <>
       <Sta.Navigator screenOptions={{headerShown: false}}>
         <Sta.Screen name="Home" component={BottomBarNavigation} />
-        <Sta.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{
-            cardStyle: {
-              backgroundColor: 'transparent',
-              marginTop: 50,
-              borderTopLeftRadius: 30,
-              borderTopRightRadius: 30,
-            },
-          }}
-        />
       </Sta.Navigator>
       {/* {isLoading && (
         <Portal>
