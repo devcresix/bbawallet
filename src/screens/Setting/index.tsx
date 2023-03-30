@@ -13,7 +13,7 @@ import CardButton from '../../components/Card/CardButton';
 //   },
 // });
 
-function SettingPage(): JSX.Element {
+function SettingScreen(): JSX.Element {
   return (
     <>
       <GlobalLayout>
@@ -44,4 +44,4 @@ function SettingPage(): JSX.Element {
   );
 }
 
-export default SettingPage;
+export default SettingScreen;

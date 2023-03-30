@@ -2,7 +2,7 @@ import React from 'react';
 import {WebView} from 'react-native-webview';
 import constants from '../../config/constants';
 
-function BrowserPage(): JSX.Element {
+function BrowserScreen(): JSX.Element {
   return (
     <>
       <WebView
@@ -16,4 +16,4 @@ function BrowserPage(): JSX.Element {
   );
 }
 
-export default BrowserPage;
+export default BrowserScreen;

@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {dark, light} from '../../features/appSlice';
 import type {RootState} from '../../store';
 
-function WalletPage(): JSX.Element {
+function WalletScreen(): JSX.Element {
   const theme = useSelector((state: RootState) => state.app.theme);
   const dispatch = useDispatch();
 
@@ -18,4 +18,4 @@ function WalletPage(): JSX.Element {
   );
 }
 
-export default WalletPage;
+export default WalletScreen;
