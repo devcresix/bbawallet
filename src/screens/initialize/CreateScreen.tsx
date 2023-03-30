@@ -2,6 +2,8 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
+import Snackbar from 'react-native-snackbar';
+
 import {setSession} from '../../features/appSlice';
 import {RootState} from '../../store';
 import storage from '../../utils/storage';
@@ -9,8 +11,8 @@ import storageKeys from '../../config/storageKeys';
 
 function CreateScreen({navigation}: any): JSX.Element {
   const dispatch = useDispatch();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [text, setText] = React.useState(
+  const [copied, setCopied] = React.useState(false);
+  const [text, _setText] = React.useState(
     'blur fish result rule benefit grunt wish eye used hover fossil raw',
   );
 
@@ -25,6 +27,19 @@ function CreateScreen({navigation}: any): JSX.Element {
       dispatch(setSession(preSession));
     });
     navigation.push('Welcome');
+  }
+
+  function handleClickCopy(): void {
+    setCopied(true);
+    Snackbar.show({
+      text: 'COPIED DATA TO CLIPBOARD',
+      duration: Snackbar.LENGTH_LONG,
+      action: {
+        text: 'Close',
+        textColor: 'green',
+        onPress: () => {},
+      },
+    });
   }
 
   return (
@@ -53,14 +68,20 @@ function CreateScreen({navigation}: any): JSX.Element {
           />
         </View>
         <View style={styles.paddingStyle} />
-        {/* <View style={styles.viewSeedPhraseStyle}></View> */}
         <View style={styles.paddingStyle} />
 
         <View style={styles.optionsStyle}>
+          <Button
+            icon="content-copy"
+            mode="contained"
+            onPress={() => handleClickCopy()}>
+            <Text style={styles.optionButtonTextStyle}>Copy Seeds</Text>
+          </Button>
           <View style={styles.paddingStyle} />
           <Button
             icon="play"
             mode="contained"
+            disabled={!copied}
             onPress={() => handleClickStart()}>
             <Text style={styles.optionButtonTextStyle}>Start</Text>
           </Button>
