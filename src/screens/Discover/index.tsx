@@ -1,34 +1,37 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {useTheme} from 'react-native-paper';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {StyleSheet, View} from 'react-native';
 
 // Components
-import Navbar from '../../components/Navbar';
+import Layout from '../../components/Layout';
 
 /**
  * @param navigation {object}
  * @returns {*}
  * @constructor
  */
-function DiscoverScreen({navigation}: any): JSX.Element {
-  const {colors} = useTheme();
-
+function DiscoverScreen({_navigation}: any): JSX.Element {
   return (
-    <>
-      <Navbar
-        rightButton={
-          <MaterialCommunityIcons
-            onPress={() => navigation.navigate('Signs', {key: 'Sign'})}
-            name="swap-horizontal"
-            color={colors.primary}
-            size={30}
-            style={{opacity: 0.5}}
-          />
-        }
+    <Layout>
+      <View
+        style={[
+          styles.defaultContainer,
+          {
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: 10,
+          },
+        ]}
       />
-    </>
+    </Layout>
   );
 }
+
+const styles = StyleSheet.create({
+  defaultContainer: {
+    marginHorizontal: 20,
+    marginTop: 20,
+  },
+});
 
 export default DiscoverScreen;

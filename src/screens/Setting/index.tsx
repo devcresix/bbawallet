@@ -1,7 +1,10 @@
 import React from 'react';
-import GlobalLayout from '../../components/Global/GlobalLayout';
+
+// Components
+// import GlobalLayout from '../../components/Global/GlobalLayout';
 import GlobalText from '../../components/Global/GlobalText';
 import CardButton from '../../components/Card/CardButton';
+import Layout from '../../components/Layout';
 
 // const styles = StyleSheet.create({
 //   appVersion: {
@@ -15,9 +18,9 @@ import CardButton from '../../components/Card/CardButton';
 
 function SettingScreen(): JSX.Element {
   return (
-    <>
-      <GlobalLayout>
-        <GlobalLayout.Header>
+    <Layout>
+      <>
+        <>
           <CardButton
             title="Address Book"
             actionIcon="right"
@@ -38,9 +41,9 @@ function SettingScreen(): JSX.Element {
           />
           <CardButton title="Support" actionIcon="right" onPress={() => {}} />
           <CardButton title="About Us" actionIcon="right" onPress={() => {}} />
-        </GlobalLayout.Header>
-      </GlobalLayout>
-    </>
+        </>
+      </>
+    </Layout>
   );
 }
 

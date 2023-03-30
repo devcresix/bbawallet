@@ -1,5 +1,7 @@
 import React from 'react';
 import {WebView} from 'react-native-webview';
+
+// Components
 import constants from '../../config/constants';
 
 function BrowserScreen(): JSX.Element {

@@ -1,10 +1,9 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 
 import theme from './theme';
 import GlobalImage from './GlobalImage';
 import GlobalText from './GlobalText';
-import Hoverable from '../Hoverable';
 
 const styles = StyleSheet.create({
   button: {
@@ -203,7 +202,7 @@ const GlobalButton = ({
   };
 
   return (
-    <Hoverable
+    <TouchableOpacity
       disabled={readonly ? true : disabled}
       style={[
         touchableStyles,
@@ -235,7 +234,7 @@ const GlobalButton = ({
           children
         )}
       </View>
-    </Hoverable>
+    </TouchableOpacity>
   );
 };
 
