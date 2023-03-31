@@ -11,11 +11,10 @@ import SelectAccounts from '../SelectAccounts';
 /**
  * @param _children
  * @param style {object}
- * @param rightButton {React.ComponentElement}
  * @returns {*}
  * @constructor
  */
-function Navbar({_children, style, rightButton}: any): any {
+function Navbar({_children, style}: any): any {
   const [modalVisible, setModalVisible] = useState(false);
   // const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const {colors} = useTheme();
@@ -64,7 +63,13 @@ function Navbar({_children, style, rightButton}: any): any {
           style={{opacity: 0.5}}
           onPress={() => setModalVisible(true)}
         />
-        {rightButton}
+        <MaterialCommunityIcons
+          size={30}
+          name="swap-horizontal"
+          color={colors.primary}
+          style={{opacity: 0.5}}
+          onPress={() => {}}
+        />
       </View>
     </View>
   );

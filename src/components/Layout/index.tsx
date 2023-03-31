@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {ReactNode} from 'react';
 import {SafeAreaView, View} from 'react-native';
-import {Divider, Text} from 'react-native-paper';
+import {Divider} from 'react-native-paper';
 
 // Components
 import Navbar from '../../components/Navbar';
@@ -18,7 +18,7 @@ interface Props {
 function Layout({children}: Props) {
   const Header: any = (
     <View>
-      <Navbar rightButton={<Text>Mainnet</Text>} />
+      <Navbar />
       <Divider />
     </View>
   );
