@@ -1,7 +1,11 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
+
+import {resetDevice} from '../../features/appSlice';
+import storageKeys from '../../config/storageKeys';
+import storage from '../../utils/storage';
 
 // Components
-// import GlobalLayout from '../../components/Global/GlobalLayout';
 import GlobalText from '../../components/Global/GlobalText';
 import CardButton from '../../components/Card/CardButton';
 import Layout from '../../components/Layout';
@@ -16,7 +20,14 @@ import Layout from '../../components/Layout';
 //   },
 // });
 
-function SettingScreen(): JSX.Element {
+function SettingScreen() {
+  const dispatch = useDispatch();
+
+  async function handleResetDevice() {
+    await storage.removeItem(storageKeys.SESSION_KEY);
+    dispatch(resetDevice());
+  }
+
   return (
     <Layout>
       <>
@@ -41,6 +52,11 @@ function SettingScreen(): JSX.Element {
           />
           <CardButton title="Support" actionIcon="right" onPress={() => {}} />
           <CardButton title="About Us" actionIcon="right" onPress={() => {}} />
+          <CardButton
+            title="Reset Device"
+            actionIcon="right"
+            onPress={handleResetDevice}
+          />
         </>
       </>
     </Layout>

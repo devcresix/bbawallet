@@ -20,9 +20,12 @@ export const appSlice = createSlice({
     setSession: (state, {payload}) => {
       state.session = payload;
     },
+    resetDevice: state => {
+      state.session = {};
+    },
   },
 });
 
-export const {light, dark, setSession} = appSlice.actions;
+export const {light, dark, setSession, resetDevice} = appSlice.actions;
 
 export default appSlice.reducer;
