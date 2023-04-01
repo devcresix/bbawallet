@@ -5,6 +5,7 @@ import WelcomeScreen from '../screens/initialize/WelcomeScreen';
 import ChooseScreen from '../screens/initialize/ChooseScreen';
 import WarningScreen from '../screens/initialize/WarningScreen';
 import CreateScreen from '../screens/initialize/CreateScreen';
+import ConfirmScreen from '../screens/initialize/ConfirmScreen';
 
 const Stack = createStackNavigator();
 
@@ -31,27 +32,11 @@ function InitialStackNavigation() {
         component={CreateScreen}
         options={{headerShown: false}}
       />
-      {/*
       <Stack.Screen
-        name="BirthDate"
-        component={BirthDateScreen}
+        name="Confirm"
+        component={ConfirmScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="Sex"
-        component={SexScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Relationship"
-        component={RelationshipScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Number"
-        component={NumberScreen}
-        options={{headerShown: false}}
-      /> */}
     </Stack.Navigator>
   );
 }

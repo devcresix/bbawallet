@@ -1,58 +1,29 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
-import Snackbar from 'react-native-snackbar';
-import {createAccount} from 'prolibbti';
-
-import 'react-native-get-random-values';
-import {v1 as uuid} from 'uuid';
+import {Button} from 'react-native-paper';
 
 import {setSession} from '../../features/appSlice';
 import {RootState} from '../../store';
 import storage from '../../utils/storage';
 import storageKeys from '../../config/storageKeys';
+import TextInput from '../../components/Input';
 
-function CreateScreen({navigation}: any): JSX.Element {
+function ConfirmScreen({navigation}: any): JSX.Element {
   const dispatch = useDispatch();
-
-  const [copied, setCopied] = React.useState(false);
-  const [text, setText] = React.useState('');
 
   const {session} = useSelector((state: RootState) => state.app);
 
   function handleClickStart() {
-    // const preSession = {
-    //   ...session,
-    //   ...{basicsDone: true},
-    // };
-    // storage.setItem(storageKeys.SESSION_KEY, preSession).then(() => {
-    //   dispatch(setSession(preSession));
-    // });
-    navigation.push('Confirm');
-  }
-
-  function handleClickCopy(): void {
-    setCopied(true);
-    Snackbar.show({
-      text: 'COPIED DATA TO CLIPBOARD',
-      duration: Snackbar.LENGTH_LONG,
-      action: {
-        text: 'Close',
-        textColor: 'green',
-        onPress: () => {},
-      },
-    });
-  }
-
-  useEffect(() => {
-    const onCreatingAccount = async () => {
-      const account = await createAccount(uuid(), 'Account');
-      setText(account.mnemonic.toLowerCase());
+    const preSession = {
+      ...session,
+      ...{basicsDone: true},
     };
-    onCreatingAccount();
-  }, []);
+    storage.setItem(storageKeys.SESSION_KEY, preSession).then(() => {
+      dispatch(setSession(preSession));
+    });
+    navigation.push('Welcome');
+  }
 
   return (
     <View style={styles.viewStyles}>
@@ -69,31 +40,20 @@ function CreateScreen({navigation}: any): JSX.Element {
             You will need these words to restore your wallet if your browser's
             storage is cleared or your device is damaged or lost.
           </Text>
-          <TextInput
-            value={text}
-            style={styles.inputSeedStyle}
-            contentStyle={styles.inputSeedContentStyle}
-            editable={false}
-            inputMode="text"
-            mode="outlined"
-            multiline
-          />
         </View>
         <View style={styles.paddingStyle} />
         <View style={styles.paddingStyle} />
 
+        <View style={styles.confirmSeed}>
+          <TextInput label="Seed Key #1" variant="outlined" margin={16} />
+          <TextInput label="Seed Key #4" variant="outlined" margin={16} />
+          <TextInput label="Seed Key #6" variant="outlined" margin={16} />
+        </View>
+
         <View style={styles.optionsStyle}>
-          <Button
-            icon="content-copy"
-            mode="contained"
-            onPress={() => handleClickCopy()}>
-            <Text style={styles.optionButtonTextStyle}>Copy Seeds</Text>
-          </Button>
-          <View style={styles.paddingStyle} />
           <Button
             icon="play"
             mode="contained"
-            disabled={!copied}
             onPress={() => handleClickStart()}>
             <Text style={styles.optionButtonTextStyle}>Start</Text>
           </Button>
@@ -135,21 +95,11 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
   },
-  viewSeedPhraseStyle: {
-    marginLeft: 0,
-    marginRight: 0,
-    height: 40,
-  },
   textWarningStyle: {
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  inputSeedStyle: {
-    height: 120,
-  },
-  inputSeedContentStyle: {
-    alignContent: 'center',
+    textAlign: 'center',
   },
   optionsStyle: {
     justifyContent: 'center',
@@ -160,6 +110,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+  // TODO
+  confirmSeed: {
+    width: '92%',
+  },
 });
 
-export default CreateScreen;
+export default ConfirmScreen;

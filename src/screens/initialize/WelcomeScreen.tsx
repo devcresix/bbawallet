@@ -35,7 +35,7 @@ function WelcomeScreen({navigation}: any): JSX.Element {
     FIXED_BAR_WIDTH / ((images.length - 1) * INDICATOR_PADDING),
   );
 
-  const _handleGetStarted = () => {
+  const handleGetStarted = () => {
     navigation.push('Choose');
   };
 
@@ -81,7 +81,7 @@ function WelcomeScreen({navigation}: any): JSX.Element {
                 <Button
                   icon="login"
                   mode="contained"
-                  onPress={_handleGetStarted}>
+                  onPress={handleGetStarted}>
                   Get Started
                 </Button>
               ) : (
