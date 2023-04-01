@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
-import Snackbar from 'react-native-snackbar';
+import Clipboard from '@react-native-clipboard/clipboard';
 import {createAccount} from 'prolibbti';
 
 import 'react-native-get-random-values';
@@ -23,27 +22,19 @@ function CreateScreen({navigation}: any): JSX.Element {
   const {session} = useSelector((state: RootState) => state.app);
 
   function handleClickStart() {
-    // const preSession = {
-    //   ...session,
-    //   ...{basicsDone: true},
-    // };
-    // storage.setItem(storageKeys.SESSION_KEY, preSession).then(() => {
-    //   dispatch(setSession(preSession));
-    // });
+    const preSession = {
+      ...session,
+      ...{mnemonic: text, validated: false},
+    };
+    storage.setItem(storageKeys.SESSION_KEY, preSession).then(() => {
+      dispatch(setSession(preSession));
+    });
     navigation.push('Confirm');
   }
 
   function handleClickCopy(): void {
     setCopied(true);
-    Snackbar.show({
-      text: 'COPIED DATA TO CLIPBOARD',
-      duration: Snackbar.LENGTH_LONG,
-      action: {
-        text: 'Close',
-        textColor: 'green',
-        onPress: () => {},
-      },
-    });
+    Clipboard.setString(text);
   }
 
   useEffect(() => {

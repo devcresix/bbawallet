@@ -39,7 +39,7 @@ function AppRoutes(): JSX.Element {
   return (
     <PaperProvider theme={_theme}>
       <NavigationContainer theme={_theme}>
-        {session.basicsDone ? (
+        {session.validated ? (
           <MainStackNavigation />
         ) : (
           <InitialStackNavigation />

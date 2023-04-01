@@ -5,14 +5,28 @@ interface IInputProps {
   variant: 'filled' | 'outlined' | 'standard';
   margin: number;
   label: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  onBlur?: () => void;
 }
 
-function TextInput({variant, margin, label}: IInputProps) {
+function TextInput({
+  variant,
+  margin,
+  label,
+  value,
+  onChangeText,
+  onBlur,
+}: IInputProps) {
   return (
     <MaterialTextInput
+      autoCapitalize="none"
       variant={variant}
       label={label}
       style={{margin: margin}}
+      value={value}
+      onChangeText={onChangeText}
+      onBlur={onBlur}
     />
   );
 }
