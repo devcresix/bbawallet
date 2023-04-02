@@ -1,27 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/no-unstable-nested-components */
 import React, {useState} from 'react';
+import {ScrollView, View} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {Dialog} from '@react-native-material/core';
+import {ListItem} from '@react-native-material/core';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {resetDevice} from '../../features/appSlice';
 import storageKeys from '../../config/storageKeys';
 import storage from '../../utils/storage';
 
 // Components
-import GlobalText from '../../components/Global/GlobalText';
-import CardButton from '../../components/Card/CardButton';
-import Layout from '../../components/Layout';
 import SimpleDialog from '../../components/Dialog';
-
-// const styles = StyleSheet.create({
-//   appVersion: {
-//     position: 'absolute',
-//     bottom: 8,
-//     left: 0,
-//     right: 0,
-//     textAlign: 'center',
-//   },
-// });
 
 function SettingScreen() {
   const dispatch = useDispatch();
@@ -38,44 +27,48 @@ function SettingScreen() {
   }
 
   return (
-    <Layout>
-      <>
-        <>
-          <CardButton
-            title="Address Book"
-            actionIcon="right"
-            image={require('../../assets/images/icons/address-book.png')}
-            onPress={() => {}}>
-            <GlobalText type="caption">Address Book</GlobalText>
-          </CardButton>
-          <CardButton title="Language" actionIcon="right" onPress={() => {}}>
-            <GlobalText type="caption">English</GlobalText>
-          </CardButton>
-          <CardButton title="Network" actionIcon="right" onPress={() => {}}>
-            <GlobalText type="caption">mainnet</GlobalText>
-          </CardButton>
-          <CardButton
-            title="Trusted Apps"
-            actionIcon="right"
-            onPress={() => {}}
-          />
-          <CardButton title="Support" actionIcon="right" onPress={() => {}} />
-          <CardButton title="About Us" actionIcon="right" onPress={() => {}} />
-          <CardButton
-            title="Reset Device"
-            actionIcon="right"
-            onPress={handlePressReset}
-          />
-          <SimpleDialog
-            visible={visible}
-            title={'Reset Device'}
-            text={'Do you want to reset current device?'}
-            onPressCancel={() => setVisible(false)}
-            onPressOk={handleResetDevice}
-          />
-        </>
-      </>
-    </Layout>
+    <ScrollView>
+      <View>
+        <ListItem
+          title="Address Book"
+          leading={<Icon name="book-account" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Language"
+          leading={<Icon name="translate" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Trusted Apps"
+          leading={<Icon name="apps" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="About Us"
+          leading={<Icon name="information" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Support"
+          leading={<Icon name="help-circle" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Reset All"
+          leading={<Icon name="lock-reset" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+          onPress={handlePressReset}
+        />
+        <SimpleDialog
+          visible={visible}
+          title={'Reset Device'}
+          text={'Do you want to reset current device?'}
+          onPressCancel={() => setVisible(false)}
+          onPressOk={handleResetDevice}
+        />
+      </View>
+    </ScrollView>
   );
 }
 

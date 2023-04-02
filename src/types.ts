@@ -3,13 +3,6 @@ export interface IAppState {
   session: any;
 }
 
-// UI Component Types
-export interface IBarIcon {
-  color: any;
-  size: any;
-  name: any;
-}
-
 export interface IBarLabel {
   color: any;
   children: any;
