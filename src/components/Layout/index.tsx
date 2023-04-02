@@ -1,12 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {ReactNode} from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-paper';
 
 // Components
 import Navbar from '../../components/Navbar';
 import ScrollViewFadeFirst from '../../components/Container/ScrollViewFadeFirst';
-import ShowFromTop from '../../components/Animation/ShowFromTop';
 
 interface Props {
   children?: ReactNode;
@@ -25,12 +24,22 @@ function Layout({children}: Props) {
 
   return (
     <SafeAreaView>
-      <ScrollViewFadeFirst height={200} element={Header}>
+      <ScrollViewFadeFirst
+        height={200}
+        element={Header}
+        style={styles.viewStyles}>
         <View style={{height: 20}} />
-        <ShowFromTop>{children}</ShowFromTop>
+        {children}
       </ScrollViewFadeFirst>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  viewStyles: {
+    height: '100%',
+    backgroundColor: 'gray',
+  },
+});
 
 export default Layout;

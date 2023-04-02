@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, {useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {ListItem} from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -27,8 +27,8 @@ function SettingScreen() {
   }
 
   return (
-    <ScrollView>
-      <View>
+    <SafeAreaView>
+      <ScrollView>
         <ListItem
           title="Address Book"
           leading={<Icon name="book-account" size={24} />}
@@ -67,8 +67,8 @@ function SettingScreen() {
           onPressCancel={() => setVisible(false)}
           onPressOk={handleResetDevice}
         />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
