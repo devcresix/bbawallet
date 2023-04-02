@@ -4,6 +4,7 @@ import {IAppState} from '../types';
 
 const initialState: IAppState = {
   theme: constants.THEME_LIGHT,
+  language: constants.DEFAULT_LANGUAGE,
   session: {},
 };
 
@@ -23,9 +24,13 @@ export const appSlice = createSlice({
     resetDevice: state => {
       state.session = {};
     },
+    changeLanguage: (state, {payload}) => {
+      state.language = payload;
+    },
   },
 });
 
-export const {light, dark, setSession, resetDevice} = appSlice.actions;
+export const {light, dark, setSession, resetDevice, changeLanguage} =
+  appSlice.actions;
 
 export default appSlice.reducer;

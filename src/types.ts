@@ -1,5 +1,6 @@
 export interface IAppState {
   theme: string;
+  language: string;
   session: any;
 }
 
