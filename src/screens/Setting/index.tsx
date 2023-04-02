@@ -1,5 +1,7 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
+import {Dialog} from '@react-native-material/core';
 
 import {resetDevice} from '../../features/appSlice';
 import storageKeys from '../../config/storageKeys';
@@ -9,6 +11,7 @@ import storage from '../../utils/storage';
 import GlobalText from '../../components/Global/GlobalText';
 import CardButton from '../../components/Card/CardButton';
 import Layout from '../../components/Layout';
+import SimpleDialog from '../../components/Dialog';
 
 // const styles = StyleSheet.create({
 //   appVersion: {
@@ -22,6 +25,12 @@ import Layout from '../../components/Layout';
 
 function SettingScreen() {
   const dispatch = useDispatch();
+
+  const [visible, setVisible] = useState(false);
+
+  async function handlePressReset() {
+    setVisible(true);
+  }
 
   async function handleResetDevice() {
     await storage.removeItem(storageKeys.SESSION_KEY);
@@ -55,7 +64,14 @@ function SettingScreen() {
           <CardButton
             title="Reset Device"
             actionIcon="right"
-            onPress={handleResetDevice}
+            onPress={handlePressReset}
+          />
+          <SimpleDialog
+            visible={visible}
+            title={'Reset Device'}
+            text={'Do you want to reset current device?'}
+            onPressCancel={() => setVisible(false)}
+            onPressOk={handleResetDevice}
           />
         </>
       </>
