@@ -1,9 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, ScrollView, Text, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
+import {Avatar, ListItem} from '@react-native-material/core';
 
 // Components
 import Layout from '../../components/Layout';
@@ -41,34 +44,34 @@ function AssetsScreen(): JSX.Element {
       <View>
         <Text>Tokens</Text>
         {/* List of tokens */}
-        <View>
-          {/* Token USDT */}
-          <View>
-            <View>
-              <Text>Logo</Text>
-            </View>
-            <View>
-              <Text>TetherUS</Text>
-              <Text>USDT</Text>
-            </View>
-            <View>
-              <Text>100,000 USDT</Text>
-            </View>
-          </View>
-          {/* Token ARKC */}
-          <View>
-            <View>
-              <Text>Logo</Text>
-            </View>
-            <View>
-              <Text>Aka Polic</Text>
-              <Text>ARKC</Text>
-            </View>
-            <View>
-              <Text>500,000 ARKC</Text>
-            </View>
-          </View>
-        </View>
+        <ScrollView>
+          <ListItem
+            title="USDT"
+            secondaryText="TetherUS"
+            leadingMode="avatar"
+            leading={
+              <Avatar
+                size={40}
+                image={require('../../assets/images/tokens/usdt.png')}
+                imageStyle={{backgroundColor: '#ebedf0'}}
+              />
+            }
+            trailing={props => <Text {...props}>1,000</Text>}
+          />
+          <ListItem
+            title="BUSD"
+            secondaryText="Binance USD"
+            leadingMode="avatar"
+            leading={
+              <Avatar
+                size={40}
+                image={require('../../assets/images/tokens/busd.png')}
+                imageStyle={{backgroundColor: '#ebedf0'}}
+              />
+            }
+            trailing={props => <Text {...props}>2,300</Text>}
+          />
+        </ScrollView>
       </View>
     </Layout>
   );
