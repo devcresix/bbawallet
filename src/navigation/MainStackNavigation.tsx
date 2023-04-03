@@ -36,6 +36,7 @@ function BottomBarNavigation() {
         animated
       />
       <Tab.Navigator
+        initialRouteName="Wallet"
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: '#e91e63',

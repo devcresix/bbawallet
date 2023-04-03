@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {Text, useTheme} from 'react-native-paper';
 import {Dimensions, Modal, StyleSheet, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {BlurView} from '@react-native-community/blur';
 
 // Components
@@ -54,18 +55,18 @@ function Navbar({style}: any): any {
         </BlurView>
       </Modal>
       <View style={styles.content}>
-        <MaterialCommunityIcons
-          size={30}
-          name="account-circle-outline"
+        <Ionicons
+          size={24}
+          name="settings"
           color={colors.primary}
           style={{opacity: 0.5}}
           onPress={() => setModalVisible(true)}
         />
         <View>
-          <Text>
+          <Text style={styles.textSwitchAccount}>
             Account 1
             <MaterialCommunityIcons
-              size={12}
+              size={20}
               name="chevron-down"
               color={colors.primary}
               onPress={() => {}}
@@ -73,8 +74,8 @@ function Navbar({style}: any): any {
           </Text>
         </View>
         <MaterialCommunityIcons
-          size={30}
-          name="swap-horizontal"
+          size={24}
+          name="swap-horizontal-bold"
           color={colors.primary}
           style={{opacity: 0.5}}
           onPress={() => {}}
@@ -96,6 +97,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
+  },
+  textSwitchAccount: {
+    fontWeight: '700',
+    alignContent: 'center',
   },
 });
 
