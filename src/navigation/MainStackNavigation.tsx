@@ -2,17 +2,17 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import {useSelector} from 'react-redux';
-// import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {useTheme} from 'react-native-paper';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-import {useTheme} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Screens
-import DiscoverScreen from '../screens/Discover';
-import WalletScreen from '../screens/Wallet';
-import BrowserScreen from '../screens/Browser';
+// import DiscoverScreen from '../screens/Discover';
+// import BrowserScreen from '../screens/Browser';
+import AssetsScreen from '../screens/Assets';
+import TransactionsScreen from '../screens/Transactions';
 import SettingScreen from '../screens/Setting';
 
 // Store
@@ -36,36 +36,29 @@ function BottomBarNavigation() {
         animated
       />
       <Tab.Navigator
-        initialRouteName="Wallet"
+        initialRouteName="Assets"
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: '#e91e63',
           tabBarLabelStyle: {display: 'none'},
         }}>
         <Tab.Screen
-          name="Discover"
-          component={DiscoverScreen}
+          name="Assets"
+          component={AssetsScreen}
           options={{
+            tabBarBadge: 1,
             tabBarIcon: ({color}) => (
-              <Ionicons name="stats-chart" color={color} size={26} />
+              <Ionicons name="pie-chart" color={color} size={26} />
             ),
           }}
         />
         <Tab.Screen
-          name="Wallet"
-          component={WalletScreen}
+          name="Transactions"
+          component={TransactionsScreen}
           options={{
+            tabBarBadge: 3,
             tabBarIcon: ({color}) => (
-              <Ionicons name="wallet" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Browser"
-          component={BrowserScreen}
-          options={{
-            tabBarIcon: ({color}) => (
-              <FontAwesome name="safari" color={color} size={26} />
+              <FontAwesome name="history" color={color} size={26} />
             ),
           }}
         />
@@ -73,7 +66,6 @@ function BottomBarNavigation() {
           name="Setting"
           component={SettingScreen}
           options={{
-            tabBarBadge: 3,
             tabBarIcon: ({color}) => (
               <Ionicons name="settings" color={color} size={26} />
             ),
