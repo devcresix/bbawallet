@@ -26,6 +26,10 @@ function SettingScreen() {
     dispatch(resetDevice());
   }
 
+  function handleAddressBook() {
+    console.log('Pressed');
+  }
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -33,6 +37,7 @@ function SettingScreen() {
           title="Address Book"
           leading={<Icon name="book-account" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
+          onPress={handleAddressBook}
         />
         <ListItem
           title="Language"
