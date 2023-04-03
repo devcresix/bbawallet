@@ -2,7 +2,8 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import {useSelector} from 'react-redux';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+// import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useTheme} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -19,7 +20,7 @@ import constants from '../config/constants';
 import {RootState} from '../store';
 
 const Sta = createStackNavigator();
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 function BottomBarNavigation() {
   const {colors} = useTheme();
@@ -34,7 +35,12 @@ function BottomBarNavigation() {
         backgroundColor={colors.background}
         animated
       />
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: '#e91e63',
+          tabBarLabelStyle: {display: 'none'},
+        }}>
         <Tab.Screen
           name="Discover"
           component={DiscoverScreen}
@@ -78,14 +84,14 @@ function BottomBarNavigation() {
 }
 
 function MainStackNavigation() {
-  // const isLoading = useSelector((state: RootState) => state.app.loading);
+  // const {loading} = useSelector((state: RootState) => state.app.loading);
   // const {colors} = useTheme();
   return (
     <>
       <Sta.Navigator screenOptions={{headerShown: false}}>
         <Sta.Screen name="Home" component={BottomBarNavigation} />
       </Sta.Navigator>
-      {/* {isLoading && (
+      {/* {loading && (
         <Portal>
           <BlurView
             style={[

@@ -1,4 +1,5 @@
 export interface IAppState {
+  loading: boolean;
   theme: string;
   language: string;
   session: any;

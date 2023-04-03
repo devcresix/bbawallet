@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {useTheme} from 'react-native-paper';
+import {Text, useTheme} from 'react-native-paper';
 import {Dimensions, Modal, StyleSheet, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BlurView} from '@react-native-community/blur';
@@ -9,12 +9,11 @@ import {BlurView} from '@react-native-community/blur';
 import SelectAccounts from '../SelectAccounts';
 
 /**
- * @param _children
  * @param style {object}
  * @returns {*}
  * @constructor
  */
-function Navbar({_children, style}: any): any {
+function Navbar({style}: any): any {
   const [modalVisible, setModalVisible] = useState(false);
   // const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const {colors} = useTheme();
@@ -32,24 +31,23 @@ function Navbar({_children, style}: any): any {
           style={[
             StyleSheet.absoluteFill,
             {
-              marginTop: 100,
-              borderRadius: 50,
               padding: 15,
+              marginTop: 65,
+              borderRadius: 18,
+              backgroundColor: 'gray',
             },
           ]}
           blurType="light"
           blurAmount={10}>
-          <View
-            style={{
-              // width: '100%',
-              alignContent: 'flex-end',
-              alignSelf: 'flex-end',
-              backgroundColor: 'gray',
-            }}>
+          <View>
             <MaterialCommunityIcons
               size={30}
               name="close"
               onPress={() => setModalVisible(!modalVisible)}
+              style={{
+                alignContent: 'flex-end',
+                alignSelf: 'flex-end',
+              }}
             />
           </View>
           <SelectAccounts />
@@ -63,6 +61,17 @@ function Navbar({_children, style}: any): any {
           style={{opacity: 0.5}}
           onPress={() => setModalVisible(true)}
         />
+        <View>
+          <Text>
+            Account 1
+            <MaterialCommunityIcons
+              size={12}
+              name="chevron-down"
+              color={colors.primary}
+              onPress={() => {}}
+            />
+          </Text>
+        </View>
         <MaterialCommunityIcons
           size={30}
           name="swap-horizontal"

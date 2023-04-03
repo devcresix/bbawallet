@@ -38,7 +38,7 @@ function Layout({children}: Props) {
 const styles = StyleSheet.create({
   viewStyles: {
     height: '100%',
-    backgroundColor: 'gray',
+    // backgroundColor: 'gray',
   },
 });
 
