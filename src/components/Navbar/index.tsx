@@ -9,14 +9,8 @@ import {BlurView} from '@react-native-community/blur';
 // Components
 import SelectAccounts from '../SelectAccounts';
 
-/**
- * @param style {object}
- * @returns {*}
- * @constructor
- */
 function Navbar({navigation, back}: any): any {
   const [modalVisible, setModalVisible] = useState(false);
-  // const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const {colors} = useTheme();
 
   return (
@@ -61,7 +55,7 @@ function Navbar({navigation, back}: any): any {
             size={24}
             name="settings"
             color={colors.primary}
-            style={{opacity: 0.5}}
+            style={{opacity: 1.0}}
             onPress={() => setModalVisible(true)}
           />
           <View>
@@ -79,7 +73,7 @@ function Navbar({navigation, back}: any): any {
             size={24}
             name="swap-horizontal-bold"
             color={colors.primary}
-            style={{opacity: 0.5}}
+            style={{opacity: 1.0}}
             onPress={() => {}}
           />
         </View>
