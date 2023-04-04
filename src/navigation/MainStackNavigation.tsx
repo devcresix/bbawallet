@@ -11,6 +11,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 // Screens
 // import DiscoverScreen from '../screens/Discover';
 // import BrowserScreen from '../screens/Browser';
+import Navbar from '../components/Navbar';
 import AssetsScreen from '../screens/Assets';
 import TransactionsScreen from '../screens/Transactions';
 import SettingScreen from '../screens/Setting';
@@ -81,7 +82,7 @@ function MainStackNavigation() {
   // const {colors} = useTheme();
   return (
     <>
-      <Sta.Navigator screenOptions={{headerShown: false}}>
+      <Sta.Navigator screenOptions={{header: props => <Navbar {...props} />}}>
         <Sta.Screen name="Home" component={BottomBarNavigation} />
       </Sta.Navigator>
       {/* {loading && (
