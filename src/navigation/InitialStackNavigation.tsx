@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import WelcomeScreen from '../screens/initialize/WelcomeScreen';
+import OnboardingScreen from '../screens/initialize/OnboardingScreen';
 import ChooseScreen from '../screens/initialize/ChooseScreen';
 import WarningScreen from '../screens/initialize/WarningScreen';
 import CreateScreen from '../screens/initialize/CreateScreen';
@@ -13,8 +13,8 @@ function InitialStackNavigation() {
   return (
     <Stack.Navigator initialRouteName="Welcome">
       <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
+        name="Onboarding"
+        component={OnboardingScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
