@@ -1,16 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 
 function OnboardingScreen({navigation}: any) {
+  const handleGetStarted = () => {
+    navigation.push('Choose');
+  };
+
   return (
     <Onboarding
+      onSkip={handleGetStarted}
+      onDone={handleGetStarted}
       pages={[
         {
           title: 'Onboarding',
           subtitle: 'Done with React Native Onboarding Swiper',
-          backgroundColor: '#fff',
+          backgroundColor: '#ffc266',
           image: (
             <Image
               style={styles.viewOnboardingImage}
@@ -21,7 +26,7 @@ function OnboardingScreen({navigation}: any) {
         {
           title: 'Onboarding',
           subtitle: 'Done with React Native Onboarding Swiper',
-          backgroundColor: '#fff',
+          backgroundColor: '#ffc266',
           image: (
             <Image
               style={styles.viewOnboardingImage}
@@ -32,7 +37,7 @@ function OnboardingScreen({navigation}: any) {
         {
           title: 'Onboarding',
           subtitle: 'Done with React Native Onboarding Swiper',
-          backgroundColor: '#fff',
+          backgroundColor: '#ffc266',
           image: (
             <Image
               style={styles.viewOnboardingImage}
