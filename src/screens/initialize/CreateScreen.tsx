@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {createAccount} from 'prolibbti';
 
@@ -15,12 +15,12 @@ import storageKeys from '../../config/storageKeys';
 
 // Components
 import StatusBanner from '../../components/StatusBanner';
+import Button from '../../components/Button';
 
 function CreateScreen({navigation}: any) {
   const dispatch = useDispatch();
 
   const [status, setStatus] = useState('');
-  const [copied, setCopied] = useState(false);
   const [text, setText] = useState('');
 
   const {session} = useSelector((state: RootState) => state.app);
@@ -37,7 +37,6 @@ function CreateScreen({navigation}: any) {
   }
 
   function handleClickCopy(): void {
-    setCopied(true);
     setStatus('Data copied to clipboard');
     Clipboard.setString(text);
   }
@@ -82,18 +81,11 @@ function CreateScreen({navigation}: any) {
           <View style={styles.optionsStyle}>
             <Button
               icon="content-copy"
-              mode="contained"
-              onPress={() => handleClickCopy()}>
-              <Text style={styles.optionButtonTextStyle}>Copy Seeds</Text>
-            </Button>
+              title="Copy Seeds"
+              onPress={handleClickCopy}
+            />
             <View style={styles.paddingStyle} />
-            <Button
-              icon="play"
-              mode="contained"
-              disabled={!copied}
-              onPress={() => handleClickStart()}>
-              <Text style={styles.optionButtonTextStyle}>Start</Text>
-            </Button>
+            <Button icon="play" title="Start" onPress={handleClickStart} />
           </View>
         </View>
       </View>
@@ -154,10 +146,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     padding: 25,
-  },
-  optionButtonTextStyle: {
-    color: 'white',
-    fontWeight: 'bold',
   },
 });
 

@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import Snackbar from 'react-native-snackbar';
-import {Button} from 'react-native-paper';
 
 import {setSession} from '../../features/appSlice';
 import {RootState} from '../../store';
 import storage from '../../utils/storage';
 import storageKeys from '../../config/storageKeys';
 import TextInput from '../../components/Input';
+import Button from '../../components/Button';
 
 function ConfirmScreen({navigation}: any) {
   const dispatch = useDispatch();
@@ -125,12 +125,7 @@ function ConfirmScreen({navigation}: any) {
         </View>
 
         <View style={styles.optionsStyle}>
-          <Button
-            icon="play"
-            mode="contained"
-            onPress={() => handleClickStart()}>
-            <Text style={styles.optionButtonTextStyle}>Start</Text>
-          </Button>
+          <Button icon="play" title="Start" onPress={handleClickStart} />
         </View>
       </View>
     </View>
@@ -179,10 +174,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     padding: 25,
-  },
-  optionButtonTextStyle: {
-    color: 'white',
-    fontWeight: 'bold',
   },
   // TODO
   confirmSeed: {

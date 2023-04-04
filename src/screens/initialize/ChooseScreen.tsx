@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import {Button} from 'react-native-paper';
+import Button from '../../components/Button';
 
 function ChooseScreen({navigation}: any) {
-  const _handleCreateAccount = () => {
+  const handleCreateAccount = () => {
     navigation.push('Warning');
   };
 
@@ -21,15 +21,16 @@ function ChooseScreen({navigation}: any) {
 
         <View style={styles.optionsStyle}>
           <Button
-            icon="plus-box"
-            mode="contained"
-            onPress={_handleCreateAccount}>
-            <Text style={styles.optionButtonTextStyle}>Create Account</Text>
-          </Button>
+            icon="plus"
+            title="Create Account"
+            onPress={handleCreateAccount}
+          />
           <View style={styles.paddingStyle} />
-          <Button icon="lock-reset" mode="contained" onPress={() => {}}>
-            <Text style={styles.optionButtonTextStyle}>Recover Account</Text>
-          </Button>
+          <Button
+            icon="lock-reset"
+            title="Recover Account"
+            // onPress={}
+          />
         </View>
       </View>
     </View>
@@ -68,10 +69,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: '100%',
     padding: 25,
-  },
-  optionButtonTextStyle: {
-    color: 'white',
-    fontWeight: 'bold',
   },
 });
 

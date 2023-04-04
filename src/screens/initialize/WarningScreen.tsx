@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import {Button} from 'react-native-paper';
+import Button from '../../components/Button';
 
 function WarningScreen({navigation}: any) {
-  const _handleStart = () => {
+  const handleStart = () => {
     navigation.push('Create');
   };
 
@@ -36,9 +36,7 @@ function WarningScreen({navigation}: any) {
 
         <View style={styles.optionsStyle}>
           <View style={styles.paddingStyle} />
-          <Button icon="play" mode="contained" onPress={_handleStart}>
-            <Text style={styles.optionButtonTextStyle}>Start</Text>
-          </Button>
+          <Button icon="play" title="Start" onPress={handleStart} />
         </View>
       </View>
     </View>
