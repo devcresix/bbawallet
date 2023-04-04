@@ -1,28 +1,28 @@
 import {
-  DarkTheme as NavigationDarkTheme,
-  DefaultTheme as NavigationDefaultTheme,
-} from '@react-navigation/native';
-import {
-  MD3DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
+  MD3DarkTheme as PaperDarkTheme,
 } from 'react-native-paper';
+import {
+  DefaultTheme as NavigationDefaultTheme,
+  DarkTheme as NavigationDarkTheme,
+} from '@react-navigation/native';
 
 const themes: any = {
   light: {
-    ...NavigationDefaultTheme,
     ...PaperDefaultTheme,
+    ...NavigationDefaultTheme,
     colors: {
-      ...NavigationDefaultTheme.colors,
       ...PaperDefaultTheme.colors,
+      ...NavigationDefaultTheme.colors,
       accent: '#bc4598',
     },
   },
   dark: {
-    ...NavigationDarkTheme,
     ...PaperDarkTheme,
+    ...NavigationDarkTheme,
     colors: {
-      ...NavigationDarkTheme.colors,
       ...PaperDarkTheme.colors,
+      ...NavigationDarkTheme.colors,
       accent: '#bc4598',
     },
   },
