@@ -1,37 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {ReactNode} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View, ScrollView} from 'react-native';
 import {Divider} from 'react-native-paper';
-
-// Components
-import Navbar from '../../components/Navbar';
-import ScrollViewFadeFirst from '../../components/Container/ScrollViewFadeFirst';
 
 interface Props {
   children?: ReactNode;
 }
 
-/**
- * @constructor
- */
 function Layout({children}: Props) {
-  const Header: any = (
-    <View>
-      <Navbar />
-      <Divider />
-    </View>
-  );
-
   return (
     <SafeAreaView>
-      {/* <ScrollViewFadeFirst
-        height={200}
-        element={Header}
-        style={styles.viewStyles}>
-        <View style={{height: 20}} />
-        {children}
-      </ScrollViewFadeFirst> */}
-      <View>{children}</View>
+      <Divider />
+      <View style={styles.viewStyles}>
+        <ScrollView style={styles.viewScrollView}>
+          {/* {children} */}
+          {children}
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -40,6 +24,9 @@ const styles = StyleSheet.create({
   viewStyles: {
     height: '100%',
     // backgroundColor: 'gray',
+  },
+  viewScrollView: {
+    // backgroundColor: 'green',
   },
 });
 
