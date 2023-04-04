@@ -13,7 +13,7 @@ import {setSession} from './features/appSlice';
 import {RootState} from './store';
 import storage from './utils/storage';
 
-function AppRoutes(): JSX.Element {
+function AppRoutes() {
   const dispatch = useDispatch();
   const [isReady, setIsReady] = React.useState(false);
   const {session, theme} = useSelector((state: RootState) => state.app);

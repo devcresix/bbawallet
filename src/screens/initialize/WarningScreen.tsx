@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button} from 'react-native-paper';
 
-function WarningScreen({navigation}: any): JSX.Element {
+function WarningScreen({navigation}: any) {
   const _handleStart = () => {
     navigation.push('Create');
   };

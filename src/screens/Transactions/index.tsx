@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Layout from '../../components/Layout';
 
-function TransactionsScreen({_navigation}: any): JSX.Element {
+function TransactionsScreen({_navigation}: any) {
   return (
     <Layout>
       <View

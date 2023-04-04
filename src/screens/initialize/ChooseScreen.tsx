@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button} from 'react-native-paper';
 
-function ChooseScreen({navigation}: any): JSX.Element {
+function ChooseScreen({navigation}: any) {
   const _handleCreateAccount = () => {
     navigation.push('Warning');
   };

@@ -12,7 +12,7 @@ import {Avatar, ListItem} from '@react-native-material/core';
 import Layout from '../../components/Layout';
 import type {RootState} from '../../store';
 
-function AssetsScreen(): JSX.Element {
+function AssetsScreen() {
   // const dispatch = useDispatch();
   const {session} = useSelector((state: RootState) => state.app);
 

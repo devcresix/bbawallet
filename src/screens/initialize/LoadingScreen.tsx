@@ -10,7 +10,7 @@ import {
 
 const {height} = Dimensions.get('window');
 
-function LoadingScreen(): JSX.Element {
+function LoadingScreen() {
   return (
     <View style={styles.viewStyles}>
       <Image

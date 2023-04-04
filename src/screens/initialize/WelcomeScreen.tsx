@@ -29,7 +29,7 @@ const {width, height} = Dimensions.get('window');
 const FIXED_BAR_WIDTH = width * (300 / 320);
 const INDICATOR_PADDING = width * (10 / 320);
 
-function WelcomeScreen({navigation}: any): JSX.Element {
+function WelcomeScreen({navigation}: any) {
   const [animateX, _setAnimateX] = useState(new Animated.Value(0));
   const [itemWidth, _setItemWidth] = useState(
     FIXED_BAR_WIDTH / ((images.length - 1) * INDICATOR_PADDING),

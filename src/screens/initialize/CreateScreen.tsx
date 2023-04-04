@@ -13,7 +13,7 @@ import {RootState} from '../../store';
 import storage from '../../utils/storage';
 import storageKeys from '../../config/storageKeys';
 
-function CreateScreen({navigation}: any): JSX.Element {
+function CreateScreen({navigation}: any) {
   const dispatch = useDispatch();
 
   const [copied, setCopied] = React.useState(false);

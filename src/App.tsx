@@ -2,7 +2,7 @@ import React from 'react';
 import AppProvider from './AppProvider';
 import AppRoutes from './AppRoutes';
 
-function App(): JSX.Element {
+function App() {
   return (
     <AppProvider>
       <AppRoutes />
