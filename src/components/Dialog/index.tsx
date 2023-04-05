@@ -1,10 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {Button, Dialog, Paragraph, Portal, Text} from 'react-native-paper';
 import {withTranslation} from '../../hooks/useTranslations';
 
 interface IInputProps {
   visible: boolean;
+  type?: 'info' | 'warning' | 'danger';
   title: string;
   text: string;
   onPressOk: () => void;
@@ -14,15 +16,25 @@ interface IInputProps {
 
 function SimpleDialog({
   visible,
+  type,
   title,
   text,
   onPressCancel,
   onPressOk,
   t,
 }: IInputProps) {
+  const typeStyle =
+    type === 'warning'
+      ? styles.dialogWarning
+      : type === 'danger'
+      ? styles.dialogDanger
+      : styles.dialogInfo;
   return (
     <Portal>
-      <Dialog visible={visible} onDismiss={onPressCancel}>
+      <Dialog
+        visible={visible}
+        onDismiss={onPressCancel}
+        style={[styles.dialog, typeStyle]}>
         <Dialog.Title style={{textAlign: 'center'}}>{title}</Dialog.Title>
         <Dialog.Content>
           <Paragraph style={{textAlign: 'center'}}>{text}</Paragraph>
@@ -43,5 +55,26 @@ function SimpleDialog({
     </Portal>
   );
 }
+
+const styles = StyleSheet.create({
+  dialog: {
+    borderWidth: 2,
+    borderRadius: 25,
+    shadowOffset: {width: 0, height: 2},
+    shadowColor: '#000',
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  dialogInfo: {},
+  dialogWarning: {
+    borderColor: '#EDAE49',
+    backgroundColor: '#EDAE49',
+  },
+  dialogDanger: {
+    borderColor: 'red',
+    backgroundColor: 'red',
+  },
+});
 
 export default withTranslation()(SimpleDialog);

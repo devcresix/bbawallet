@@ -67,6 +67,7 @@ function SettingScreen({navigation, t}: any) {
         />
         <SimpleDialog
           visible={visible}
+          type="warning"
           title={t('settings.reset-all')}
           text={t('settings.confirm-reset')}
           onPressCancel={() => setVisible(false)}
