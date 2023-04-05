@@ -1,12 +1,8 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import {Appbar as DefaultAppbar, Text, useTheme} from 'react-native-paper';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Dimensions, StyleSheet} from 'react-native';
+import {Appbar as DefaultAppbar} from 'react-native-paper';
 
 function Appbar({navigation, back}: any): any {
-  const {colors} = useTheme();
-
   return (
     <DefaultAppbar.Header style={styles.appBarHeader}>
       {back ? (

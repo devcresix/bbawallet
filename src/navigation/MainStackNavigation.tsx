@@ -37,7 +37,7 @@ function BottomBarNavigation() {
           theme === constants.THEME_DARK ? 'light-content' : 'dark-content'
         }
         backgroundColor={colors.background}
-        animated
+        // animated
       />
       <Tab.Navigator
         initialRouteName="Assets"
