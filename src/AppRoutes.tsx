@@ -9,7 +9,7 @@ import LoadingScreen from './screens/initialize/LoadingScreen';
 
 import themes from './config/theme';
 import storageKeys from './config/storageKeys';
-import {setSession} from './features/appSlice';
+import {changeLanguage, setSession} from './features/appSlice';
 import {RootState} from './store';
 import storage from './utils/storage';
 
@@ -25,6 +25,12 @@ function AppRoutes() {
         const sessionStorage = await storage.getItem(storageKeys.SESSION_KEY);
         if (sessionStorage) {
           dispatch(setSession(sessionStorage));
+        }
+
+        // Loading language
+        const languageStorage = await storage.getItem(storageKeys.LANGUAGE);
+        if (languageStorage) {
+          dispatch(changeLanguage(languageStorage));
         }
       } finally {
         setIsReady(true);

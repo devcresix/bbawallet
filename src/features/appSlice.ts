@@ -3,6 +3,7 @@ import constants from '../config/constants';
 import {IAppState} from '../types';
 
 const initialState: IAppState = {
+  loading: false,
   theme: constants.THEME_LIGHT,
   language: constants.DEFAULT_LANGUAGE,
   session: {},

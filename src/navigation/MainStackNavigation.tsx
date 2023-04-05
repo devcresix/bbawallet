@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useTheme} from 'react-native-paper';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -16,6 +16,7 @@ import AssetsScreen from '../screens/Assets';
 import TransactionsScreen from '../screens/Transactions';
 import SettingScreen from '../screens/Setting';
 import AddressBookScreen from '../screens/Setting/AddressBookScreen';
+import LanguageScreen from '../screens/Setting/LanguageScreen';
 
 // Store
 import constants from '../config/constants';
@@ -93,12 +94,14 @@ function MainStackNavigation() {
           name="AddressBook"
           component={AddressBookScreen}
           options={{
-            cardStyle: {
-              // marginTop: 50,
-              borderTopLeftRadius: 30,
-              borderTopRightRadius: 30,
-              backgroundColor: 'transparent',
-            },
+            cardStyle: styles.cardStyle,
+          }}
+        />
+        <Sta.Screen
+          name="Language"
+          component={LanguageScreen}
+          options={{
+            cardStyle: styles.cardStyle,
           }}
         />
       </Sta.Navigator>
@@ -128,5 +131,14 @@ function MainStackNavigation() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  cardStyle: {
+    // marginTop: 50,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    backgroundColor: 'transparent',
+  },
+});
 
 export default MainStackNavigation;

@@ -26,9 +26,8 @@ function SettingScreen({navigation}: any) {
     dispatch(resetDevice());
   }
 
-  function handleAddressBook() {
-    console.log('Pressed');
-    navigation.push('AddressBook');
+  function handleAddressBook(page: string) {
+    navigation.push(page);
   }
 
   return (
@@ -38,12 +37,13 @@ function SettingScreen({navigation}: any) {
           title="Address Book"
           leading={<Icon name="book-account" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
-          onPress={handleAddressBook}
+          onPress={() => handleAddressBook('AddressBook')}
         />
         <ListItem
           title="Language"
           leading={<Icon name="translate" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
+          onPress={() => handleAddressBook('Language')}
         />
         <ListItem
           title="Trusted Apps"
