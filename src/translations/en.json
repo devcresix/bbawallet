@@ -6,10 +6,14 @@
     "address-book": "Address Book",
     "languages": "Languages",
     "trusted-apps": "Trusted Apps",
-    "about-us": "About Us",
-    "support": "Support",
+    "about-and-support": "About & Support",
     "reset-all": "Reset All",
     "confirm-reset": "Do you want to reset all private key on this device?"
+  },
+  "about-support": {
+    "app-name": "App Name",
+    "app-version": "App Version",
+    "app_version": "v{{version}}"
   },
   "simple-dialog": {
     "cancel": "Cancel",

@@ -6,10 +6,14 @@
     "address-book": "Адресная книга",
     "languages": "Языки",
     "trusted-apps": "Доверенные приложения",
-    "about-us": "О нас",
-    "support": "Поддерживать",
+    "about-and-support": "О и поддержке",
     "reset-all": "Сбросить все",
     "confirm-reset": "Вы хотите сбросить весь закрытый ключ на этом устройстве?"
+  },
+  "about-support": {
+    "app-name": "Имя приложения",
+    "app-version": "Версия приложения",
+    "app_version": "v{{version}}"
   },
   "simple-dialog": {
     "cancel": "Отмена",

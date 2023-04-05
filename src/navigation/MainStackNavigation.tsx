@@ -17,6 +17,7 @@ import TransactionsScreen from '../screens/Transactions';
 import SettingScreen from '../screens/Setting';
 import AddressBookScreen from '../screens/Setting/AddressBookScreen';
 import LanguageScreen from '../screens/Setting/LanguageScreen';
+import AboutScreen from '../screens/Setting/AboutScreen';
 
 // Store
 import constants from '../config/constants';
@@ -100,6 +101,13 @@ function MainStackNavigation() {
         <Sta.Screen
           name="Language"
           component={LanguageScreen}
+          options={{
+            cardStyle: styles.cardStyle,
+          }}
+        />
+        <Sta.Screen
+          name="About"
+          component={AboutScreen}
           options={{
             cardStyle: styles.cardStyle,
           }}

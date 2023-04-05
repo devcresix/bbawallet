@@ -6,10 +6,14 @@
     "address-book": "पता पुस्तिका",
     "languages": "बोली",
     "trusted-apps": "विश्वसनीय ऐप्स",
-    "about-us": "हमारे बारे में",
-    "support": "सहायता",
+    "about-and-support": "के बारे में और समर्थन",
     "reset-all": "सभी को पुनः तैयार करना",
     "confirm-reset": "क्या आप इस डिवाइस पर सभी निजी कुंजी को पुनर्स्थापित करना चाहते हैं?"
+  },
+  "about-support": {
+    "app-name": "एप्लिकेशन का नाम",
+    "app-version": "एप्लिकेशन वेरीज़न",
+    "app_version": "v{{version}}"
   },
   "simple-dialog": {
     "cancel": "रद्द करना",
