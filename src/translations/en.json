@@ -1,0 +1,18 @@
+{
+  "assets": "Assets",
+  "transactions": "Transactions",
+  "settings": {
+    "settings": "Settings",
+    "address-book": "Address Book",
+    "languages": "Languages",
+    "trusted-apps": "Trusted Apps",
+    "about-us": "About Us",
+    "support": "Support",
+    "reset-all": "Reset All",
+    "confirm-reset": "Do you want to reset all private key on this device?"
+  },
+  "simple-dialog": {
+    "cancel": "Cancel",
+    "ok": "OK"
+  }
+}

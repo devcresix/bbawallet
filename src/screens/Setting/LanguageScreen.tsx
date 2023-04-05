@@ -1,29 +1,16 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {ListItem, Stack} from '@react-native-material/core';
+import {Avatar, ListItem, Stack} from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // Utils & Store
-import storageKeys from '../../config/storageKeys';
-import {changeLanguage} from '../../features/appSlice';
-import {RootState} from '../../store';
-import storage from '../../utils/storage';
+import useTranslations from '../../hooks/useTranslations';
 
-const languages = [
-  {code: 'en', name: 'English'},
-  {code: 'es', name: 'Spanish'},
-  {code: 'hi', name: 'Hindi'},
-];
-
-function LanguageScreen() {
-  const dispatch = useDispatch();
-  const {language} = useSelector((state: RootState) => state.app);
-
-  const handlePressLanguage = (code: string) => {
-    storage.setItem(storageKeys.LANGUAGE, code).then(() => {
-      dispatch(changeLanguage(code));
-    });
+function LanguageScreen({navigation}: any) {
+  const {selected, languages, changeLanguage} = useTranslations();
+  const handlePressLanguage = (name: string) => {
+    changeLanguage(name);
+    navigation.goBack();
   };
 
   return (
@@ -31,14 +18,16 @@ function LanguageScreen() {
       <Stack>
         {languages.map(lang => (
           <ListItem
-            key={lang.code}
-            title={lang.name}
+            key={lang.name}
+            title={lang.label}
+            leadingMode="icon"
+            leading={<Avatar image={lang.flag} size={24} />}
             trailing={props =>
-              lang.code === language ? (
+              lang.name === selected ? (
                 <Icon name="check-bold" {...props} />
               ) : null
             }
-            onPress={() => handlePressLanguage(lang.code)}
+            onPress={() => handlePressLanguage(lang.name)}
           />
         ))}
       </Stack>

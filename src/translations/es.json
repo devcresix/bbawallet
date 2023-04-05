@@ -1,0 +1,18 @@
+{
+  "assets": "Activos",
+  "transactions": "Actas",
+  "settings": {
+    "settings": "Ajustes",
+    "address-book": "Directorio",
+    "languages": "Lenguas",
+    "trusted-apps": "Aplicaciones de Confianza",
+    "about-us": "Sobre Nosotros",
+    "support": "Apoyo",
+    "reset-all": "Resetear",
+    "confirm-reset": "¿Quieres restablecer toda la clave privada en este dispositivo?"
+  },
+  "simple-dialog": {
+    "cancel": "Cancelar",
+    "ok": "DE ACUERDO"
+  }
+}

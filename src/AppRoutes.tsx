@@ -9,12 +9,16 @@ import LoadingScreen from './screens/initialize/LoadingScreen';
 
 import themes from './config/theme';
 import storageKeys from './config/storageKeys';
-import {changeLanguage, setSession} from './features/appSlice';
+import {setSession} from './features/appSlice';
 import {RootState} from './store';
 import storage from './utils/storage';
+import useTranslations from './hooks/useTranslations';
 
 function AppRoutes() {
   const dispatch = useDispatch();
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const {selected: selectedLanguage} = useTranslations();
   const [isReady, setIsReady] = React.useState(false);
   const {session, theme} = useSelector((state: RootState) => state.app);
   const _theme = themes[theme];
@@ -25,12 +29,6 @@ function AppRoutes() {
         const sessionStorage = await storage.getItem(storageKeys.SESSION_KEY);
         if (sessionStorage) {
           dispatch(setSession(sessionStorage));
-        }
-
-        // Loading language
-        const languageStorage = await storage.getItem(storageKeys.LANGUAGE);
-        if (languageStorage) {
-          dispatch(changeLanguage(languageStorage));
         }
       } finally {
         setIsReady(true);

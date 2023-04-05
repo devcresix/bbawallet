@@ -7,25 +7,34 @@ function AddressBookScreen() {
     <SafeAreaView>
       <Stack>
         <ListItem
-          leadingMode="avatar"
+          leadingMode="icon"
           leading={
-            <Avatar image={require('../../assets/images/tokens/eth.png')} />
+            <Avatar
+              image={require('../../assets/images/tokens/eth.png')}
+              size={32}
+            />
           }
           title="Johny Hammy"
           secondaryText="0x473300...f13A33"
         />
         <ListItem
-          leadingMode="avatar"
+          leadingMode="icon"
           leading={
-            <Avatar image={require('../../assets/images/tokens/usdt.png')} />
+            <Avatar
+              image={require('../../assets/images/tokens/usdt.png')}
+              size={32}
+            />
           }
           title="Johny Hammy"
           secondaryText="0x473300...f13A33"
         />
         <ListItem
-          leadingMode="avatar"
+          leadingMode="icon"
           leading={
-            <Avatar image={require('../../assets/images/tokens/busd.png')} />
+            <Avatar
+              image={require('../../assets/images/tokens/busd.png')}
+              size={32}
+            />
           }
           title="Johny Hammy"
           secondaryText="0x473300...f13A33"

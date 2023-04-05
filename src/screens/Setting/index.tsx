@@ -12,7 +12,10 @@ import storage from '../../utils/storage';
 import SimpleDialog from '../../components/Dialog';
 import Layout from '../../components/Layout';
 
-function SettingScreen({navigation}: any) {
+// Utils
+import {withTranslation} from '../../hooks/useTranslations';
+
+function SettingScreen({navigation, t}: any) {
   const dispatch = useDispatch();
 
   const [visible, setVisible] = useState(false);
@@ -26,7 +29,7 @@ function SettingScreen({navigation}: any) {
     dispatch(resetDevice());
   }
 
-  function handleAddressBook(page: string) {
+  function handlePressSetting(page: string) {
     navigation.push(page);
   }
 
@@ -34,42 +37,42 @@ function SettingScreen({navigation}: any) {
     <Layout>
       <Stack>
         <ListItem
-          title="Address Book"
+          title={t('settings.address-book')}
           leading={<Icon name="book-account" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
-          onPress={() => handleAddressBook('AddressBook')}
+          onPress={() => handlePressSetting('AddressBook')}
         />
         <ListItem
-          title="Language"
+          title={t('settings.languages')}
           leading={<Icon name="translate" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
-          onPress={() => handleAddressBook('Language')}
+          onPress={() => handlePressSetting('Language')}
         />
         <ListItem
-          title="Trusted Apps"
+          title={t('settings.trusted-apps')}
           leading={<Icon name="apps" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
-          title="About Us"
+          title={t('settings.about-us')}
           leading={<Icon name="information" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
-          title="Support"
+          title={t('settings.support')}
           leading={<Icon name="help-circle" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
-          title="Reset All"
+          title={t('settings.reset-all')}
           leading={<Icon name="lock-reset" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
           onPress={handlePressReset}
         />
         <SimpleDialog
           visible={visible}
-          title={'Reset Device'}
-          text={'Do you want to reset current device?'}
+          title={t('settings.reset-all')}
+          text={t('settings.confirm-reset')}
           onPressCancel={() => setVisible(false)}
           onPressOk={handleResetDevice}
         />
@@ -78,4 +81,4 @@ function SettingScreen({navigation}: any) {
   );
 }
 
-export default SettingScreen;
+export default withTranslation()(SettingScreen);

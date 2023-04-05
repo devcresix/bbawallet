@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Button, Dialog, Paragraph, Portal, Text} from 'react-native-paper';
+import {withTranslation} from '../../hooks/useTranslations';
 
 interface IInputProps {
   visible: boolean;
@@ -8,6 +9,7 @@ interface IInputProps {
   text: string;
   onPressOk: () => void;
   onPressCancel: () => void;
+  t: any;
 }
 
 function SimpleDialog({
@@ -16,6 +18,7 @@ function SimpleDialog({
   text,
   onPressCancel,
   onPressOk,
+  t,
 }: IInputProps) {
   return (
     <Portal>
@@ -26,14 +29,14 @@ function SimpleDialog({
         </Dialog.Content>
         <Dialog.Actions>
           <Button onPress={onPressCancel}>
-            <Text>Cancel</Text>
+            <Text>{t('simple-dialog.cancel')}</Text>
           </Button>
           <Button
             onPress={() => {
               onPressCancel();
               onPressOk();
             }}>
-            <Text>Ok</Text>
+            <Text>{t('simple-dialog.ok')}</Text>
           </Button>
         </Dialog.Actions>
       </Dialog>
@@ -41,4 +44,4 @@ function SimpleDialog({
   );
 }
 
-export default SimpleDialog;
+export default withTranslation()(SimpleDialog);

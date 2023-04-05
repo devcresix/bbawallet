@@ -1,0 +1,18 @@
+{
+  "assets": "Ресурсы",
+  "transactions": "Транзакции",
+  "settings": {
+    "settings": "Настройки",
+    "address-book": "Адресная книга",
+    "languages": "Языки",
+    "trusted-apps": "Доверенные приложения",
+    "about-us": "О нас",
+    "support": "Поддерживать",
+    "reset-all": "Сбросить все",
+    "confirm-reset": "Вы хотите сбросить весь закрытый ключ на этом устройстве?"
+  },
+  "simple-dialog": {
+    "cancel": "Отмена",
+    "ok": "ХОРОШО"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "assets": "संपत्ति",
+  "transactions": "लेनदेन",
+  "settings": {
+    "settings": "समायोजन",
+    "address-book": "पता पुस्तिका",
+    "languages": "बोली",
+    "trusted-apps": "विश्वसनीय ऐप्स",
+    "about-us": "हमारे बारे में",
+    "support": "सहायता",
+    "reset-all": "सभी को पुनः तैयार करना",
+    "confirm-reset": "क्या आप इस डिवाइस पर सभी निजी कुंजी को पुनर्स्थापित करना चाहते हैं?"
+  },
+  "simple-dialog": {
+    "cancel": "रद्द करना",
+    "ok": "ठीक"
+  }
+}
