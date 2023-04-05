@@ -1,44 +1,38 @@
 import React from 'react';
-import {SafeAreaView, ScrollView} from 'react-native';
-import {Avatar, ListItem} from '@react-native-material/core';
+import {SafeAreaView} from 'react-native';
+import {Avatar, ListItem, Stack} from '@react-native-material/core';
 
-function AddressBook() {
+function AddressBookScreen() {
   return (
     <SafeAreaView>
-      <ScrollView>
+      <Stack>
         <ListItem
           leadingMode="avatar"
           leading={
-            <Avatar
-              image={{uri: 'https://mui.com/static/images/avatar/1.jpg'}}
-            />
+            <Avatar image={require('../../assets/images/tokens/eth.png')} />
           }
-          title="Brunch this weekend?"
-          secondaryText="I'll be in your neighborhood doing errands this…"
+          title="Johny Hammy"
+          secondaryText="0x473300...f13A33"
         />
         <ListItem
           leadingMode="avatar"
           leading={
-            <Avatar
-              image={{uri: 'https://mui.com/static/images/avatar/2.jpg'}}
-            />
+            <Avatar image={require('../../assets/images/tokens/usdt.png')} />
           }
-          title="Summer BBQ"
-          secondaryText="Wish I could come, but I'm out of town this…"
+          title="Johny Hammy"
+          secondaryText="0x473300...f13A33"
         />
         <ListItem
           leadingMode="avatar"
           leading={
-            <Avatar
-              image={{uri: 'https://mui.com/static/images/avatar/3.jpg'}}
-            />
+            <Avatar image={require('../../assets/images/tokens/busd.png')} />
           }
-          title="Oui Oui"
-          secondaryText="Do you have Paris recommendations? Have you ever…"
+          title="Johny Hammy"
+          secondaryText="0x473300...f13A33"
         />
-      </ScrollView>
+      </Stack>
     </SafeAreaView>
   );
 }
 
-export default AddressBook;
+export default AddressBookScreen;

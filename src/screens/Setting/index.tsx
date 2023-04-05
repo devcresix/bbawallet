@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, {useState} from 'react';
-import {SafeAreaView, ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {ListItem} from '@react-native-material/core';
+import {ListItem, Stack} from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {resetDevice} from '../../features/appSlice';
@@ -11,8 +10,9 @@ import storage from '../../utils/storage';
 
 // Components
 import SimpleDialog from '../../components/Dialog';
+import Layout from '../../components/Layout';
 
-function SettingScreen() {
+function SettingScreen({navigation}: any) {
   const dispatch = useDispatch();
 
   const [visible, setVisible] = useState(false);
@@ -28,11 +28,12 @@ function SettingScreen() {
 
   function handleAddressBook() {
     console.log('Pressed');
+    navigation.push('AddressBook');
   }
 
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <Layout>
+      <Stack>
         <ListItem
           title="Address Book"
           leading={<Icon name="book-account" size={24} />}
@@ -72,8 +73,8 @@ function SettingScreen() {
           onPressCancel={() => setVisible(false)}
           onPressOk={handleResetDevice}
         />
-      </ScrollView>
-    </SafeAreaView>
+      </Stack>
+    </Layout>
   );
 }
 

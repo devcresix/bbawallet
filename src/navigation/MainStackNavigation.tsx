@@ -8,13 +8,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+// Components
+import Appbar from '../components/Appbar';
+
 // Screens
-// import DiscoverScreen from '../screens/Discover';
-// import BrowserScreen from '../screens/Browser';
-import Navbar from '../components/Navbar';
 import AssetsScreen from '../screens/Assets';
 import TransactionsScreen from '../screens/Transactions';
 import SettingScreen from '../screens/Setting';
+import AddressBookScreen from '../screens/Setting/AddressBookScreen';
 
 // Store
 import constants from '../config/constants';
@@ -26,13 +27,13 @@ const Tab = createBottomTabNavigator();
 function BottomBarNavigation() {
   const {colors} = useTheme();
   const {theme} = useSelector((state: RootState) => state.app);
-  const _barStyle =
-    theme === constants.THEME_DARK ? 'light-content' : 'dark-content';
 
   return (
     <>
       <StatusBar
-        barStyle={_barStyle}
+        barStyle={
+          theme === constants.THEME_DARK ? 'light-content' : 'dark-content'
+        }
         backgroundColor={colors.background}
         animated
       />
@@ -40,7 +41,7 @@ function BottomBarNavigation() {
         initialRouteName="Assets"
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: '#e91e63',
+          // tabBarActiveTintColor: '#e91e63',
           tabBarLabelStyle: {display: 'none'},
         }}>
         <Tab.Screen
@@ -82,8 +83,24 @@ function MainStackNavigation() {
   // const {colors} = useTheme();
   return (
     <>
-      <Sta.Navigator screenOptions={{header: props => <Navbar {...props} />}}>
-        <Sta.Screen name="Home" component={BottomBarNavigation} />
+      <Sta.Navigator screenOptions={{header: props => <Appbar {...props} />}}>
+        <Sta.Screen
+          name="Home"
+          component={BottomBarNavigation}
+          options={{headerShown: false}}
+        />
+        <Sta.Screen
+          name="AddressBook"
+          component={AddressBookScreen}
+          options={{
+            cardStyle: {
+              // marginTop: 50,
+              borderTopLeftRadius: 30,
+              borderTopRightRadius: 30,
+              backgroundColor: 'transparent',
+            },
+          }}
+        />
       </Sta.Navigator>
       {/* {loading && (
         <Portal>
