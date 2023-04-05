@@ -48,11 +48,11 @@ function SettingScreen({navigation, t}: any) {
           trailing={props => <Icon name="chevron-right" {...props} />}
           onPress={() => handlePressSetting('Language')}
         />
-        {/* <ListItem
+        <ListItem
           title={t('settings.trusted-apps')}
           leading={<Icon name="apps" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
-        /> */}
+        />
         <ListItem
           title={t('settings.about-and-support')}
           leading={<Icon name="information" size={24} />}
