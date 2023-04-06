@@ -14,7 +14,7 @@ const themes: any = {
     colors: {
       ...PaperDefaultTheme.colors,
       ...NavigationDefaultTheme.colors,
-      background: '#3F5740',
+      // background: '#3F5740',
     },
   },
   dark: {
@@ -24,7 +24,7 @@ const themes: any = {
       ...PaperDarkTheme.colors,
       ...NavigationDarkTheme.colors,
       background: '#010a13',
-      text: '#ffffff',
+      // text: '#ffffff',
     },
   },
 };

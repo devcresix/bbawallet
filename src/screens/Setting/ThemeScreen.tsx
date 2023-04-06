@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {ListItem, Stack} from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {changeTheme} from '../../features/appSlice';
+import {changeTheme} from '../../store/appSlice';
 import {withTranslation} from '../../hooks/useTranslations';
 import {RootState} from '../../store';
 

@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import Snackbar from 'react-native-snackbar';
 
-import {setSession} from '../../features/appSlice';
+import {setSession} from '../../store/appSlice';
 import {RootState} from '../../store';
 import storage from '../../utils/storage';
 import storageKeys from '../../config/storageKeys';

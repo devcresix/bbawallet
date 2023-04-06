@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import {ListItem, Stack} from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {resetDevice} from '../../features/appSlice';
+import {resetDevice} from '../../store/appSlice';
 import storageKeys from '../../config/storageKeys';
 import storage from '../../utils/storage';
 

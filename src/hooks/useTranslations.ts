@@ -6,7 +6,7 @@ import storage from '../utils/storage';
 import constants from '../config/constants';
 import storageKeys from '../config/storageKeys';
 import i18n, {LANGUAGES, resources} from '../translations';
-import {changeLanguage as changeLanguageStore} from '../features/appSlice';
+import {changeLanguage as changeLanguageStore} from '../store/appSlice';
 import {RootState} from '../store';
 
 export const withTranslation = withTranslationHOC;

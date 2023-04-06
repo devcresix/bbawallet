@@ -10,7 +10,7 @@ import {createAccount} from 'prolibbti';
 import 'react-native-get-random-values';
 import {v1 as uuid} from 'uuid';
 
-import {setSession} from '../../features/appSlice';
+import {setSession} from '../../store/appSlice';
 import {RootState} from '../../store';
 import storage from '../../utils/storage';
 import storageKeys from '../../config/storageKeys';

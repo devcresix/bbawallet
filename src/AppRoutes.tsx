@@ -9,7 +9,7 @@ import LoadingScreen from './screens/Initial/LoadingScreen';
 
 import themes from './config/theme';
 import storageKeys from './config/storageKeys';
-import {setSession} from './features/appSlice';
+import {setSession} from './store/appSlice';
 import {RootState} from './store';
 import storage from './utils/storage';
 import useTranslations from './hooks/useTranslations';
