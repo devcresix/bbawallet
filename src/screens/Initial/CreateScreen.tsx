@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
+import Snackbar from 'react-native-snackbar';
 import {createAccount} from 'prolibbti';
 
 import 'react-native-get-random-values';
@@ -14,17 +15,13 @@ import storage from '../../utils/storage';
 import storageKeys from '../../config/storageKeys';
 
 // Components
-import StatusBanner from '../../components/StatusBanner';
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
 
 function CreateScreen({navigation}: any) {
   const dispatch = useDispatch();
-
-  const [status, setStatus] = useState('');
-  const [text, setText] = useState('');
-
   const {session} = useSelector((state: RootState) => state.app);
+  const [text, setText] = useState('');
 
   function handleClickStart() {
     const preSession = {
@@ -38,7 +35,15 @@ function CreateScreen({navigation}: any) {
   }
 
   function handleClickCopy(): void {
-    setStatus('Data copied to clipboard');
+    Snackbar.show({
+      text: 'Data copied to clipboard',
+      duration: Snackbar.LENGTH_LONG,
+      action: {
+        text: 'Dismiss',
+        textColor: 'green',
+        onPress: () => {},
+      },
+    });
     Clipboard.setString(text);
   }
 
@@ -83,7 +88,6 @@ function CreateScreen({navigation}: any) {
           <Button icon="play" title="Start" onPress={handleClickStart} />
         </View>
       </InitLayout>
-      <StatusBanner message={status} onDismiss={() => setStatus('')} />
     </>
   );
 }
