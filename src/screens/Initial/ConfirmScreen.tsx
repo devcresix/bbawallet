@@ -11,8 +11,9 @@ import storageKeys from '../../config/storageKeys';
 import TextInput from '../../components/Input';
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
+import {withTranslation} from '../../hooks/useTranslations';
 
-function ConfirmScreen({navigation}: any) {
+function ConfirmScreen({navigation, t}: any) {
   const dispatch = useDispatch();
   const {colors} = useTheme();
 
@@ -46,13 +47,8 @@ function ConfirmScreen({navigation}: any) {
       seed3 !== seeds[key3]
     ) {
       return Snackbar.show({
-        text: 'Incorrect recovery seed verification',
+        text: t('confirm-screen.incorrect'),
         duration: Snackbar.LENGTH_LONG,
-        action: {
-          text: 'Close',
-          textColor: 'orange',
-          onPress: () => {},
-        },
       });
     }
 
@@ -86,7 +82,7 @@ function ConfirmScreen({navigation}: any) {
 
   return (
     <InitLayout>
-      <Text style={styles.titleStyles}>Your Seed Phrase</Text>
+      <Text style={styles.titleStyles}>{t('confirm-screen.title')}</Text>
       <View style={styles.paddingStyle} />
       <View style={styles.viewWarningStyle}>
         <Text
@@ -94,8 +90,7 @@ function ConfirmScreen({navigation}: any) {
             ...styles.textWarningStyle,
             color: colors.text,
           }}>
-          You will need these words to restore your wallet if your browser's
-          storage is cleared or your device is damaged or lost.
+          {t('confirm-screen.description')}
         </Text>
       </View>
       <View style={styles.paddingStyle} />
@@ -103,21 +98,27 @@ function ConfirmScreen({navigation}: any) {
 
       <View style={styles.confirmSeed}>
         <TextInput
-          label={`Key #${key1 + 1}`}
+          label={t('common.key', {
+            key: key1 + 1,
+          })}
           variant="outlined"
           margin={2}
           value={seed1}
           onChangeText={(text: string) => onChangeSeed1(text)}
         />
         <TextInput
-          label={`Key #${key2 + 1}`}
+          label={t('common.key', {
+            key: key2 + 1,
+          })}
           variant="outlined"
           margin={2}
           value={seed2}
           onChangeText={(text: string) => onChangeSeed2(text)}
         />
         <TextInput
-          label={`Key #${key3 + 1}`}
+          label={t('common.key', {
+            key: key3 + 1,
+          })}
           variant="outlined"
           margin={2}
           value={seed3}
@@ -126,7 +127,11 @@ function ConfirmScreen({navigation}: any) {
       </View>
 
       <View style={styles.optionsStyle}>
-        <Button icon="play" title="Start" onPress={handleClickStart} />
+        <Button
+          icon="shield-check"
+          title={t('common.confirm')}
+          onPress={handleClickStart}
+        />
       </View>
     </InitLayout>
   );
@@ -137,7 +142,6 @@ const styles = StyleSheet.create({
     height: 16,
   },
   titleStyles: {
-    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -146,7 +150,6 @@ const styles = StyleSheet.create({
     marginRight: 30,
   },
   textWarningStyle: {
-    color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -161,4 +164,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ConfirmScreen;
+export default withTranslation()(ConfirmScreen);

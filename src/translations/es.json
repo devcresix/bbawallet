@@ -1,4 +1,8 @@
 {
+  "common": {
+    "confirm": "Confirmar",
+    "key": "Llave #{{key}}"
+  },
   "onboarding": {
     "title": "Cripto de cadena múltiple",
     "description": "La cadena múltiple y la puerta de enlace segura a todo su espacio criptográfico",
@@ -23,6 +27,11 @@
     "seeds-copied": "Semillas de recuperación copiadas al portapapeles",
     "copy": "Copiar",
     "next": "Próxima"
+  },
+  "confirm-screen": {
+    "title": "Verificación",
+    "description": "Verificación",
+    "incorrect": "Verificación de semillas de recuperación incorrecta"
   },
   "assets": "Activos",
   "transactions": "Actas",

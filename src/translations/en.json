@@ -1,4 +1,8 @@
 {
+  "common": {
+    "confirm": "Confirm",
+    "key": "Key #{{key}}"
+  },
   "onboarding": {
     "title": "Multi Chain Crypto",
     "description": "The multiple chain and secure gateway to all your crypto space",
@@ -23,6 +27,11 @@
     "seeds-copied": "Recovery seeds copied to clipboard",
     "copy": "Copy",
     "next": "Next"
+  },
+  "confirm-screen": {
+    "title": "Verifying",
+    "description": "Verifying",
+    "incorrect": "Incorrect recovery seed verification"
   },
   "assets": "Assets",
   "transactions": "Transactions",
