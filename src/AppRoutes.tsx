@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import InitialStackNavigation from './navigation/InitialStackNavigation';
 import MainStackNavigation from './navigation/MainStackNavigation';
-import LoadingScreen from './screens/initialize/LoadingScreen';
+import LoadingScreen from './screens/Initial/LoadingScreen';
 
 import themes from './config/theme';
 import storageKeys from './config/storageKeys';

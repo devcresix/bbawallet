@@ -1,11 +1,11 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import OnboardingScreen from '../screens/initialize/OnboardingScreen';
-import ChooseScreen from '../screens/initialize/ChooseScreen';
-import WarningScreen from '../screens/initialize/WarningScreen';
-import CreateScreen from '../screens/initialize/CreateScreen';
-import ConfirmScreen from '../screens/initialize/ConfirmScreen';
+import OnboardingScreen from '../screens/Initial/OnboardingScreen';
+import ChooseScreen from '../screens/Initial/ChooseScreen';
+import WarningScreen from '../screens/Initial/WarningScreen';
+import CreateScreen from '../screens/Initial/CreateScreen';
+import ConfirmScreen from '../screens/Initial/ConfirmScreen';
 
 const Stack = createStackNavigator();
 
