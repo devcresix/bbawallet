@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 
 // Components
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
-import {useTheme} from '@react-navigation/native';
+import {withTranslation} from '../../hooks/useTranslations';
 
-function WarningScreen({navigation}: any) {
+function WarningScreen({navigation, t}: any) {
   const {colors} = useTheme();
   const handleStart = () => {
     navigation.push('Create');
@@ -19,7 +20,7 @@ function WarningScreen({navigation}: any) {
           ...styles.titleStyles,
           color: colors.text,
         }}>
-        Keep your seed phrase safe!
+        {t('warning-screen.title')}
       </Text>
       <View style={styles.paddingStyle} />
       <View style={styles.viewWarningStyle}>
@@ -28,24 +29,21 @@ function WarningScreen({navigation}: any) {
             ...styles.textWarningStyle,
             color: colors.text,
           }}>
-          You will need these words to restore your wallet if your browser's
-          storage is cleared or your device is damaged or lost.
+          {t('warning-screen.description1')}
         </Text>
         <Text
           style={{
             ...styles.textWarningStyle,
             color: colors.text,
           }}>
-          Never share your seed phrase (or your private keys) with anyone or
-          enter it into any form, as it provides full control of your wallet.
+          {t('warning-screen.description2')}
         </Text>
         <Text
           style={{
             ...styles.textWarningStyle,
             color: colors.text,
           }}>
-          BBA Labs or Development Team will never ask for your recovery phrase
-          or private keys.
+          {t('warning-screen.description3')}
         </Text>
       </View>
       <View style={styles.paddingStyle} />
@@ -53,7 +51,11 @@ function WarningScreen({navigation}: any) {
 
       <View style={styles.optionsStyle}>
         <View style={styles.paddingStyle} />
-        <Button icon="play" title="Start" onPress={handleStart} />
+        <Button
+          icon="shield-check"
+          title={t('warning-screen.accept')}
+          onPress={handleStart}
+        />
       </View>
     </InitLayout>
   );
@@ -64,7 +66,6 @@ const styles = StyleSheet.create({
     height: 16,
   },
   titleStyles: {
-    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -73,7 +74,6 @@ const styles = StyleSheet.create({
     marginRight: 30,
   },
   textWarningStyle: {
-    color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -84,9 +84,8 @@ const styles = StyleSheet.create({
     padding: 25,
   },
   optionButtonTextStyle: {
-    color: 'white',
     fontWeight: 'bold',
   },
 });
 
-export default WarningScreen;
+export default withTranslation()(WarningScreen);

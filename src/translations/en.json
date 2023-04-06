@@ -10,6 +10,13 @@
     "create-account": "Create Account",
     "recover-account": "Recover Account"
   },
+  "warning-screen": {
+    "title": "Keep your seed phrase safe!",
+    "description1": "You will need these words to restore your wallet if your browser's storage is cleared or your device is damaged or lost.",
+    "description2": "Never share your seed phrase (or your private keys) with anyone or enter it into any form, as it provides full control of your wallet.",
+    "description3": "BBA Labs or Development Team will never ask for your recovery phrase or private keys.",
+    "accept": "I understood"
+  },
   "assets": "Assets",
   "transactions": "Transactions",
   "settings": {
