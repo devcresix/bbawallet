@@ -5,6 +5,11 @@
     "skip": "Skip",
     "next": "Next"
   },
+  "choose-screen": {
+    "title": "Create/Recover Your Account",
+    "create-account": "Create Account",
+    "recover-account": "Recover Account"
+  },
   "assets": "Assets",
   "transactions": "Transactions",
   "settings": {

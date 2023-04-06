@@ -4,28 +4,29 @@ import {View, Text, StyleSheet} from 'react-native';
 // Components
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
+import {withTranslation} from '../../hooks/useTranslations';
 
-function ChooseScreen({navigation}: any) {
+function ChooseScreen({navigation, t}: any) {
   const handleCreateAccount = () => {
     navigation.push('Warning');
   };
 
   return (
     <InitLayout>
-      <Text style={styles.textStyles}>Create or Recovery</Text>
+      <Text style={styles.textStyles}>{t('choose-screen.title')}</Text>
       <View style={styles.paddingStyle} />
       <View style={styles.paddingStyle} />
 
       <View style={styles.optionsStyle}>
         <Button
           icon="plus"
-          title="Create Account"
+          title={t('choose-screen.create-account')}
           onPress={handleCreateAccount}
         />
         <View style={styles.paddingStyle} />
         <Button
           icon="lock-reset"
-          title="Recover Account"
+          title={t('choose-screen.recover-account')}
           // onPress={}
         />
       </View>
@@ -38,8 +39,7 @@ const styles = StyleSheet.create({
     height: 16,
   },
   textStyles: {
-    color: 'white',
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   optionsStyle: {
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChooseScreen;
+export default withTranslation()(ChooseScreen);

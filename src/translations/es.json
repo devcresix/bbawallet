@@ -5,6 +5,11 @@
     "skip": "Saltar",
     "next": "Próxima"
   },
+  "choose-screen": {
+    "title": "Crear/Recuperar su Cuenta",
+    "create-account": "Crear una Cuenta",
+    "recover-account": "Recuperar Cuenta"
+  },
   "assets": "Activos",
   "transactions": "Actas",
   "settings": {

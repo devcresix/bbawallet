@@ -5,6 +5,11 @@
     "skip": "छोडना",
     "next": "अगला"
   },
+  "choose-screen": {
+    "title": "अपना खाता बनाएँ/पुनर्प्राप्त करें",
+    "create-account": "खाता बनाएं",
+    "recover-account": "खाते की वसूली"
+  },
   "assets": "संपत्ति",
   "transactions": "लेनदेन",
   "settings": {
