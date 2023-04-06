@@ -6,9 +6,14 @@
     "address-book": "Address Book",
     "languages": "Languages",
     "trusted-apps": "Trusted Apps",
+    "theme": "Theme",
     "about-and-support": "About & Support",
     "reset-all": "Reset All",
     "confirm-reset": "Do you want to reset all private key on this device?"
+  },
+  "select-theme": {
+    "light": "Light",
+    "dark": "Dark"
   },
   "about-support": {
     "app-name": "App Name",

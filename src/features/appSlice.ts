@@ -13,11 +13,20 @@ export const appSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
+    /**
+     * @deprecated until 6 April, 2023
+     */
     light: state => {
       state.theme = constants.THEME_LIGHT;
     },
+    /**
+     * @deprecated until 6 April, 2023
+     */
     dark: state => {
       state.theme = constants.THEME_DARK;
+    },
+    changeTheme: (state, {payload}: {payload: 'light' | 'dark'}) => {
+      state.theme = payload;
     },
     setSession: (state, {payload}) => {
       state.session = payload;
@@ -31,7 +40,13 @@ export const appSlice = createSlice({
   },
 });
 
-export const {light, dark, setSession, resetDevice, changeLanguage} =
-  appSlice.actions;
+export const {
+  light,
+  dark,
+  changeTheme,
+  setSession,
+  resetDevice,
+  changeLanguage,
+} = appSlice.actions;
 
 export default appSlice.reducer;

@@ -54,6 +54,12 @@ function SettingScreen({navigation, t}: any) {
           trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
+          title={t('settings.theme')}
+          leading={<Icon name="theme-light-dark" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+          onPress={() => handlePressSetting('Theme')}
+        />
+        <ListItem
           title={t('settings.about-and-support')}
           leading={<Icon name="information" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}

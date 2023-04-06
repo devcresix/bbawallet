@@ -6,9 +6,14 @@
     "address-book": "Directorio",
     "languages": "Lenguas",
     "trusted-apps": "Aplicaciones de Confianza",
+    "theme": "Tema",
     "about-and-support": "Acerca y Apoyo",
     "reset-all": "Resetear",
     "confirm-reset": "¿Quieres restablecer toda la clave privada en este dispositivo?"
+  },
+  "select-theme": {
+    "light": "Luz",
+    "dark": "Oscura"
   },
   "about-support": {
     "app-name": "Nombre de la aplicación",
