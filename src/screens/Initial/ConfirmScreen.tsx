@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, StyleSheet} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import Snackbar from 'react-native-snackbar';
 
 import {setSession} from '../../features/appSlice';
@@ -13,6 +14,7 @@ import InitLayout from '../../components/Layout/InitLayout';
 
 function ConfirmScreen({navigation}: any) {
   const dispatch = useDispatch();
+  const {colors} = useTheme();
 
   const {session} = useSelector((state: RootState) => state.app);
 
@@ -87,7 +89,11 @@ function ConfirmScreen({navigation}: any) {
       <Text style={styles.titleStyles}>Your Seed Phrase</Text>
       <View style={styles.paddingStyle} />
       <View style={styles.viewWarningStyle}>
-        <Text style={styles.textWarningStyle}>
+        <Text
+          style={{
+            ...styles.textWarningStyle,
+            color: colors.text,
+          }}>
           You will need these words to restore your wallet if your browser's
           storage is cleared or your device is damaged or lost.
         </Text>

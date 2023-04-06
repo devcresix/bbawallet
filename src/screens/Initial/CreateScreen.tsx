@@ -4,6 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Snackbar from 'react-native-snackbar';
+import {useTheme} from '@react-navigation/native';
 import {createAccount} from 'prolibbti';
 
 import 'react-native-get-random-values';
@@ -20,6 +21,8 @@ import InitLayout from '../../components/Layout/InitLayout';
 
 function CreateScreen({navigation}: any) {
   const dispatch = useDispatch();
+  const {colors} = useTheme();
+
   const {session} = useSelector((state: RootState) => state.app);
   const [text, setText] = useState('');
 
@@ -61,7 +64,11 @@ function CreateScreen({navigation}: any) {
         <Text style={styles.titleStyles}>Your Seed Phrase</Text>
         <View style={styles.paddingStyle} />
         <View style={styles.viewWarningStyle}>
-          <Text style={styles.textWarningStyle}>
+          <Text
+            style={{
+              ...styles.textWarningStyle,
+              color: colors.text,
+            }}>
             You will need these words to restore your wallet if your browser's
             storage is cleared or your device is damaged or lost.
           </Text>
@@ -114,6 +121,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   inputSeedStyle: {
     height: 120,

@@ -4,26 +4,46 @@ import {View, Text, StyleSheet} from 'react-native';
 // Components
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
+import {useTheme} from '@react-navigation/native';
 
 function WarningScreen({navigation}: any) {
+  const {colors} = useTheme();
   const handleStart = () => {
     navigation.push('Create');
   };
 
   return (
     <InitLayout>
-      <Text style={styles.titleStyles}>Keep your seed phrase safe!</Text>
+      <Text
+        style={{
+          ...styles.titleStyles,
+          color: colors.text,
+        }}>
+        Keep your seed phrase safe!
+      </Text>
       <View style={styles.paddingStyle} />
       <View style={styles.viewWarningStyle}>
-        <Text style={styles.textWarningStyle}>
+        <Text
+          style={{
+            ...styles.textWarningStyle,
+            color: colors.text,
+          }}>
           You will need these words to restore your wallet if your browser's
           storage is cleared or your device is damaged or lost.
         </Text>
-        <Text style={styles.textWarningStyle}>
+        <Text
+          style={{
+            ...styles.textWarningStyle,
+            color: colors.text,
+          }}>
           Never share your seed phrase (or your private keys) with anyone or
           enter it into any form, as it provides full control of your wallet.
         </Text>
-        <Text style={styles.textWarningStyle}>
+        <Text
+          style={{
+            ...styles.textWarningStyle,
+            color: colors.text,
+          }}>
           BBA Labs or Development Team will never ask for your recovery phrase
           or private keys.
         </Text>
@@ -56,6 +76,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   optionsStyle: {
     justifyContent: 'flex-start',

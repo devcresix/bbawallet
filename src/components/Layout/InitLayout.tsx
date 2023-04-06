@@ -34,7 +34,6 @@ function InitLayout({children}: Props) {
 const styles = StyleSheet.create({
   viewStyles: {
     flex: 1,
-    // alignItems: 'center',
     justifyContent: 'center',
   },
   containerStyles: {
@@ -44,7 +43,6 @@ const styles = StyleSheet.create({
     // // right: 0,
     // // bottom: 0,
     alignItems: 'center',
-    // justifyContent: 'center',
   },
   logoStyle: {
     height: 180,

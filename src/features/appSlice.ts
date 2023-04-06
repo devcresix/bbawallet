@@ -4,7 +4,7 @@ import {IAppState} from '../types';
 
 const initialState: IAppState = {
   loading: false,
-  theme: constants.THEME_LIGHT,
+  theme: constants.THEME_DARK,
   language: constants.DEFAULT_LANGUAGE,
   session: {},
 };
