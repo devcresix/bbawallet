@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import Snackbar from 'react-native-snackbar';
 
 import {setSession} from '../../features/appSlice';
@@ -9,6 +9,7 @@ import storage from '../../utils/storage';
 import storageKeys from '../../config/storageKeys';
 import TextInput from '../../components/Input';
 import Button from '../../components/Button';
+import InitLayout from '../../components/Layout/InitLayout';
 
 function ConfirmScreen({navigation}: any) {
   const dispatch = useDispatch();
@@ -82,76 +83,50 @@ function ConfirmScreen({navigation}: any) {
   }, [session.mnemonic]);
 
   return (
-    <View style={styles.viewStyles}>
-      <View style={styles.containerStyles}>
-        <Image
-          style={styles.logoStyle}
-          resizeMode="contain"
-          source={require('../../assets/images/Logo.png')}
-        />
-        <Text style={styles.titleStyles}>Your Seed Phrase</Text>
-        <View style={styles.paddingStyle} />
-        <View style={styles.viewWarningStyle}>
-          <Text style={styles.textWarningStyle}>
-            You will need these words to restore your wallet if your browser's
-            storage is cleared or your device is damaged or lost.
-          </Text>
-        </View>
-        <View style={styles.paddingStyle} />
-        <View style={styles.paddingStyle} />
-
-        <View style={styles.confirmSeed}>
-          <TextInput
-            label={`Key #${key1 + 1}`}
-            variant="outlined"
-            margin={2}
-            value={seed1}
-            onChangeText={(text: string) => onChangeSeed1(text)}
-          />
-          <TextInput
-            label={`Key #${key2 + 1}`}
-            variant="outlined"
-            margin={2}
-            value={seed2}
-            onChangeText={(text: string) => onChangeSeed2(text)}
-          />
-          <TextInput
-            label={`Key #${key3 + 1}`}
-            variant="outlined"
-            margin={2}
-            value={seed3}
-            onChangeText={(text: string) => onChangeSeed3(text)}
-          />
-        </View>
-
-        <View style={styles.optionsStyle}>
-          <Button icon="play" title="Start" onPress={handleClickStart} />
-        </View>
+    <InitLayout>
+      <Text style={styles.titleStyles}>Your Seed Phrase</Text>
+      <View style={styles.paddingStyle} />
+      <View style={styles.viewWarningStyle}>
+        <Text style={styles.textWarningStyle}>
+          You will need these words to restore your wallet if your browser's
+          storage is cleared or your device is damaged or lost.
+        </Text>
       </View>
-    </View>
+      <View style={styles.paddingStyle} />
+      <View style={styles.paddingStyle} />
+
+      <View style={styles.confirmSeed}>
+        <TextInput
+          label={`Key #${key1 + 1}`}
+          variant="outlined"
+          margin={2}
+          value={seed1}
+          onChangeText={(text: string) => onChangeSeed1(text)}
+        />
+        <TextInput
+          label={`Key #${key2 + 1}`}
+          variant="outlined"
+          margin={2}
+          value={seed2}
+          onChangeText={(text: string) => onChangeSeed2(text)}
+        />
+        <TextInput
+          label={`Key #${key3 + 1}`}
+          variant="outlined"
+          margin={2}
+          value={seed3}
+          onChangeText={(text: string) => onChangeSeed3(text)}
+        />
+      </View>
+
+      <View style={styles.optionsStyle}>
+        <Button icon="play" title="Start" onPress={handleClickStart} />
+      </View>
+    </InitLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  viewStyles: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ffc266',
-  },
-  containerStyles: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoStyle: {
-    height: 135,
-    width: '100%',
-  },
   paddingStyle: {
     height: 16,
   },
@@ -175,7 +150,6 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 25,
   },
-  // TODO
   confirmSeed: {
     width: '92%',
   },

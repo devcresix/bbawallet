@@ -1,8 +1,10 @@
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
+import {useTheme} from 'react-native-paper';
 import Onboarding from 'react-native-onboarding-swiper';
 
 function OnboardingScreen({navigation}: any) {
+  const {colors} = useTheme();
   const handleGetStarted = () => {
     navigation.push('Choose');
   };
@@ -15,7 +17,7 @@ function OnboardingScreen({navigation}: any) {
         {
           title: 'Onboarding',
           subtitle: 'Done with React Native Onboarding Swiper',
-          backgroundColor: '#ffc266',
+          backgroundColor: colors.background,
           image: (
             <Image
               style={styles.viewOnboardingImage}
@@ -26,7 +28,7 @@ function OnboardingScreen({navigation}: any) {
         {
           title: 'Onboarding',
           subtitle: 'Done with React Native Onboarding Swiper',
-          backgroundColor: '#ffc266',
+          backgroundColor: colors.background,
           image: (
             <Image
               style={styles.viewOnboardingImage}
@@ -37,7 +39,7 @@ function OnboardingScreen({navigation}: any) {
         {
           title: 'Onboarding',
           subtitle: 'Done with React Native Onboarding Swiper',
-          backgroundColor: '#ffc266',
+          backgroundColor: colors.background,
           image: (
             <Image
               style={styles.viewOnboardingImage}
