@@ -14,12 +14,13 @@ import {setSession} from '../../store/appSlice';
 import {RootState} from '../../store';
 import storage from '../../utils/storage';
 import storageKeys from '../../config/storageKeys';
+import {withTranslation} from '../../hooks/useTranslations';
 
 // Components
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
 
-function CreateScreen({navigation}: any) {
+function CreateScreen({navigation, t}: any) {
   const dispatch = useDispatch();
   const {colors} = useTheme();
 
@@ -39,13 +40,8 @@ function CreateScreen({navigation}: any) {
 
   function handleClickCopy(): void {
     Snackbar.show({
-      text: 'Data copied to clipboard',
+      text: t('create-screen.seeds-copied'),
       duration: Snackbar.LENGTH_LONG,
-      action: {
-        text: 'Dismiss',
-        textColor: 'green',
-        onPress: () => {},
-      },
     });
     Clipboard.setString(text);
   }
@@ -61,7 +57,7 @@ function CreateScreen({navigation}: any) {
   return (
     <>
       <InitLayout>
-        <Text style={styles.titleStyles}>Your Seed Phrase</Text>
+        <Text style={styles.titleStyles}>{t('create-screen.title')}</Text>
         <View style={styles.paddingStyle} />
         <View style={styles.viewWarningStyle}>
           <Text
@@ -69,8 +65,7 @@ function CreateScreen({navigation}: any) {
               ...styles.textWarningStyle,
               color: colors.text,
             }}>
-            You will need these words to restore your wallet if your browser's
-            storage is cleared or your device is damaged or lost.
+            {t('create-screen.description')}
           </Text>
           <TextInput
             value={text}
@@ -88,11 +83,15 @@ function CreateScreen({navigation}: any) {
         <View style={styles.optionsStyle}>
           <Button
             icon="content-copy"
-            title="Copy Seeds"
+            title={t('create-screen.copy')}
             onPress={handleClickCopy}
           />
           <View style={styles.paddingStyle} />
-          <Button icon="play" title="Start" onPress={handleClickStart} />
+          <Button
+            icon="skip-next"
+            title={t('create-screen.next')}
+            onPress={handleClickStart}
+          />
         </View>
       </InitLayout>
     </>
@@ -104,7 +103,6 @@ const styles = StyleSheet.create({
     height: 16,
   },
   titleStyles: {
-    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -118,7 +116,6 @@ const styles = StyleSheet.create({
     height: 40,
   },
   textWarningStyle: {
-    color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -136,4 +133,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateScreen;
+export default withTranslation()(CreateScreen);

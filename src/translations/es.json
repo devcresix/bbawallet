@@ -17,6 +17,13 @@
     "description3": "BBA Labs o el equipo de desarrollo nunca le pedirán su frase de recuperación o claves privadas.",
     "accept": "Entendí"
   },
+  "create-screen": {
+    "title": "Tu frase de semillas",
+    "description": "Necesitará estas palabras para restaurar su billetera si el almacenamiento de su navegador se borra o su dispositivo está dañado o perdido.",
+    "seeds-copied": "Semillas de recuperación copiadas al portapapeles",
+    "copy": "Copiar",
+    "next": "Próxima"
+  },
   "assets": "Activos",
   "transactions": "Actas",
   "settings": {

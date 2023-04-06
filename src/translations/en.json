@@ -17,6 +17,13 @@
     "description3": "BBA Labs or Development Team will never ask for your recovery phrase or private keys.",
     "accept": "I understood"
   },
+  "create-screen": {
+    "title": "Your Seed Phrase",
+    "description": "You will need these words to restore your wallet if your browser's storage is cleared or your device is damaged or lost.",
+    "seeds-copied": "Recovery seeds copied to clipboard",
+    "copy": "Copy",
+    "next": "Next"
+  },
   "assets": "Assets",
   "transactions": "Transactions",
   "settings": {
