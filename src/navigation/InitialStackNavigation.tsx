@@ -11,32 +11,14 @@ const Stack = createStackNavigator();
 
 function InitialStackNavigation() {
   return (
-    <Stack.Navigator initialRouteName="Welcome">
-      <Stack.Screen
-        name="Onboarding"
-        component={OnboardingScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Choose"
-        component={ChooseScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Warning"
-        component={WarningScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Create"
-        component={CreateScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Confirm"
-        component={ConfirmScreen}
-        options={{headerShown: false}}
-      />
+    <Stack.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+      <Stack.Screen name="Choose" component={ChooseScreen} />
+      <Stack.Screen name="Warning" component={WarningScreen} />
+      <Stack.Screen name="Create" component={CreateScreen} />
+      <Stack.Screen name="Confirm" component={ConfirmScreen} />
     </Stack.Navigator>
   );
 }
