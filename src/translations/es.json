@@ -1,4 +1,10 @@
 {
+  "onboarding": {
+    "title": "Cripto de cadena múltiple",
+    "description": "La cadena múltiple y la puerta de enlace segura a todo su espacio criptográfico",
+    "skip": "Saltar",
+    "next": "Próxima"
+  },
   "assets": "Activos",
   "transactions": "Actas",
   "settings": {

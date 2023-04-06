@@ -1,4 +1,10 @@
 {
+  "onboarding": {
+    "title": "Multi Chain Crypto",
+    "description": "The multiple chain and secure gateway to all your crypto space",
+    "skip": "Skip",
+    "next": "Next"
+  },
   "assets": "Assets",
   "transactions": "Transactions",
   "settings": {

@@ -8,6 +8,7 @@ import {changeTheme} from '../../store/appSlice';
 import {withTranslation} from '../../hooks/useTranslations';
 import {RootState} from '../../store';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ThemeScreen({navigation, t}: any) {
   const dispatch = useDispatch();
   const {theme} = useSelector((state: RootState) => state.app);
@@ -15,7 +16,7 @@ function ThemeScreen({navigation, t}: any) {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const handlePressTheme = (theme: 'light' | 'dark') => {
     dispatch(changeTheme(theme));
-    navigation.goBack();
+    // navigation.goBack();
   };
 
   return (

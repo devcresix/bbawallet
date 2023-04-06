@@ -2,8 +2,9 @@ import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import Onboarding from 'react-native-onboarding-swiper';
+import {withTranslation} from '../../hooks/useTranslations';
 
-function OnboardingScreen({navigation}: any) {
+function OnboardingScreen({navigation, t}: any) {
   const {colors} = useTheme();
   const handleGetStarted = () => {
     navigation.push('Choose');
@@ -13,10 +14,12 @@ function OnboardingScreen({navigation}: any) {
     <Onboarding
       onSkip={handleGetStarted}
       onDone={handleGetStarted}
+      skipLabel={t('onboarding.skip')}
+      nextLabel={t('onboarding.next')}
       pages={[
         {
-          title: 'Onboarding',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          title: t('onboarding.title'),
+          subtitle: t('onboarding.description'),
           backgroundColor: colors.background,
           image: (
             <Image
@@ -26,24 +29,13 @@ function OnboardingScreen({navigation}: any) {
           ),
         },
         {
-          title: 'Onboarding',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          title: t('onboarding.title'),
+          subtitle: t('onboarding.description'),
           backgroundColor: colors.background,
           image: (
             <Image
               style={styles.viewOnboardingImage}
               source={require('../../assets/images/welcome/welcome2.png')}
-            />
-          ),
-        },
-        {
-          title: 'Onboarding',
-          subtitle: 'Done with React Native Onboarding Swiper',
-          backgroundColor: colors.background,
-          image: (
-            <Image
-              style={styles.viewOnboardingImage}
-              source={require('../../assets/images/welcome/welcome3.png')}
             />
           ),
         },
@@ -59,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OnboardingScreen;
+export default withTranslation()(OnboardingScreen);

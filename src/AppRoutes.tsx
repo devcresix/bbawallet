@@ -15,10 +15,9 @@ import storage from './utils/storage';
 import useTranslations from './hooks/useTranslations';
 
 function AppRoutes() {
+  useTranslations();
   const dispatch = useDispatch();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const {selected: selectedLanguage} = useTranslations();
   const [isReady, setIsReady] = React.useState(false);
   const {session, theme} = useSelector((state: RootState) => state.app);
   const _theme = themes[theme];
