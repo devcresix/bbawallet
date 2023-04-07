@@ -14,8 +14,6 @@ import type {RootState} from '../../store';
 
 function AssetsScreen(): JSX.Element {
   // const dispatch = useDispatch();
-  const {session} = useSelector((state: RootState) => state.app);
-
   const [refreshing, setRefreshing] = React.useState(false);
 
   const onRefresh = React.useCallback(() => {

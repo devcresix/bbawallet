@@ -3,7 +3,6 @@ export interface IAppState {
   initialized: boolean;
   theme: string;
   language: string;
-  session: any;
 }
 
 export interface IAccountState {

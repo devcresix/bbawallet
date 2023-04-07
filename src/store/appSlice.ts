@@ -7,7 +7,6 @@ const initialState: IAppState = {
   initialized: false,
   theme: constants.THEME_LIGHT,
   language: constants.DEFAULT_LANGUAGE,
-  session: {},
 };
 
 export const appSlice = createSlice({
