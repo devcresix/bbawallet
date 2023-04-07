@@ -7,10 +7,27 @@ import {BlurView} from '@react-native-community/blur';
 
 // Components
 import SelectAccounts from '../SelectAccounts';
+import {IAccountState} from '../../types';
+import useAccounts from '../../hooks/useAccounts';
+import {withTranslation} from '../../hooks/useTranslations';
 
-function Navbar() {
-  const [modalVisible, setModalVisible] = useState(false);
+interface INavbarProps {}
+
+function Navbar({}: INavbarProps) {
   const {colors} = useTheme();
+  const {current, setCurrent} = useAccounts();
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleSelectAccount = (account: IAccountState) => {
+    setModalVisible(!modalVisible);
+    setCurrent(account);
+  };
+
+  const handleCreateAccount = () => {
+    console.log('Need to create an new acocunt');
+    // TODO
+  };
 
   return (
     <View style={[styles.container]}>
@@ -27,8 +44,8 @@ function Navbar() {
             {
               padding: 15,
               marginTop: 65,
-              borderRadius: 18,
-              backgroundColor: 'gray',
+              borderRadius: 20,
+              borderColor: colors.secondary,
             },
           ]}
           blurType="light"
@@ -44,13 +61,16 @@ function Navbar() {
               }}
             />
           </View>
-          <SelectAccounts />
+          <SelectAccounts
+            onPress={handleSelectAccount}
+            onCreate={handleCreateAccount}
+          />
         </BlurView>
       </Modal>
       <View style={styles.content}>
         <View>
           <Text style={styles.textSwitchAccount}>
-            Account 1
+            {current.name}
             <MaterialCommunityIcons
               size={20}
               name="chevron-down"
@@ -90,4 +110,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Navbar;
+export default withTranslation()(Navbar);

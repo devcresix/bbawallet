@@ -21,27 +21,15 @@ function AppRoutes() {
     (state: RootState) => state.app,
   );
 
-  const app = useSelector((state: RootState) => state.app);
-  const session = useSelector((state: RootState) => state.session);
-
-  useEffect(() => {
-    console.log('LOADED app:', app);
-    console.log('LOADED session:', session);
-  }, [app, session]);
-
   useEffect(() => {
     if (accounts.length > 0) {
-      storage.setItem(storageKeys.ACCOUNTS, accounts).then(() => {
-        // console.log('Loaded:', accounts);
-      });
+      storage.setItem(storageKeys.ACCOUNTS, accounts);
     }
   }, [accounts]);
 
   useEffect(() => {
     if (current) {
-      storage.setItem(storageKeys.CURRENT_ACCOUNT, current).then(() => {
-        // console.log('Current:', current);
-      });
+      storage.setItem(storageKeys.CURRENT_ACCOUNT, current);
     }
   }, [current]);
 
