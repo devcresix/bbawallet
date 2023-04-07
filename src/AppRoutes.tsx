@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -8,41 +8,43 @@ import MainStackNavigation from './navigation/MainStackNavigation';
 import LoadingScreen from './screens/Initial/LoadingScreen';
 
 import themes from './config/theme';
-import storageKeys from './config/storageKeys';
-import {setSession} from './store/appSlice';
-import {RootState} from './store';
-import storage from './utils/storage';
 import useTranslations from './hooks/useTranslations';
+import {RootState} from './store';
+import useAccounts from './hooks/useAccounts';
+import storage from './utils/storage';
+import storageKeys from './config/storageKeys';
 
 function AppRoutes() {
   useTranslations();
-  const dispatch = useDispatch();
-
-  const [isReady, setIsReady] = React.useState(false);
-  const {session, theme} = useSelector((state: RootState) => state.app);
-  const _theme = themes[theme];
+  const {current, accounts} = useAccounts();
+  const {loaded, initialized, theme} = useSelector(
+    (state: RootState) => state.app,
+  );
 
   useEffect(() => {
-    (async () => {
-      try {
-        const sessionStorage = await storage.getItem(storageKeys.SESSION_KEY);
-        if (sessionStorage) {
-          dispatch(setSession(sessionStorage));
-        }
-      } finally {
-        setIsReady(true);
-      }
-    })();
-  }, [dispatch]);
+    if (accounts.length > 0) {
+      storage.setItem(storageKeys.ACCOUNTS, accounts).then(() => {
+        console.log('Loaded:', accounts);
+      });
+    }
+  }, [accounts]);
 
-  if (!isReady) {
+  useEffect(() => {
+    if (current) {
+      storage.setItem(storageKeys.CURRENT_ACCOUNT, current).then(() => {
+        console.log('Current:', current);
+      });
+    }
+  }, [current]);
+
+  if (!loaded) {
     return <LoadingScreen />;
   }
 
   return (
-    <PaperProvider theme={_theme}>
-      <NavigationContainer theme={_theme}>
-        {session.validated ? (
+    <PaperProvider theme={themes[theme]}>
+      <NavigationContainer theme={themes[theme]}>
+        {loaded && initialized ? (
           <MainStackNavigation />
         ) : (
           <InitialStackNavigation />

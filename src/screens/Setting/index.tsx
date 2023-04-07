@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import {ListItem, Stack} from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {resetDevice} from '../../store/appSlice';
+import {setInitialized, setLoaded} from '../../store/appSlice';
 import storageKeys from '../../config/storageKeys';
 import storage from '../../utils/storage';
 
@@ -25,8 +25,13 @@ function SettingScreen({navigation, t}: any) {
   }
 
   async function handleResetDevice() {
-    await storage.removeItem(storageKeys.SESSION_KEY);
-    dispatch(resetDevice());
+    await Promise.all([
+      storage.removeItem(storageKeys.ACCOUNTS),
+      storage.removeItem(storageKeys.CURRENT_ACCOUNT),
+      storage.removeItem(storageKeys.INITIALIZED),
+    ]);
+    dispatch(setInitialized(false));
+    dispatch(setLoaded(false));
   }
 
   function handlePressSetting(page: string) {

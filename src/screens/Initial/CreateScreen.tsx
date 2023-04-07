@@ -1,40 +1,34 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {View, Text, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Snackbar from 'react-native-snackbar';
 import {useTheme} from '@react-navigation/native';
 import {createAccount} from 'prolibbti';
-
 import 'react-native-get-random-values';
 import {v1 as uuid} from 'uuid';
 
-import {setSession} from '../../store/appSlice';
-import {RootState} from '../../store';
-import storage from '../../utils/storage';
-import storageKeys from '../../config/storageKeys';
 import {withTranslation} from '../../hooks/useTranslations';
+import {IAccountState} from '../../types';
+import {RootState} from '../../store';
 
 // Components
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
+import useAccounts from '../../hooks/useAccounts';
 
 function CreateScreen({navigation, t}: any) {
-  const dispatch = useDispatch();
   const {colors} = useTheme();
+  const {addAccount, setCurrent} = useAccounts();
 
-  const {session} = useSelector((state: RootState) => state.app);
+  const {accounts} = useSelector((state: RootState) => state.session);
+  const [account, setAccount] = useState(null as unknown as IAccountState);
   const [text, setText] = useState('');
 
   function handleClickStart() {
-    const preSession = {
-      ...session,
-      ...{mnemonic: text, validated: false},
-    };
-    storage.setItem(storageKeys.SESSION_KEY, preSession).then(() => {
-      dispatch(setSession(preSession));
-    });
+    addAccount(account);
+    setCurrent(account);
     navigation.push('Confirm');
   }
 
@@ -43,58 +37,60 @@ function CreateScreen({navigation, t}: any) {
       text: t('create-screen.seeds-copied'),
       duration: Snackbar.LENGTH_LONG,
     });
-    Clipboard.setString(text);
+    Clipboard.setString(account.mnemonic);
   }
 
   useEffect(() => {
     const onCreatingAccount = async () => {
-      const account = await createAccount(uuid(), 'Account');
-      setText(account.mnemonic.toLowerCase());
+      const newAccount = await createAccount(
+        uuid(),
+        `Account ${accounts.length + 1}`,
+      );
+      setAccount({...newAccount, verified: false});
+      setText(newAccount.mnemonic);
     };
     onCreatingAccount();
-  }, []);
+  }, [accounts]);
 
   return (
-    <>
-      <InitLayout>
-        <Text style={styles.titleStyles}>{t('create-screen.title')}</Text>
-        <View style={styles.paddingStyle} />
-        <View style={styles.viewWarningStyle}>
-          <Text
-            style={{
-              ...styles.textWarningStyle,
-              color: colors.text,
-            }}>
-            {t('create-screen.description')}
-          </Text>
-          <TextInput
-            value={text}
-            style={styles.inputSeedStyle}
-            contentStyle={styles.inputSeedContentStyle}
-            editable={false}
-            inputMode="text"
-            mode="outlined"
-            multiline
-          />
-        </View>
-        <View style={styles.paddingStyle} />
-        <View style={styles.paddingStyle} />
+    <InitLayout>
+      <Text style={styles.titleStyles}>{t('create-screen.title')}</Text>
+      <View style={styles.paddingStyle} />
+      <View style={styles.viewWarningStyle}>
+        <Text
+          style={{
+            ...styles.textWarningStyle,
+            color: colors.text,
+          }}>
+          {t('create-screen.description')}
+        </Text>
+        <TextInput
+          value={text}
+          style={styles.inputSeedStyle}
+          contentStyle={styles.inputSeedContentStyle}
+          editable={false}
+          inputMode="text"
+          mode="outlined"
+          multiline
+        />
+      </View>
+      <View style={styles.paddingStyle} />
+      <View style={styles.paddingStyle} />
 
-        <View style={styles.optionsStyle}>
-          <Button
-            icon="content-copy"
-            title={t('create-screen.copy')}
-            onPress={handleClickCopy}
-          />
-          <View style={styles.paddingStyle} />
-          <Button
-            icon="skip-next"
-            title={t('create-screen.next')}
-            onPress={handleClickStart}
-          />
-        </View>
-      </InitLayout>
-    </>
+      <View style={styles.optionsStyle}>
+        <Button
+          icon="content-copy"
+          title={t('create-screen.copy')}
+          onPress={handleClickCopy}
+        />
+        <View style={styles.paddingStyle} />
+        <Button
+          icon="skip-next"
+          title={t('create-screen.next')}
+          onPress={handleClickStart}
+        />
+      </View>
+    </InitLayout>
   );
 }
 

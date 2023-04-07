@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {View, Text, StyleSheet} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import Snackbar from 'react-native-snackbar';
 
-import {setSession} from '../../store/appSlice';
-import {RootState} from '../../store';
-import storage from '../../utils/storage';
-import storageKeys from '../../config/storageKeys';
+import {setInitialized} from '../../store/appSlice';
 import TextInput from '../../components/Input';
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
 import {withTranslation} from '../../hooks/useTranslations';
+import useAccounts from '../../hooks/useAccounts';
+import storageKeys from '../../config/storageKeys';
+import storage from '../../utils/storage';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ConfirmScreen({navigation, t}: any) {
   const dispatch = useDispatch();
   const {colors} = useTheme();
-
-  const {session} = useSelector((state: RootState) => state.app);
+  const {current, verifyAccount} = useAccounts();
 
   const [seeds, setSeeds] = useState([] as string[]);
 
@@ -29,18 +29,7 @@ function ConfirmScreen({navigation, t}: any) {
   const [seed2, onChangeSeed2] = useState('');
   const [seed3, onChangeSeed3] = useState('');
 
-  function saveSeedState() {
-    const preSession = {
-      ...session,
-      ...{validated: true},
-    };
-    storage.setItem(storageKeys.SESSION_KEY, preSession).then(() => {
-      dispatch(setSession(preSession));
-    });
-    navigation.push('Create');
-  }
-
-  function handleClickStart() {
+  const handleClickStart = () => {
     if (
       seed1 !== seeds[key1] ||
       seed2 !== seeds[key2] ||
@@ -53,10 +42,13 @@ function ConfirmScreen({navigation, t}: any) {
     }
 
     // On success validate
-    saveSeedState();
-  }
+    verifyAccount(current);
+    storage.setItem(storageKeys.INITIALIZED, true).then(() => {
+      dispatch(setInitialized(true));
+    });
+  };
 
-  function getRandom(items: string[]) {
+  const getRandom = (items: string[]) => {
     const randomIndex = [];
     for (let index = 0; index < 3; index++) {
       let randNum = Math.floor(Math.random() * items.length);
@@ -66,19 +58,19 @@ function ConfirmScreen({navigation, t}: any) {
       randomIndex.push(randNum);
     }
     return randomIndex.sort((a, b) => a - b);
-  }
+  };
 
   useEffect(() => {
-    if (session.mnemonic) {
-      const items = session.mnemonic.split(' ');
-      setSeeds(items);
+    if (current && current.mnemonic) {
+      const items = current.mnemonic.split(' ');
       const random = getRandom(items);
 
+      setSeeds(items);
       setKey1(random[0]);
       setKey2(random[1]);
       setKey3(random[2]);
     }
-  }, [session.mnemonic]);
+  }, [current]);
 
   return (
     <InitLayout>
@@ -90,7 +82,8 @@ function ConfirmScreen({navigation, t}: any) {
             ...styles.textWarningStyle,
             color: colors.text,
           }}>
-          {t('confirm-screen.description')}
+          {/* {t('confirm-screen.description')} */}
+          {current.mnemonic}
         </Text>
       </View>
       <View style={styles.paddingStyle} />

@@ -1,8 +1,21 @@
 export interface IAppState {
-  loading: boolean;
+  loaded: boolean;
+  initialized: boolean;
   theme: string;
   language: string;
   session: any;
+}
+
+export interface IAccountState {
+  id: string;
+  name: string;
+  mnemonic: string;
+  verified: boolean;
+}
+
+export interface ISessionState {
+  current: IAccountState;
+  accounts: IAccountState[];
 }
 
 export interface IBarLabel {

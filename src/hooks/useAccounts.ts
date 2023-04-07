@@ -1,48 +1,70 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {useState} from 'react';
-import {mapValues} from 'lodash';
-import {IAccount} from '../types';
-import storageKeys from '../config/storageKeys';
+import {useDispatch, useSelector} from 'react-redux';
+import {setInitialized, setLoaded} from '../store/appSlice';
+import {
+  setAccounts,
+  addAccount as addAccountStore,
+  setCurrentAccount,
+} from '../store/sessionSlice';
+import {RootState} from '../store';
+import {IAccountState} from '../types';
 import storage from '../utils/storage';
+import storageKeys from '../config/storageKeys';
 
 const useAccounts = () => {
-  const [counter, setCounter] = useState(0);
-  const [accounts, setAccounts] = useState([] as IAccount[]);
+  const dispatch = useDispatch();
+  const {current, accounts} = useSelector((state: RootState) => state.session);
 
-  const addAccount = async (account: IAccount, password: string) => {
-    const newCounter = counter + 1;
-    const newAccounts = [...accounts, account];
-    const newMnemonics = newAccounts.reduce(
-      (mnemonics: any, {id, mnemonic}: any) => {
-        mnemonics[id] = mnemonic;
-        return mnemonics;
-      },
-      {},
-    );
-    setCounter(counter + 1);
-    setAccounts([...accounts, account]);
-    await storage.setItem(storageKeys.MNEMONICS, newMnemonics);
-    await storage.setItem(storageKeys.COUNTER, newCounter);
-    await storage.setItem(
-      storageKeys.ACCOUNTS,
-      newAccounts.map(({id, networksAccounts}) => {
-        const getPathIndexes = (networkAccounts: {[x: string]: any}) => {
-          const mapIndex = (index: string) =>
-            networkAccounts[index] ? parseInt(index, 10) : null;
-          return Object.keys(networkAccounts).map(mapIndex);
-        };
+  const loadAccounts = async () => {
+    try {
+      // checking for loading accounts
+      const accountsStorage = await storage.getItem(storageKeys.ACCOUNTS);
+      if (accountsStorage) {
+        dispatch(setAccounts(accountsStorage));
+      }
 
-        return {
-          id,
-          pathIndexes: mapValues(networksAccounts, getPathIndexes),
-        };
-      }),
-    );
+      const currentAccountStorage = await storage.getItem(
+        storageKeys.CURRENT_ACCOUNT,
+      );
+      if (currentAccountStorage) {
+        dispatch(setCurrentAccount(currentAccountStorage));
+      }
+
+      // checking for initialized
+      const initializedStorage = await storage.getItem(storageKeys.INITIALIZED);
+      if (initializedStorage) {
+        dispatch(setInitialized(initializedStorage));
+      }
+    } finally {
+      dispatch(setLoaded(true));
+    }
+  };
+
+  const addAccount = async (account: IAccountState) => {
+    dispatch(addAccountStore(account));
+  };
+
+  const setCurrent = async (account: IAccountState) => {
+    dispatch(setCurrentAccount(account));
+  };
+
+  const verifyAccount = (account: IAccountState) => {
+    const verified = accounts.find(e => e.mnemonic === account.mnemonic);
+    if (verified) {
+      const updated = accounts.map(e =>
+        e.mnemonic === account.mnemonic ? {...e, verified: true} : e,
+      );
+      dispatch(setAccounts(updated));
+      setCurrent({...verified, verified: true});
+    }
   };
 
   return {
-    counter,
+    current,
     accounts,
+    loadAccounts,
+    addAccount,
+    setCurrent,
+    verifyAccount,
   };
 };
 

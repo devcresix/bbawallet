@@ -1,9 +1,11 @@
 const STORAGE_KEYS = {
+  INITIALIZED: 'initialized',
+
+  // Accounts Management
   ACCOUNTS: 'accounts',
-  COUNTER: 'counter',
-  MNEMONICS: 'mnemonics',
+  CURRENT_ACCOUNT: 'current-account',
+
   LANGUAGE: 'lang',
-  SESSION_KEY: 'session-key',
   USER_CONFIG: 'user_config',
 };
 

@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Text, StyleSheet, ActivityIndicator} from 'react-native';
 import InitLayout from '../../components/Layout/InitLayout';
-// const {height} = Dimensions.get('window');
+import useAccounts from '../../hooks/useAccounts';
 
 function LoadingScreen() {
+  const {loadAccounts} = useAccounts();
+
+  useEffect(() => {
+    setTimeout(() => {
+      loadAccounts();
+    }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <InitLayout>
       <Text style={styles.textStyles}>BBA Wallet</Text>

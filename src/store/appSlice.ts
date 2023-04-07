@@ -3,36 +3,25 @@ import constants from '../config/constants';
 import {IAppState} from '../types';
 
 const initialState: IAppState = {
-  loading: false,
+  loaded: false,
+  initialized: false,
   theme: constants.THEME_LIGHT,
   language: constants.DEFAULT_LANGUAGE,
   session: {},
 };
 
 export const appSlice = createSlice({
-  name: 'theme',
+  name: 'app',
   initialState,
   reducers: {
-    /**
-     * @deprecated until 6 April, 2023
-     */
-    light: state => {
-      state.theme = constants.THEME_LIGHT;
+    setLoaded: (state, {payload}) => {
+      state.loaded = payload;
     },
-    /**
-     * @deprecated until 6 April, 2023
-     */
-    dark: state => {
-      state.theme = constants.THEME_DARK;
+    setInitialized: (state, {payload}) => {
+      state.initialized = payload;
     },
     changeTheme: (state, {payload}: {payload: 'light' | 'dark'}) => {
       state.theme = payload;
-    },
-    setSession: (state, {payload}) => {
-      state.session = payload;
-    },
-    resetDevice: state => {
-      state.session = {};
     },
     changeLanguage: (state, {payload}) => {
       state.language = payload;
@@ -41,11 +30,11 @@ export const appSlice = createSlice({
 });
 
 export const {
-  light,
-  dark,
+  setLoaded,
+  setInitialized,
   changeTheme,
-  setSession,
-  resetDevice,
+  // setSession,
+  // resetDevice,
   changeLanguage,
 } = appSlice.actions;
 
