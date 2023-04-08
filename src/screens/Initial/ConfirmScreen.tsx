@@ -17,7 +17,7 @@ import storage from '../../utils/storage';
 function ConfirmScreen({navigation, t}: any) {
   const dispatch = useDispatch();
   const {colors} = useTheme();
-  const {current, addAccount, verifyAccount} = useAccounts();
+  const {current, verifyAccount} = useAccounts();
 
   const [seeds, setSeeds] = useState([] as string[]);
 
@@ -43,7 +43,6 @@ function ConfirmScreen({navigation, t}: any) {
 
     // On success validate
     verifyAccount(current);
-    addAccount(current);
     storage.setItem(storageKeys.INITIALIZED, true).then(() => {
       dispatch(setInitialized(true));
     });

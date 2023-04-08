@@ -14,6 +14,7 @@ import SimpleDialog from '../../components/Dialog';
 
 // Utils
 import {withTranslation} from '../../hooks/useTranslations';
+import {setAccounts} from '../../store/sessionSlice';
 
 function SettingScreen({navigation, t}: any) {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function SettingScreen({navigation, t}: any) {
       await storage.removeItem(storageKeys.CURRENT_ACCOUNT),
       await storage.removeItem(storageKeys.INITIALIZED),
     ]);
+    dispatch(setAccounts([]));
     dispatch(setInitialized(false));
     dispatch(setLoaded(false));
   }
