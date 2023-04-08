@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {Button as MaterialButton} from '@react-native-material/core';
+import {Button as PaperButton} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {withTranslation} from '../../hooks/useTranslations';
 
 interface IButtonProps {
   title: string;
@@ -12,13 +13,14 @@ interface IButtonProps {
 
 function Button({title, icon, uppercase = false, onPress}: IButtonProps) {
   return (
-    <MaterialButton
-      title={title}
+    <PaperButton
+      mode="contained"
       uppercase={uppercase}
-      leading={props => <MaterialCommunityIcons name={icon} {...props} />}
-      onPress={onPress}
-    />
+      icon={props => <MaterialCommunityIcons name={icon} {...props} />}
+      onPress={onPress}>
+      {title}
+    </PaperButton>
   );
 }
 
-export default Button;
+export default withTranslation()(Button);

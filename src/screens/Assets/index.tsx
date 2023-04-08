@@ -2,15 +2,22 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import {RefreshControl, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
-import {Avatar, ListItem, Stack} from '@react-native-material/core';
 
 // Components
-import Layout from '../../components/Layout';
 import type {RootState} from '../../store';
+import Layout from '../../components/Layout';
+import ListItem from '../../components/ListItem';
 
 function AssetsScreen(): JSX.Element {
   // const dispatch = useDispatch();
@@ -84,52 +91,44 @@ function AssetsScreen(): JSX.Element {
         <View style={[]}>
           <Text>Tokens</Text>
           {/* List of tokens */}
-          <Stack style={styles.viewTokenListScroll}>
+          <View style={styles.viewTokenListScroll}>
             <ListItem
               title="USDT"
-              secondaryText="TetherUS"
-              leadingMode="avatar"
-              style={styles.viewTokenListScrollItem}
-              leading={
-                <Avatar
-                  size={40}
-                  image={require('../../assets/images/tokens/usdt.png')}
-                  imageStyle={{backgroundColor: '#ebedf0'}}
+              description="TetherUS"
+              left={props => (
+                <Image
+                  {...props}
+                  source={require('../../assets/images/tokens/usdt.png')}
+                  style={{...styles.leftImage}}
                 />
-              }
-              trailing={props => (
-                <View style={styles.viewTokenListScrollItemTrailing}>
-                  <Text
-                    style={styles.viewTokenListScrollItemTrailingText}
-                    {...props}>
-                    1,000
-                  </Text>
-                </View>
+              )}
+              right={props => (
+                <Text
+                  style={styles.viewTokenListScrollItemTrailingText}
+                  {...props}>
+                  1,000
+                </Text>
               )}
             />
             <ListItem
               title="BUSD"
-              secondaryText="Binance USD"
-              leadingMode="avatar"
-              style={styles.viewTokenListScrollItem}
-              leading={
-                <Avatar
-                  size={40}
-                  image={require('../../assets/images/tokens/busd.png')}
-                  imageStyle={{backgroundColor: '#ebedf0'}}
+              description="Binance USD"
+              left={props => (
+                <Image
+                  {...props}
+                  source={require('../../assets/images/tokens/busd.png')}
+                  style={{...styles.leftImage}}
                 />
-              }
-              trailing={props => (
-                <View style={styles.viewTokenListScrollItemTrailing}>
-                  <Text
-                    style={styles.viewTokenListScrollItemTrailingText}
-                    {...props}>
-                    2,564,192
-                  </Text>
-                </View>
+              )}
+              right={props => (
+                <Text
+                  style={styles.viewTokenListScrollItemTrailingText}
+                  {...props}>
+                  2,345,678
+                </Text>
               )}
             />
-          </Stack>
+          </View>
         </View>
       </ScrollView>
     </Layout>
@@ -148,15 +147,17 @@ const styles = StyleSheet.create({
   },
   viewTokenListScroll: {},
   viewTokenListScrollItem: {},
-  viewTokenListScrollItemTrailing: {
-    flex: 1,
-    width: 120,
-    marginRight: 100,
+  leftImage: {
+    margin: 10,
+    height: 40,
+    width: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   viewTokenListScrollItemTrailingText: {
     color: 'black',
     textAlign: 'right',
-    fontWeight: '500',
+    fontWeight: '600',
     fontSize: 16,
   },
 });

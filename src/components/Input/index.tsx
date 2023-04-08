@@ -1,8 +1,8 @@
 import React from 'react';
-import {TextInput as MaterialTextInput} from '@react-native-material/core';
+import {TextInput as PaperTextInput} from 'react-native-paper';
 
 interface IInputProps {
-  variant: 'filled' | 'outlined' | 'standard';
+  variant: 'flat' | 'outlined';
   margin: number;
   label: string;
   value: string;
@@ -19,11 +19,11 @@ function TextInput({
   onBlur,
 }: IInputProps) {
   return (
-    <MaterialTextInput
-      autoCapitalize="none"
-      variant={variant}
+    <PaperTextInput
+      mode={variant}
       label={label}
       style={{margin: margin}}
+      autoCapitalize="none"
       value={value}
       onChangeText={onChangeText}
       onBlur={onBlur}
