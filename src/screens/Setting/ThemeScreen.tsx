@@ -7,10 +7,18 @@ import {changeTheme} from '../../store/appSlice';
 import {withTranslation} from '../../hooks/useTranslations';
 import {RootState} from '../../store';
 import ListItem from '../../components/ListItem';
+import storageKeys from '../../config/storageKeys';
+import storage from '../../utils/storage';
 
 function ThemeScreen({t}: any) {
   const dispatch = useDispatch();
   const {theme} = useSelector((state: RootState) => state.app);
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const handleChangeTheme = async (theme: 'light' | 'dark') => {
+    await storage.setItem(storageKeys.THEME, theme);
+    dispatch(changeTheme(theme));
+  };
 
   return (
     <>
@@ -19,14 +27,14 @@ function ThemeScreen({t}: any) {
         right={props =>
           theme === 'light' ? <Icon name="check-bold" {...props} /> : null
         }
-        onPress={() => dispatch(changeTheme('light'))}
+        onPress={() => handleChangeTheme('light')}
       />
       <ListItem
         title={t('select-theme.dark')}
         right={props =>
           theme === 'dark' ? <Icon name="check-bold" {...props} /> : null
         }
-        onPress={() => dispatch(changeTheme('dark'))}
+        onPress={() => handleChangeTheme('dark')}
       />
     </>
   );

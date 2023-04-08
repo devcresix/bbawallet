@@ -13,8 +13,10 @@ import {RootState} from './store';
 import useAccounts from './hooks/useAccounts';
 import storage from './utils/storage';
 import storageKeys from './config/storageKeys';
+import useAppConfig from './hooks/useAppConfig';
 
 function AppRoutes() {
+  useAppConfig();
   useTranslations();
   const {current, accounts} = useAccounts();
   const {loaded, initialized, theme} = useSelector(
