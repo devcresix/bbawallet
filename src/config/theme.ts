@@ -15,16 +15,18 @@ const themes: any = {
       ...PaperDefaultTheme.colors,
       ...NavigationDefaultTheme.colors,
       // background: '#3F5740',
+      primaryContainer: '#FFFFFF',
     },
   },
+  // TODO
   dark: {
     ...PaperDarkTheme,
     ...NavigationDarkTheme,
     colors: {
       ...PaperDarkTheme.colors,
       ...NavigationDarkTheme.colors,
-      background: '#010a13',
-      // text: '#ffffff',
+      // background: '#010a13',
+      primaryContainer: 'gray',
     },
   },
 };

@@ -1,47 +1,47 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {Avatar, ListItem, Stack} from '@react-native-material/core';
+import {Image, StyleSheet} from 'react-native';
+import ListItem from '../../components/ListItem';
+import {withTranslation} from '../../hooks/useTranslations';
 
 function AddressBookScreen() {
   return (
-    <SafeAreaView>
-      <Stack>
-        <ListItem
-          leadingMode="icon"
-          leading={
-            <Avatar
-              image={require('../../assets/images/tokens/eth.png')}
-              size={32}
-            />
-          }
-          title="Johny Hammy"
-          secondaryText="0x473300...f13A33"
-        />
-        <ListItem
-          leadingMode="icon"
-          leading={
-            <Avatar
-              image={require('../../assets/images/tokens/usdt.png')}
-              size={32}
-            />
-          }
-          title="Johny Hammy"
-          secondaryText="0x473300...f13A33"
-        />
-        <ListItem
-          leadingMode="icon"
-          leading={
-            <Avatar
-              image={require('../../assets/images/tokens/busd.png')}
-              size={32}
-            />
-          }
-          title="Johny Hammy"
-          secondaryText="0x473300...f13A33"
-        />
-      </Stack>
-    </SafeAreaView>
+    <>
+      <ListItem
+        title="Johny Hammy"
+        description="0x473300...f13A33"
+        // eslint-disable-next-line react/no-unstable-nested-components
+        left={props => (
+          <Image
+            {...props}
+            style={{...styles.leftImage}}
+            source={require('../../assets/images/tokens/usdt.png')}
+          />
+        )}
+      />
+      <ListItem
+        title="Johny Hammy"
+        description="0x473300...f13A33"
+        // eslint-disable-next-line react/no-unstable-nested-components
+        left={props => (
+          <Image
+            {...props}
+            style={{...styles.leftImage}}
+            source={require('../../assets/images/tokens/busd.png')}
+          />
+        )}
+      />
+    </>
   );
 }
 
-export default AddressBookScreen;
+const styles = StyleSheet.create({
+  leftImage: {
+    margin: 8,
+    height: 24,
+    width: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+export default withTranslation()(AddressBookScreen);

@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {ListItem, Stack} from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {setInitialized, setLoaded} from '../../store/appSlice';
@@ -9,8 +8,9 @@ import storageKeys from '../../config/storageKeys';
 import storage from '../../utils/storage';
 
 // Components
-import SimpleDialog from '../../components/Dialog';
 import Layout from '../../components/Layout';
+import ListItem from '../../components/ListItem';
+import SimpleDialog from '../../components/Dialog';
 
 // Utils
 import {withTranslation} from '../../hooks/useTranslations';
@@ -40,51 +40,49 @@ function SettingScreen({navigation, t}: any) {
 
   return (
     <Layout>
-      <Stack>
-        <ListItem
-          title={t('settings.address-book')}
-          leading={<Icon name="book-account" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
-          onPress={() => handlePressSetting('AddressBook')}
-        />
-        <ListItem
-          title={t('settings.languages')}
-          leading={<Icon name="translate" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
-          onPress={() => handlePressSetting('Language')}
-        />
-        <ListItem
-          title={t('settings.trusted-apps')}
-          leading={<Icon name="apps" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
-        />
-        <ListItem
-          title={t('settings.theme')}
-          leading={<Icon name="theme-light-dark" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
-          onPress={() => handlePressSetting('Theme')}
-        />
-        <ListItem
-          title={t('settings.about-and-support')}
-          leading={<Icon name="information" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
-          onPress={() => handlePressSetting('About')}
-        />
-        <ListItem
-          title={t('settings.reset-all')}
-          leading={<Icon name="lock-reset" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
-          onPress={handlePressReset}
-        />
-        <SimpleDialog
-          visible={visible}
-          type="warning"
-          title={t('settings.reset-all')}
-          text={t('settings.confirm-reset')}
-          onPressCancel={() => setVisible(false)}
-          onPressOk={handleResetDevice}
-        />
-      </Stack>
+      <ListItem
+        title={t('settings.address-book')}
+        left={props => <Icon {...props} name="book-account" />}
+        right={props => <Icon {...props} name="chevron-right" />}
+        onPress={() => handlePressSetting('AddressBook')}
+      />
+      <ListItem
+        title={t('settings.languages')}
+        left={props => <Icon {...props} name="translate" />}
+        right={props => <Icon {...props} name="chevron-right" />}
+        onPress={() => handlePressSetting('Language')}
+      />
+      <ListItem
+        title={t('settings.trusted-apps')}
+        left={props => <Icon {...props} name="apps" />}
+        right={props => <Icon {...props} name="chevron-right" />}
+      />
+      <ListItem
+        title={t('settings.theme')}
+        left={props => <Icon {...props} name="theme-light-dark" />}
+        right={props => <Icon {...props} name="chevron-right" />}
+        onPress={() => handlePressSetting('Theme')}
+      />
+      <ListItem
+        title={t('settings.about-and-support')}
+        left={props => <Icon {...props} name="information" />}
+        right={props => <Icon {...props} name="chevron-right" />}
+        onPress={() => handlePressSetting('About')}
+      />
+      <ListItem
+        title={t('settings.reset-all')}
+        left={props => <Icon {...props} name="lock-reset" />}
+        right={props => <Icon {...props} name="chevron-right" />}
+        onPress={handlePressReset}
+      />
+      <SimpleDialog
+        visible={visible}
+        type="warning"
+        title={t('settings.reset-all')}
+        text={t('settings.confirm-reset')}
+        onPressCancel={() => setVisible(false)}
+        onPressOk={handleResetDevice}
+      />
     </Layout>
   );
 }
