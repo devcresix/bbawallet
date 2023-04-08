@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {Text, useTheme} from 'react-native-paper';
+import {Portal, Text, useTheme} from 'react-native-paper';
 import {Dimensions, Modal, StyleSheet, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BlurView} from '@react-native-community/blur';
@@ -31,42 +31,44 @@ function Navbar({}: INavbarProps) {
 
   return (
     <View style={[styles.container]}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}>
-        <BlurView
-          style={[
-            StyleSheet.absoluteFill,
-            {
-              padding: 15,
-              marginTop: 65,
-              borderRadius: 20,
-              borderColor: colors.secondary,
-            },
-          ]}
-          blurType="light"
-          blurAmount={10}>
-          <View>
-            <MaterialCommunityIcons
-              size={30}
-              name="close"
-              onPress={() => setModalVisible(!modalVisible)}
-              style={{
-                alignContent: 'flex-end',
-                alignSelf: 'flex-end',
-              }}
-            />
-          </View>
-          <SelectAccounts
-            onPress={handleSelectAccount}
-            onCreate={handleCreateAccount}
-          />
-        </BlurView>
-      </Modal>
+      <Portal>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}>
+          <BlurView
+            style={[
+              StyleSheet.absoluteFill,
+              {
+                padding: 15,
+                marginTop: 65,
+                borderRadius: 20,
+                borderColor: colors.secondary,
+              },
+            ]}
+            blurType="light"
+            blurAmount={15}>
+            <View>
+              <MaterialCommunityIcons
+                size={25}
+                name="close"
+                onPress={() => setModalVisible(!modalVisible)}
+                style={{
+                  alignContent: 'flex-end',
+                  alignSelf: 'flex-end',
+                }}
+              />
+              <SelectAccounts
+                onPress={handleSelectAccount}
+                onCreate={handleCreateAccount}
+              />
+            </View>
+          </BlurView>
+        </Modal>
+      </Portal>
       <View style={styles.content}>
         <View>
           <Text style={styles.textSwitchAccount}>

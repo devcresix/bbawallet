@@ -20,14 +20,13 @@ import useAccounts from '../../hooks/useAccounts';
 
 function CreateScreen({navigation, t}: any) {
   const {colors} = useTheme();
-  const {addAccount, setCurrent} = useAccounts();
+  const {setCurrent} = useAccounts();
 
   const {accounts} = useSelector((state: RootState) => state.session);
   const [account, setAccount] = useState(null as unknown as IAccountState);
   const [text, setText] = useState('');
 
   function handleClickStart() {
-    addAccount(account);
     setCurrent(account);
     navigation.push('Confirm');
   }

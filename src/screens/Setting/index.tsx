@@ -26,9 +26,9 @@ function SettingScreen({navigation, t}: any) {
 
   async function handleResetDevice() {
     await Promise.all([
-      storage.removeItem(storageKeys.ACCOUNTS),
-      storage.removeItem(storageKeys.CURRENT_ACCOUNT),
-      storage.removeItem(storageKeys.INITIALIZED),
+      await storage.removeItem(storageKeys.ACCOUNTS),
+      await storage.removeItem(storageKeys.CURRENT_ACCOUNT),
+      await storage.removeItem(storageKeys.INITIALIZED),
     ]);
     dispatch(setInitialized(false));
     dispatch(setLoaded(false));
