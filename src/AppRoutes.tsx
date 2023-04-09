@@ -25,12 +25,14 @@ function AppRoutes() {
 
   useEffect(() => {
     if (accounts.length > 0) {
+      console.log('Loaded accounts:', accounts);
       storage.setItem(storageKeys.ACCOUNTS, accounts);
     }
   }, [accounts]);
 
   useEffect(() => {
     if (current) {
+      console.log('Loaded current:', current);
       storage.setItem(storageKeys.CURRENT_ACCOUNT, current);
     }
   }, [current]);

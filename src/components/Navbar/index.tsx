@@ -1,15 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {Portal, Text, useTheme} from 'react-native-paper';
-import {Dimensions, Modal, StyleSheet, View} from 'react-native';
+import {Text, useTheme} from 'react-native-paper';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {BlurView} from '@react-native-community/blur';
 
 // Components
 import SelectAccounts from '../SelectAccounts';
 import {IAccountState} from '../../types';
 import useAccounts from '../../hooks/useAccounts';
 import {withTranslation} from '../../hooks/useTranslations';
+import BlurModal from '../BlurModal';
 
 interface INavbarProps {}
 
@@ -31,44 +31,16 @@ function Navbar({}: INavbarProps) {
 
   return (
     <View style={[styles.container]}>
-      <Portal>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}>
-          <BlurView
-            style={[
-              StyleSheet.absoluteFill,
-              {
-                padding: 15,
-                marginTop: 65,
-                borderRadius: 20,
-                borderColor: colors.secondary,
-              },
-            ]}
-            blurType="light"
-            blurAmount={15}>
-            <View>
-              <MaterialCommunityIcons
-                size={25}
-                name="close"
-                onPress={() => setModalVisible(!modalVisible)}
-                style={{
-                  alignContent: 'flex-end',
-                  alignSelf: 'flex-end',
-                }}
-              />
-              <SelectAccounts
-                onPress={handleSelectAccount}
-                onCreate={handleCreateAccount}
-              />
-            </View>
-          </BlurView>
-        </Modal>
-      </Portal>
+      <BlurModal
+        visible={modalVisible}
+        children={
+          <SelectAccounts
+            onPress={handleSelectAccount}
+            onCreate={handleCreateAccount}
+          />
+        }
+        onClose={() => setModalVisible(!modalVisible)}
+      />
       <View style={styles.content}>
         <View>
           <Text style={styles.textSwitchAccount}>

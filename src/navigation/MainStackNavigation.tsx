@@ -123,7 +123,7 @@ function MainStackNavigation() {
       </Sta.Navigator>
       {/* {loading && (
         <Portal>
-          <BlurView
+          <View
             style={[
               StyleSheet.absoluteFill,
               {
@@ -141,7 +141,7 @@ function MainStackNavigation() {
               }}>
               <ActivityIndicator size={50} />
             </View>
-          </BlurView>
+          </View>
         </Portal>
       )} */}
     </>

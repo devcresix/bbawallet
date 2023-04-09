@@ -46,6 +46,7 @@ function CreateScreen({navigation, t}: any) {
         uuid(),
         `Account ${accounts.length + 1}`,
       );
+      // console.log(newAccount.toAddress());
       setAccount({...newAccount, verified: false});
       setText(newAccount.mnemonic);
     };
