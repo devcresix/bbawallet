@@ -6,12 +6,11 @@ import useAccounts from '../../hooks/useAccounts';
 import {IAccountState} from '../../types';
 import {withTranslation} from '../../hooks/useTranslations';
 
-interface ISelectAccountsProps {
+interface ISelectNetworksProps {
   onPress: (account: IAccountState) => void;
-  onCreate: () => void;
 }
 
-function SelectAccounts({onPress, onCreate}: ISelectAccountsProps) {
+function SelectNetworks({onPress}: ISelectNetworksProps) {
   const {current, accounts} = useAccounts();
 
   return (
@@ -31,12 +30,6 @@ function SelectAccounts({onPress, onCreate}: ISelectAccountsProps) {
           onPress={() => onPress(account)}
         />
       ))}
-      <List.Item
-        title="Create Account"
-        left={props => <List.Icon {...props} icon="plus" />}
-        style={{...styles.listItem}}
-        onPress={onCreate}
-      />
     </>
   );
 }
@@ -54,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTranslation()(SelectAccounts);
+export default withTranslation()(SelectNetworks);

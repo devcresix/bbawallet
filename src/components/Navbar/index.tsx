@@ -1,8 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {Text, useTheme} from 'react-native-paper';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // Components
 import SelectAccounts from '../SelectAccounts';
@@ -10,14 +7,16 @@ import {IAccountState} from '../../types';
 import useAccounts from '../../hooks/useAccounts';
 import {withTranslation} from '../../hooks/useTranslations';
 import BlurModal from '../BlurModal';
+import Button from '../Button';
+import SelectNetworks from '../SelectNetworks';
 
 interface INavbarProps {}
 
 function Navbar({}: INavbarProps) {
-  const {colors} = useTheme();
   const {current, setCurrent} = useAccounts();
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [networksVisible, setNetworksVisible] = useState(false);
 
   const handleSelectAccount = (account: IAccountState) => {
     setModalVisible(!modalVisible);
@@ -33,32 +32,29 @@ function Navbar({}: INavbarProps) {
     <View style={[styles.container]}>
       <BlurModal
         visible={modalVisible}
+        onClose={() => setModalVisible(false)}
         children={
           <SelectAccounts
             onPress={handleSelectAccount}
             onCreate={handleCreateAccount}
           />
         }
-        onClose={() => setModalVisible(!modalVisible)}
+      />
+      <BlurModal
+        visible={networksVisible}
+        onClose={() => setNetworksVisible(false)}
+        children={<SelectNetworks onPress={() => {}} />}
       />
       <View style={styles.content}>
-        <View>
-          <Text style={styles.textSwitchAccount}>
-            {current.name}
-            <MaterialCommunityIcons
-              size={20}
-              name="chevron-down"
-              color={colors.primary}
-              onPress={() => setModalVisible(true)}
-            />
-          </Text>
-        </View>
-        <MaterialCommunityIcons
-          size={24}
-          name="swap-horizontal-bold"
-          color={colors.primary}
-          style={{opacity: 1.0}}
-          onPress={() => {}}
+        <Button
+          icon="chevron-down"
+          title={current.name}
+          onPress={() => setModalVisible(true)}
+          iconRight
+        />
+        <Button
+          icon="swap-horizontal-bold"
+          onPress={() => setNetworksVisible(true)}
         />
       </View>
     </View>
@@ -67,10 +63,9 @@ function Navbar({}: INavbarProps) {
 
 const styles = StyleSheet.create({
   container: {
+    width: Dimensions.get('window').width,
     zIndex: 10,
     height: 50,
-    marginHorizontal: 15,
-    width: Dimensions.get('window').width - 40,
   },
   content: {
     flex: 1,
