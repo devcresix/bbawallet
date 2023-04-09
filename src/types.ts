@@ -1,3 +1,5 @@
+import {INetwork} from 'prolibbti';
+
 export interface IAppState {
   loaded: boolean;
   initialized: boolean;
@@ -13,28 +15,7 @@ export interface IAccountState {
 }
 
 export interface ISessionState {
-  current: IAccountState;
   accounts: IAccountState[];
-}
-
-export interface IBarLabel {
-  color: any;
-  children: any;
-}
-
-export interface IAccount {
-  id: number;
-  networksAccounts: any;
-}
-
-export interface ITextSeed {
-  type: any;
-  color: any;
-  inverse: any;
-  center: any;
-  bold: any;
-  italic: any;
-  uppercase: any;
-  nospace: any;
-  style: any;
+  current: IAccountState;
+  network: INetwork;
 }

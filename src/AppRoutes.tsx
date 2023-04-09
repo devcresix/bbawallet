@@ -14,28 +14,34 @@ import useAccounts from './hooks/useAccounts';
 import storage from './utils/storage';
 import storageKeys from './config/storageKeys';
 import useAppConfig from './hooks/useAppConfig';
+import useNetworks from './hooks/useNetworks';
 
 function AppRoutes() {
   useAppConfig();
   useTranslations();
   const {current, accounts} = useAccounts();
+  const {network} = useNetworks();
   const {loaded, initialized, theme} = useSelector(
     (state: RootState) => state.app,
   );
 
   useEffect(() => {
     if (accounts.length > 0) {
-      console.log('Loaded accounts:', accounts);
       storage.setItem(storageKeys.ACCOUNTS, accounts);
     }
   }, [accounts]);
 
   useEffect(() => {
     if (current) {
-      console.log('Loaded current:', current);
       storage.setItem(storageKeys.CURRENT_ACCOUNT, current);
     }
   }, [current]);
+
+  useEffect(() => {
+    if (network) {
+      storage.setItem(storageKeys.CURRENT_NETWORK, network);
+    }
+  }, [network]);
 
   if (!loaded) {
     return <LoadingScreen />;

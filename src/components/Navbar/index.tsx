@@ -1,31 +1,41 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
+import {INetwork} from 'prolibbti';
 
 // Components
 import SelectAccounts from '../SelectAccounts';
-import {IAccountState} from '../../types';
-import useAccounts from '../../hooks/useAccounts';
-import {withTranslation} from '../../hooks/useTranslations';
+import SelectNetworks from '../SelectNetworks';
 import BlurModal from '../BlurModal';
 import Button from '../Button';
-import SelectNetworks from '../SelectNetworks';
+
+// Utils
+import useAccounts from '../../hooks/useAccounts';
+import useNetworks from '../../hooks/useNetworks';
+import {withTranslation} from '../../hooks/useTranslations';
+import {IAccountState} from '../../types';
 
 interface INavbarProps {}
 
 function Navbar({}: INavbarProps) {
   const {current, setCurrent} = useAccounts();
+  const {setNetwork} = useNetworks();
 
   const [modalVisible, setModalVisible] = useState(false);
   const [networksVisible, setNetworksVisible] = useState(false);
 
   const handleSelectAccount = (account: IAccountState) => {
-    setModalVisible(!modalVisible);
+    setModalVisible(false);
     setCurrent(account);
   };
 
   const handleCreateAccount = () => {
     console.log('Need to create an new acocunt');
     // TODO
+  };
+
+  const handleSelectNetwork = (n: INetwork) => {
+    setNetworksVisible(false);
+    setNetwork(n);
   };
 
   return (
@@ -43,7 +53,7 @@ function Navbar({}: INavbarProps) {
       <BlurModal
         visible={networksVisible}
         onClose={() => setNetworksVisible(false)}
-        children={<SelectNetworks onPress={() => {}} />}
+        children={<SelectNetworks onPress={handleSelectNetwork} />}
       />
       <View style={styles.content}>
         <Button

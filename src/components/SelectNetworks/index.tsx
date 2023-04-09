@@ -1,33 +1,31 @@
-/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {List} from 'react-native-paper';
-import useAccounts from '../../hooks/useAccounts';
-import {IAccountState} from '../../types';
+import {NETWORKS, INetwork} from 'prolibbti';
+
 import {withTranslation} from '../../hooks/useTranslations';
+import useNetworks from '../../hooks/useNetworks';
 
 interface ISelectNetworksProps {
-  onPress: (account: IAccountState) => void;
+  onPress: (network: INetwork) => void;
 }
 
 function SelectNetworks({onPress}: ISelectNetworksProps) {
-  const {current, accounts} = useAccounts();
-
+  const {network} = useNetworks();
   return (
     <>
-      {accounts.map(account => (
+      {NETWORKS.map(n => (
         <List.Item
-          key={account.id}
-          title={account.name}
-          description={account.name}
-          left={props => <List.Icon {...props} icon="key" />}
+          key={n.symbol}
+          title={n.name}
+          style={{...styles.listItem}}
+          // eslint-disable-next-line react/no-unstable-nested-components
           right={props =>
-            current.mnemonic === account.mnemonic ? (
+            network.symbol === n.symbol ? (
               <List.Icon {...props} icon="check" />
             ) : null
           }
-          style={{...styles.listItem}}
-          onPress={() => onPress(account)}
+          onPress={() => onPress(n)}
         />
       ))}
     </>

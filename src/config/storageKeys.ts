@@ -7,6 +7,7 @@ const STORAGE_KEYS = {
   // Accounts Management
   ACCOUNTS: 'accounts',
   CURRENT_ACCOUNT: 'current-account',
+  CURRENT_NETWORK: 'current-network',
 };
 
 export default STORAGE_KEYS;
