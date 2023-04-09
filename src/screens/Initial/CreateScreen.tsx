@@ -46,12 +46,14 @@ function CreateScreen({navigation, t}: any) {
         uuid(),
         `Account ${accounts.length + 1}`,
       );
-      // console.log(newAccount.toAddress());
       setAccount({...newAccount, verified: false});
       setText(newAccount.mnemonic);
     };
-    onCreatingAccount();
-  }, [accounts]);
+
+    if (!account) {
+      onCreatingAccount();
+    }
+  }, [account, accounts]);
 
   return (
     <InitLayout>
