@@ -80,12 +80,14 @@ function CreateScreen({navigation, t}: any) {
 
       <View style={styles.optionsStyle}>
         <Button
+          mode="contained"
           icon="content-copy"
           title={t('create-screen.copy')}
           onPress={handleClickCopy}
         />
         <View style={styles.paddingStyle} />
         <Button
+          mode="contained"
           icon="skip-next"
           title={t('create-screen.next')}
           onPress={handleClickStart}

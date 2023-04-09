@@ -19,12 +19,14 @@ function ChooseScreen({navigation, t}: any) {
 
       <View style={styles.optionsStyle}>
         <Button
+          mode="contained"
           icon="plus"
           title={t('choose-screen.create-account')}
           onPress={handleCreateAccount}
         />
         <View style={styles.paddingStyle} />
         <Button
+          mode="contained"
           icon="lock-reset"
           title={t('choose-screen.recover-account')}
           // onPress={}

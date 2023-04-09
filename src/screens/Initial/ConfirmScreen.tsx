@@ -121,6 +121,7 @@ function ConfirmScreen({navigation, t}: any) {
 
       <View style={styles.optionsStyle}>
         <Button
+          mode="contained"
           icon="shield-check"
           title={t('common.confirm')}
           onPress={handleClickStart}

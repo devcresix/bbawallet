@@ -52,6 +52,7 @@ function WarningScreen({navigation, t}: any) {
       <View style={styles.optionsStyle}>
         <View style={styles.paddingStyle} />
         <Button
+          mode="contained"
           icon="shield-check"
           title={t('warning-screen.accept')}
           onPress={handleStart}
