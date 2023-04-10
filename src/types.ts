@@ -10,6 +10,7 @@ export interface IAppState {
 export interface IAccountState {
   id: string;
   name: string;
+  seed: string;
   mnemonic: string;
   verified: boolean;
 }
