@@ -6460,17 +6460,6 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
-prolibbti@../../Libraries/prolibbti:
-  version "0.0.0-development"
-  dependencies:
-    "@bbachain/web3.js" "^1.1.0"
-    assert "^2.0.0"
-    bip32 "^4.0.0"
-    bip39 "^3.1.0"
-    crypto "^1.0.1"
-    lodash "^4.17.21"
-    tiny-secp256k1 "^2.2.1"
-
 promise@^8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.3.0.tgz#8cb333d1edeb61ef23869fbb8a4ea0279ab60e0a"
