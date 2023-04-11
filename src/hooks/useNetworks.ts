@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {DNETWORK, INetwork} from 'prolibbti';
+import {DNETWORK, INetwork} from '@bbachain/prolibbti';
 
 import storageKeys from '../config/storageKeys';
 import {setNetwork as setNetworkStore} from '../store/sessionSlice';

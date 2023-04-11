@@ -1,4 +1,4 @@
-import {INetwork} from 'prolibbti';
+import {INetwork} from '@bbachain/prolibbti';
 
 export interface IAppState {
   loaded: boolean;

@@ -12,6 +12,7 @@
     "format:fix": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|css|md)\""
   },
   "dependencies": {
+    "@bbachain/prolibbti": "^0.0.3",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/material-bottom-tabs": "^6.2.15",

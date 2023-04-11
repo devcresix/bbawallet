@@ -5,7 +5,7 @@ import {TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Snackbar from 'react-native-snackbar';
 import {useTheme} from '@react-navigation/native';
-import {createAccount} from 'prolibbti';
+import {createAccount} from '@bbachain/prolibbti';
 import 'react-native-get-random-values';
 import {v1 as uuid} from 'uuid';
 

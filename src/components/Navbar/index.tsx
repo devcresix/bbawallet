@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {INetwork} from 'prolibbti';
+import {INetwork} from '@bbachain/prolibbti';
 
 // Components
 import SelectAccounts from '../SelectAccounts';

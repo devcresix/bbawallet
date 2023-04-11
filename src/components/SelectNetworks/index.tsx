@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {List} from 'react-native-paper';
-import {NETWORKS, INetwork} from 'prolibbti';
+import {NETWORKS, INetwork} from '@bbachain/prolibbti';
 
 import {withTranslation} from '../../hooks/useTranslations';
 import useNetworks from '../../hooks/useNetworks';
