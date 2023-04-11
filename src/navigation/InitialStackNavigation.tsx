@@ -1,45 +1,24 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import WelcomeScreen from '../screens/initialize/WelcomeScreen';
-import ChooseScreen from '../screens/initialize/ChooseScreen';
+import OnboardingScreen from '../screens/Initial/OnboardingScreen';
+import ChooseScreen from '../screens/Initial/ChooseScreen';
+import WarningScreen from '../screens/Initial/WarningScreen';
+import CreateScreen from '../screens/Initial/CreateScreen';
+import ConfirmScreen from '../screens/Initial/ConfirmScreen';
 
 const Stack = createStackNavigator();
 
 function InitialStackNavigation() {
   return (
-    <Stack.Navigator initialRouteName="Welcome">
-      <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Choose"
-        component={ChooseScreen}
-        options={{headerShown: false}}
-      />
-      {/*
-      <Stack.Screen
-        name="BirthDate"
-        component={BirthDateScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Sex"
-        component={SexScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Relationship"
-        component={RelationshipScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Number"
-        component={NumberScreen}
-        options={{headerShown: false}}
-      /> */}
+    <Stack.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+      <Stack.Screen name="Choose" component={ChooseScreen} />
+      <Stack.Screen name="Warning" component={WarningScreen} />
+      <Stack.Screen name="Create" component={CreateScreen} />
+      <Stack.Screen name="Confirm" component={ConfirmScreen} />
     </Stack.Navigator>
   );
 }

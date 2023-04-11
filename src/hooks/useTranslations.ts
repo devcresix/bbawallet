@@ -1,42 +1,51 @@
 import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {withTranslation as withTranslationHOC} from 'react-i18next';
-import STORAGE_KEYS from '../config/storageKeys';
-import i18n, {LANGUAGES, resources} from '../lang/i18n';
-import storage from '../utils/storage';
 
-const DEFAULT_LANGUAGE = 'en';
+import storage from '../utils/storage';
+import constants from '../config/constants';
+import storageKeys from '../config/storageKeys';
+import i18n, {LANGUAGES, resources} from '../translations';
+import {changeLanguage as changeLanguageStore} from '../store/appSlice';
+import {RootState} from '../store';
 
 export const withTranslation = withTranslationHOC;
 
 const useTranslations = () => {
+  const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(i18n.isInitialized);
-  const [selected, setSelected] = useState(i18n.language || DEFAULT_LANGUAGE);
+  const {language} = useSelector((state: RootState) => state.app);
+
   useEffect(() => {
     if (!loaded) {
-      storage.getItem(STORAGE_KEYS.LANGUAGE).then((language: any) => {
+      storage.getItem(storageKeys.LANGUAGE).then((languageStore: string) => {
         i18n
           .init({
-            compatibilityJSON: 'v3',
             resources,
-            lng: language || DEFAULT_LANGUAGE,
-            fallbackLng: DEFAULT_LANGUAGE,
+            lng: languageStore || constants.DEFAULT_LANGUAGE,
+            fallbackLng: constants.DEFAULT_LANGUAGE,
+            compatibilityJSON: 'v3',
             interpolation: {
               escapeValue: false,
             },
           })
           .then(() => {
-            setSelected(language || DEFAULT_LANGUAGE);
+            dispatch(
+              changeLanguageStore(languageStore || constants.DEFAULT_LANGUAGE),
+            );
             setLoaded(true);
           });
       });
     }
-  }, [loaded]);
-  const changeLanguage = async (lng: any) => {
-    await storage.setItem(STORAGE_KEYS.LANGUAGE, lng);
-    setSelected(lng);
-    i18n.changeLanguage(lng);
+  }, [dispatch, loaded]);
+
+  const changeLanguage = async (name: string) => {
+    await storage.setItem(storageKeys.LANGUAGE, name);
+    dispatch(changeLanguageStore(name));
+    i18n.changeLanguage(name);
   };
-  return {selected, loaded, languages: LANGUAGES, changeLanguage};
+
+  return {selected: language, languages: LANGUAGES, changeLanguage};
 };
 
 export default useTranslations;

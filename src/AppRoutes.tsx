@@ -1,56 +1,60 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 
 import InitialStackNavigation from './navigation/InitialStackNavigation';
 import MainStackNavigation from './navigation/MainStackNavigation';
+import LoadingScreen from './screens/Initial/LoadingScreen';
 
 import themes from './config/theme';
-import storageKeys from './config/storageKeys';
-import storage from './utils/storage';
+import useTranslations from './hooks/useTranslations';
 import {RootState} from './store';
-import LoadingScreen from './screens/initialize/LoadingScreen';
+import useAccounts from './hooks/useAccounts';
+import storage from './utils/storage';
+import storageKeys from './config/storageKeys';
+import useAppConfig from './hooks/useAppConfig';
+import useNetworks from './hooks/useNetworks';
 
-function AppRoutes(): JSX.Element {
-  const dispatch = useDispatch();
-  const [isReady, setIsReady] = React.useState(false);
-  const {loading, theme} = useSelector((state: RootState) => state.app);
-  const _theme = themes[theme];
-
-  const performTimeConsumingTask = async () => {
-    return new Promise(resolve =>
-      setTimeout(() => {
-        resolve('result');
-      }, 2500),
-    );
-  };
+function AppRoutes() {
+  useAppConfig();
+  useTranslations();
+  const {current, accounts} = useAccounts();
+  const {network} = useNetworks();
+  const {loaded, initialized, theme} = useSelector(
+    (state: RootState) => state.app,
+  );
 
   useEffect(() => {
-    (async () => {
-      try {
-        const session = await storage.getItem(storageKeys.SESSION_KEY);
-        if (session) {
-          // dispatch();
-        }
-      } finally {
-        performTimeConsumingTask().then(result => {
-          if (result !== null) {
-            setIsReady(true);
-          }
-        });
-      }
-    })();
-  }, [dispatch]);
+    if (accounts.length > 0) {
+      storage.setItem(storageKeys.ACCOUNTS, accounts);
+    }
+  }, [accounts]);
 
-  if (!isReady) {
+  useEffect(() => {
+    if (current) {
+      storage.setItem(storageKeys.CURRENT_ACCOUNT, current);
+    }
+  }, [current]);
+
+  useEffect(() => {
+    if (network) {
+      storage.setItem(storageKeys.CURRENT_NETWORK, network);
+    }
+  }, [network]);
+
+  if (!loaded) {
     return <LoadingScreen />;
   }
 
   return (
-    <PaperProvider theme={_theme}>
-      <NavigationContainer theme={_theme}>
-        {loading ? <MainStackNavigation /> : <InitialStackNavigation />}
+    <PaperProvider theme={themes[theme]}>
+      <NavigationContainer theme={themes[theme]}>
+        {loaded && initialized ? (
+          <MainStackNavigation />
+        ) : (
+          <InitialStackNavigation />
+        )}
       </NavigationContainer>
     </PaperProvider>
   );

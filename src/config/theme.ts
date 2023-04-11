@@ -1,29 +1,32 @@
 import {
-  DarkTheme as NavigationDarkTheme,
-  DefaultTheme as NavigationDefaultTheme,
-} from '@react-navigation/native';
-import {
-  MD3DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
+  MD3DarkTheme as PaperDarkTheme,
 } from 'react-native-paper';
+import {
+  DefaultTheme as NavigationDefaultTheme,
+  DarkTheme as NavigationDarkTheme,
+} from '@react-navigation/native';
 
 const themes: any = {
   light: {
-    ...NavigationDefaultTheme,
     ...PaperDefaultTheme,
+    ...NavigationDefaultTheme,
     colors: {
-      ...NavigationDefaultTheme.colors,
       ...PaperDefaultTheme.colors,
-      accent: '#bc4598',
+      ...NavigationDefaultTheme.colors,
+      // background: '#3F5740',
+      primaryContainer: '#FFFFFF',
     },
   },
+  // TODO
   dark: {
-    ...NavigationDarkTheme,
     ...PaperDarkTheme,
+    ...NavigationDarkTheme,
     colors: {
-      ...NavigationDarkTheme.colors,
       ...PaperDarkTheme.colors,
-      accent: '#bc4598',
+      ...NavigationDarkTheme.colors,
+      // background: '#010a13',
+      primaryContainer: 'gray',
     },
   },
 };

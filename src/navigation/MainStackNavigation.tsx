@@ -1,101 +1,76 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StatusBar, StyleSheet, View} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {ActivityIndicator, Portal, Text, useTheme} from 'react-native-paper';
-import {createStackNavigator} from '@react-navigation/stack';
-import {BlurView} from '@react-native-community/blur';
+import {StatusBar, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
-
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useTheme} from 'react-native-paper';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {IBarIcon, IBarLabel} from '../types';
-import DiscoverPage from '../pages/Discover';
-import WalletPage from '../pages/Wallet';
-import BrowserPage from '../pages/Browser';
-import SettingPage from '../pages/Setting';
-import ProfileScreen from '../screens/profile/ProfileScreen';
-import {RootState} from '../store';
+// Components
+import Appbar from '../components/Appbar';
+
+// Screens
+import AssetsScreen from '../screens/Assets';
+import TransactionsScreen from '../screens/Transactions';
+import SettingScreen from '../screens/Setting';
+import AddressBookScreen from '../screens/Setting/AddressBookScreen';
+import LanguageScreen from '../screens/Setting/LanguageScreen';
+import ThemeScreen from '../screens/Setting/ThemeScreen';
+import AboutScreen from '../screens/Setting/AboutScreen';
+
+// Store
 import constants from '../config/constants';
+import {RootState} from '../store';
 
 const Sta = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const BarIcon = ({color, size, name}: IBarIcon): JSX.Element => {
-  return (
-    <MaterialCommunityIcons
-      color={color}
-      size={size}
-      name={name}
-      style={{marginTop: 5}}
-    />
-  );
-};
-
-const BarLabel = ({color, children}: IBarLabel) => {
-  return (
-    <Text
-      style={{
-        fontSize: 10,
-        lineHeight: 20,
-        textAlign: 'center',
-        color,
-      }}>
-      {children}
-    </Text>
-  );
-};
-
 function BottomBarNavigation() {
   const {colors} = useTheme();
   const {theme} = useSelector((state: RootState) => state.app);
-  const _barStyle =
-    theme === constants.THEME_DARK ? 'light-content' : 'dark-content';
 
   return (
     <>
       <StatusBar
-        barStyle={_barStyle}
+        barStyle={
+          theme === constants.THEME_DARK ? 'light-content' : 'dark-content'
+        }
         backgroundColor={colors.background}
-        animated
+        // animated
       />
-      <Tab.Navigator>
+      <Tab.Navigator
+        initialRouteName="Assets"
+        screenOptions={{
+          headerShown: false,
+          // tabBarActiveTintColor: '#e91e63',
+          tabBarLabelStyle: {display: 'none'},
+        }}>
         <Tab.Screen
-          name="Discover"
-          component={DiscoverPage}
+          name="Assets"
+          component={AssetsScreen}
           options={{
+            tabBarBadge: 1,
             tabBarIcon: ({color}) => (
-              <Ionicons name="stats-chart" color={color} size={26} />
+              <Ionicons name="pie-chart" color={color} size={26} />
             ),
           }}
         />
         <Tab.Screen
-          name="Wallet"
-          component={WalletPage}
+          name="Transactions"
+          component={TransactionsScreen}
           options={{
+            tabBarBadge: 3,
             tabBarIcon: ({color}) => (
-              <Ionicons name="wallet" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Browser"
-          component={BrowserPage}
-          options={{
-            tabBarIcon: ({color}) => (
-              <FontAwesome name="safari" color={color} size={26} />
+              <FontAwesome name="history" color={color} size={26} />
             ),
           }}
         />
         <Tab.Screen
           name="Setting"
-          component={SettingPage}
+          component={SettingScreen}
           options={{
-            tabBarBadge: 3,
             tabBarIcon: ({color}) => (
               <Ionicons name="settings" color={color} size={26} />
             ),
@@ -107,28 +82,48 @@ function BottomBarNavigation() {
 }
 
 function MainStackNavigation() {
-  const isLoading = useSelector((state: RootState) => state.app.loading);
-  const {colors} = useTheme();
+  // const {loading} = useSelector((state: RootState) => state.app.loading);
+  // const {colors} = useTheme();
   return (
     <>
-      <Sta.Navigator screenOptions={{headerShown: false}}>
-        <Sta.Screen name="Home" component={BottomBarNavigation} />
+      <Sta.Navigator screenOptions={{header: props => <Appbar {...props} />}}>
         <Sta.Screen
-          name="Profile"
-          component={ProfileScreen}
+          name="Home"
+          component={BottomBarNavigation}
+          options={{headerShown: false}}
+        />
+        <Sta.Screen
+          name="AddressBook"
+          component={AddressBookScreen}
           options={{
-            cardStyle: {
-              backgroundColor: 'transparent',
-              marginTop: 50,
-              borderTopLeftRadius: 30,
-              borderTopRightRadius: 30,
-            },
+            cardStyle: styles.cardStyle,
+          }}
+        />
+        <Sta.Screen
+          name="Language"
+          component={LanguageScreen}
+          options={{
+            cardStyle: styles.cardStyle,
+          }}
+        />
+        <Sta.Screen
+          name="Theme"
+          component={ThemeScreen}
+          options={{
+            cardStyle: styles.cardStyle,
+          }}
+        />
+        <Sta.Screen
+          name="About"
+          component={AboutScreen}
+          options={{
+            cardStyle: styles.cardStyle,
           }}
         />
       </Sta.Navigator>
-      {isLoading && (
+      {/* {loading && (
         <Portal>
-          <BlurView
+          <View
             style={[
               StyleSheet.absoluteFill,
               {
@@ -146,11 +141,20 @@ function MainStackNavigation() {
               }}>
               <ActivityIndicator size={50} />
             </View>
-          </BlurView>
+          </View>
         </Portal>
-      )}
+      )} */}
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  cardStyle: {
+    // marginTop: 50,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    backgroundColor: 'transparent',
+  },
+});
 
 export default MainStackNavigation;

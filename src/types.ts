@@ -1,20 +1,22 @@
+import {INetwork} from '@bbachain/prolibbti';
+
 export interface IAppState {
-  loading: boolean;
+  loaded: boolean;
+  initialized: boolean;
   theme: string;
+  language: string;
 }
 
-export interface IBarIcon {
-  color: any;
-  size: any;
-  name: any;
+export interface IAccountState {
+  id: string;
+  name: string;
+  seed: string;
+  mnemonic: string;
+  verified: boolean;
 }
 
-export interface IBarLabel {
-  color: any;
-  children: any;
-}
-
-export interface IAccount {
-  id: number;
-  networksAccounts: any;
+export interface ISessionState {
+  accounts: IAccountState[];
+  current: IAccountState;
+  network: INetwork;
 }

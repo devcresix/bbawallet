@@ -1,0 +1,61 @@
+{
+  "common": {
+    "confirm": "Confirmar",
+    "key": "Llave #{{key}}"
+  },
+  "onboarding": {
+    "title": "Cripto de cadena múltiple",
+    "description": "La cadena múltiple y la puerta de enlace segura a todo su espacio criptográfico",
+    "skip": "Saltar",
+    "next": "Próxima"
+  },
+  "choose-screen": {
+    "title": "Crear/Recuperar su Cuenta",
+    "create-account": "Crear una Cuenta",
+    "recover-account": "Recuperar Cuenta"
+  },
+  "warning-screen": {
+    "title": "¡Mantenga su frase de semilla segura!",
+    "description1": "Necesitará estas palabras para restaurar su billetera si el almacenamiento de su navegador se borra o su dispositivo está dañado o perdido.",
+    "description2": "Nunca comparta su frase de semillas (o sus claves privadas) con nadie ni la ingrese en cualquier forma, ya que proporciona un control total de su billetera.",
+    "description3": "BBA Labs o el equipo de desarrollo nunca le pedirán su frase de recuperación o claves privadas.",
+    "accept": "Entendí"
+  },
+  "create-screen": {
+    "title": "Tu frase de semillas",
+    "description": "Necesitará estas palabras para restaurar su billetera si el almacenamiento de su navegador se borra o su dispositivo está dañado o perdido.",
+    "seeds-copied": "Semillas de recuperación copiadas al portapapeles",
+    "copy": "Copiar",
+    "next": "Próxima"
+  },
+  "confirm-screen": {
+    "title": "Verificación",
+    "description": "Verificación",
+    "incorrect": "Verificación de semillas de recuperación incorrecta"
+  },
+  "assets": "Activos",
+  "transactions": "Actas",
+  "settings": {
+    "settings": "Ajustes",
+    "address-book": "Directorio",
+    "languages": "Lenguas",
+    "trusted-apps": "Aplicaciones de Confianza",
+    "theme": "Tema",
+    "about-and-support": "Acerca y Apoyo",
+    "reset-all": "Resetear",
+    "confirm-reset": "¿Quieres restablecer toda la clave privada en este dispositivo?"
+  },
+  "select-theme": {
+    "light": "Luz",
+    "dark": "Oscura"
+  },
+  "about-support": {
+    "app-name": "Nombre de la aplicación",
+    "app-version": "Version de Aplicacion",
+    "app_version": "v{{version}}"
+  },
+  "simple-dialog": {
+    "cancel": "Cancelar",
+    "ok": "DE ACUERDO"
+  }
+}

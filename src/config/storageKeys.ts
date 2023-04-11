@@ -1,7 +1,13 @@
 const STORAGE_KEYS = {
+  // Application Configs
+  THEME: 'theme',
   LANGUAGE: 'lang',
-  USER_CONFIG: 'user_config',
-  SESSION_KEY: 'session-key',
+  INITIALIZED: 'initialized',
+
+  // Accounts Management
+  ACCOUNTS: 'accounts',
+  CURRENT_ACCOUNT: 'current-account',
+  CURRENT_NETWORK: 'current-network',
 };
 
 export default STORAGE_KEYS;

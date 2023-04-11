@@ -1,0 +1,61 @@
+{
+  "common": {
+    "confirm": "Confirm",
+    "key": "Key #{{key}}"
+  },
+  "onboarding": {
+    "title": "Multi Chain Crypto",
+    "description": "The multiple chain and secure gateway to all your crypto space",
+    "skip": "Skip",
+    "next": "Next"
+  },
+  "choose-screen": {
+    "title": "Create/Recover Your Account",
+    "create-account": "Create Account",
+    "recover-account": "Recover Account"
+  },
+  "warning-screen": {
+    "title": "Keep your seed phrase safe!",
+    "description1": "You will need these words to restore your wallet if your browser's storage is cleared or your device is damaged or lost.",
+    "description2": "Never share your seed phrase (or your private keys) with anyone or enter it into any form, as it provides full control of your wallet.",
+    "description3": "BBA Labs or Development Team will never ask for your recovery phrase or private keys.",
+    "accept": "I understood"
+  },
+  "create-screen": {
+    "title": "Your Seed Phrase",
+    "description": "You will need these words to restore your wallet if your browser's storage is cleared or your device is damaged or lost.",
+    "seeds-copied": "Recovery seeds copied to clipboard",
+    "copy": "Copy",
+    "next": "Next"
+  },
+  "confirm-screen": {
+    "title": "Verifying",
+    "description": "Verifying",
+    "incorrect": "Incorrect recovery seed verification"
+  },
+  "assets": "Assets",
+  "transactions": "Transactions",
+  "settings": {
+    "settings": "Settings",
+    "address-book": "Address Book",
+    "languages": "Languages",
+    "trusted-apps": "Trusted Apps",
+    "theme": "Theme",
+    "about-and-support": "About & Support",
+    "reset-all": "Reset All",
+    "confirm-reset": "Do you want to reset all private key on this device?"
+  },
+  "select-theme": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "about-support": {
+    "app-name": "App Name",
+    "app-version": "App Version",
+    "app_version": "v{{version}}"
+  },
+  "simple-dialog": {
+    "cancel": "Cancel",
+    "ok": "OK"
+  }
+}
