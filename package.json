@@ -9,10 +9,11 @@
     "start": "react-native start",
     "test": "jest",
     "format": "prettier -c \"**/*.+(js|jsx|ts|tsx|json|css|md)\"",
-    "format:fix": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|css|md)\""
+    "format:fix": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|css|md)\"",
+    "postinstall": "rn-nodeify --install stream,events,process --hack --yarn"
   },
   "dependencies": {
-    "@bbachain/prolibbti": "^0.0.5",
+    "@bbachain/prolibbti": "../../Libraries/prolibbti",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/material-bottom-tabs": "^6.2.15",
@@ -21,8 +22,10 @@
     "@react-navigation/stack": "^6.3.16",
     "@reduxjs/toolkit": "^1.9.3",
     "buffer": "^6.0.3",
+    "events": "^1.0.0",
     "i18next": "^22.4.10",
     "lodash": "^4.17.21",
+    "process": "^0.11.0",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-i18next": "^12.2.0",
@@ -39,7 +42,9 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-webview": "^11.26.1",
     "react-redux": "^8.0.5",
+    "readable-stream": "1.0.33",
     "redux": "^4.2.1",
+    "stream-browserify": "^1.0.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -63,9 +68,26 @@
     "metro-react-native-babel-preset": "0.73.7",
     "prettier": "^2.4.1",
     "react-test-renderer": "18.2.0",
+    "rn-nodeify": "^10.3.0",
     "typescript": "4.8.4"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "react-native": {
+    "_stream_transform": "readable-stream/transform",
+    "_stream_readable": "readable-stream/readable",
+    "_stream_writable": "readable-stream/writable",
+    "_stream_duplex": "readable-stream/duplex",
+    "_stream_passthrough": "readable-stream/passthrough",
+    "stream": "stream-browserify"
+  },
+  "browser": {
+    "_stream_transform": "readable-stream/transform",
+    "_stream_readable": "readable-stream/readable",
+    "_stream_writable": "readable-stream/writable",
+    "_stream_duplex": "readable-stream/duplex",
+    "_stream_passthrough": "readable-stream/passthrough",
+    "stream": "stream-browserify"
   }
 }
