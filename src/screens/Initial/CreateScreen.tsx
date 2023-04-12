@@ -5,9 +5,7 @@ import {TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Snackbar from 'react-native-snackbar';
 import {useTheme} from '@react-navigation/native';
-import {createAccount} from '@bbachain/prolibbti';
-import 'react-native-get-random-values';
-import {v1 as uuid} from 'uuid';
+import {create} from '@bbachain/prolibbti';
 
 import {withTranslation} from '../../hooks/useTranslations';
 import {IAccountState} from '../../types';
@@ -42,10 +40,7 @@ function CreateScreen({navigation, t}: any) {
 
   useEffect(() => {
     const onCreatingAccount = async () => {
-      const newAccount = await createAccount(
-        uuid(),
-        `Account ${accounts.length + 1}`,
-      );
+      const newAccount = await create(`Account ${accounts.length + 1}`, 24);
       setAccount({...newAccount, verified: false});
       setText(newAccount.mnemonic);
     };
@@ -122,7 +117,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   inputSeedStyle: {
-    height: 120,
+    height: 140,
   },
   inputSeedContentStyle: {
     alignContent: 'center',
