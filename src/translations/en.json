@@ -1,7 +1,10 @@
 {
   "common": {
     "confirm": "Confirm",
-    "key": "Key #{{key}}"
+    "key": "Key #{{key}}",
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied"
   },
   "onboarding": {
     "title": "Multi Chain Crypto",

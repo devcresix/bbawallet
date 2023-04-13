@@ -1,7 +1,10 @@
 {
   "common": {
     "confirm": "Confirmar",
-    "key": "Llave #{{key}}"
+    "key": "Llave #{{key}}",
+    "close": "Cerca",
+    "copy": "Copiar",
+    "copied": "Copiada"
   },
   "onboarding": {
     "title": "Cripto de cadena múltiple",

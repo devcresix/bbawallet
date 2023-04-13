@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   RefreshControl,
@@ -15,13 +15,29 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
 
 // Components
-import type {RootState} from '../../store';
 import Layout from '../../components/Layout';
 import ListItem from '../../components/ListItem';
+import Button from '../../components/Button';
+import QRCodeDialog from '../../components/Dialog/QRCodeDialog';
+import AccountUtils from '../../utils/AccountUtils';
+import useNetworks from '../../hooks/useNetworks';
+import useAccounts from '../../hooks/useAccounts';
 
 function AssetsScreen(): JSX.Element {
   // const dispatch = useDispatch();
-  const [refreshing, setRefreshing] = React.useState(false);
+  const {network} = useNetworks();
+  const {current} = useAccounts();
+
+  const [refreshing, setRefreshing] = useState(false);
+  const [showQRCode, setShowQRCode] = useState(false);
+  const [address, setAddress] = useState('');
+
+  useEffect(() => {
+    if (network && current) {
+      const newAddr = AccountUtils.getDeriveAddress(current, network);
+      setAddress(newAddr);
+    }
+  }, [network, current]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -87,6 +103,32 @@ function AssetsScreen(): JSX.Element {
               </Text>
             </View>
           </View>
+          <View style={[styles.rowContainer]}>
+            <View
+              style={{
+                alignItems: 'center',
+                marginHorizontal: 5,
+              }}>
+              <Button
+                icon="transfer"
+                title="Transfer"
+                mode="contained"
+                onPress={() => console.log('Pressed Transfer')}
+              />
+            </View>
+            <View
+              style={{
+                alignItems: 'center',
+                marginHorizontal: 5,
+              }}>
+              <Button
+                icon="qrcode"
+                title="QRCode"
+                mode="contained"
+                onPress={() => setShowQRCode(true)}
+              />
+            </View>
+          </View>
         </View>
         <View style={[]}>
           <Text>Tokens</Text>
@@ -131,6 +173,12 @@ function AssetsScreen(): JSX.Element {
           </View>
         </View>
       </ScrollView>
+      <QRCodeDialog
+        visible={showQRCode}
+        title={network ? network.name : ''}
+        value={address}
+        onPressClose={() => setShowQRCode(false)}
+      />
     </Layout>
   );
 }
