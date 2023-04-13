@@ -22,7 +22,8 @@ const useNetworks = () => {
   };
 
   const setNetwork = (n: INetwork) => {
-    dispatch(setNetworkStore(n));
+    const parsed = JSON.parse(JSON.stringify(n));
+    dispatch(setNetworkStore(parsed));
   };
 
   return {
