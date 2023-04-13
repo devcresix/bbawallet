@@ -19,8 +19,9 @@ import useNetworks from './hooks/useNetworks';
 function AppRoutes() {
   useAppConfig();
   useTranslations();
-  const {current, accounts} = useAccounts();
   const {network} = useNetworks();
+  const {current, accounts} = useAccounts();
+
   const {loaded, initialized, theme} = useSelector(
     (state: RootState) => state.app,
   );

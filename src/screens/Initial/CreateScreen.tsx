@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
 import {View, Text, StyleSheet} from 'react-native';
 import {ActivityIndicator, TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
@@ -7,20 +6,17 @@ import Snackbar from 'react-native-snackbar';
 import {useTheme} from '@react-navigation/native';
 import {IMasterKey, create} from '@bbachain/prolibbti';
 
-import {withTranslation} from '../../hooks/useTranslations';
-import {RootState} from '../../store';
-
 // Components
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
 import useAccounts from '../../hooks/useAccounts';
+import {withTranslation} from '../../hooks/useTranslations';
 
 function CreateScreen({route, navigation, t}: any) {
   const {words} = route.params;
   const {colors} = useTheme();
-  const {addAccount, setCurrent} = useAccounts();
+  const {accounts, addAccount, setCurrent} = useAccounts();
 
-  const {accounts} = useSelector((state: RootState) => state.session);
   const [account, setAccount] = useState(null as unknown as IMasterKey);
   const [text, setText] = useState('');
 
