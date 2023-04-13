@@ -1,29 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
 import {View, Text, StyleSheet} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {ActivityIndicator, TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Snackbar from 'react-native-snackbar';
 import {useTheme} from '@react-navigation/native';
-import {createAccount} from '@bbachain/prolibbti';
-import 'react-native-get-random-values';
-import {v1 as uuid} from 'uuid';
-
-import {withTranslation} from '../../hooks/useTranslations';
-import {IAccountState} from '../../types';
-import {RootState} from '../../store';
+import {IMasterKey, create} from '@bbachain/prolibbti';
 
 // Components
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
 import useAccounts from '../../hooks/useAccounts';
+import {withTranslation} from '../../hooks/useTranslations';
 
-function CreateScreen({navigation, t}: any) {
+function CreateScreen({route, navigation, t}: any) {
+  const {words} = route.params;
   const {colors} = useTheme();
-  const {addAccount, setCurrent} = useAccounts();
+  const {accounts, addAccount, setCurrent} = useAccounts();
 
-  const {accounts} = useSelector((state: RootState) => state.session);
-  const [account, setAccount] = useState(null as unknown as IAccountState);
+  const [account, setAccount] = useState(null as unknown as IMasterKey);
   const [text, setText] = useState('');
 
   function handleClickStart() {
@@ -41,19 +35,13 @@ function CreateScreen({navigation, t}: any) {
   }
 
   useEffect(() => {
-    const onCreatingAccount = async () => {
-      const newAccount = await createAccount(
-        uuid(),
-        `Account ${accounts.length + 1}`,
-      );
-      setAccount({...newAccount, verified: false});
-      setText(newAccount.mnemonic);
-    };
-
     if (!account) {
-      onCreatingAccount();
+      create(`Master Key ${accounts.length + 1}`, words).then(newAccount => {
+        setAccount(newAccount);
+        setText(newAccount.mnemonic);
+      });
     }
-  }, [account, accounts]);
+  });
 
   return (
     <InitLayout>
@@ -79,22 +67,27 @@ function CreateScreen({navigation, t}: any) {
       </View>
       <View style={styles.paddingStyle} />
       <View style={styles.paddingStyle} />
-
-      <View style={styles.optionsStyle}>
-        <Button
-          mode="contained"
-          icon="content-copy"
-          title={t('create-screen.copy')}
-          onPress={handleClickCopy}
-        />
-        <View style={styles.paddingStyle} />
-        <Button
-          mode="contained"
-          icon="skip-next"
-          title={t('create-screen.next')}
-          onPress={handleClickStart}
-        />
-      </View>
+      {text !== '' ? (
+        <>
+          <View style={styles.optionsStyle}>
+            <Button
+              mode="contained"
+              icon="content-copy"
+              title={t('create-screen.copy')}
+              onPress={handleClickCopy}
+            />
+            <View style={styles.paddingStyle} />
+            <Button
+              mode="contained"
+              icon="skip-next"
+              title={t('create-screen.next')}
+              onPress={handleClickStart}
+            />
+          </View>
+        </>
+      ) : (
+        <ActivityIndicator animating={true} color={colors.primary} />
+      )}
     </InitLayout>
   );
 }
@@ -122,7 +115,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   inputSeedStyle: {
-    height: 120,
+    height: 140,
   },
   inputSeedContentStyle: {
     alignContent: 'center',

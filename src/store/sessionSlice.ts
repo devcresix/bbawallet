@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {IAccountState, ISessionState} from '../types';
-import {INetwork} from '@bbachain/prolibbti';
+import {ISessionState} from '../types';
+import {INetwork, IMasterKey} from '@bbachain/prolibbti';
 
 const initialState: ISessionState = {
   accounts: [],
-  current: null as unknown as IAccountState,
+  current: null as unknown as IMasterKey,
   network: null as unknown as INetwork,
 };
 

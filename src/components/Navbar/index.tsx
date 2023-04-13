@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {INetwork} from '@bbachain/prolibbti';
+import {INetwork, IMasterKey, DNETWORK} from '@bbachain/prolibbti';
 
 // Components
 import SelectAccounts from '../SelectAccounts';
@@ -12,18 +12,17 @@ import Button from '../Button';
 import useAccounts from '../../hooks/useAccounts';
 import useNetworks from '../../hooks/useNetworks';
 import {withTranslation} from '../../hooks/useTranslations';
-import {IAccountState} from '../../types';
 
 interface INavbarProps {}
 
 function Navbar({}: INavbarProps) {
   const {current, setCurrent} = useAccounts();
-  const {setNetwork} = useNetworks();
+  const {network, setNetwork} = useNetworks();
 
   const [modalVisible, setModalVisible] = useState(false);
   const [networksVisible, setNetworksVisible] = useState(false);
 
-  const handleSelectAccount = (account: IAccountState) => {
+  const handleSelectAccount = (account: IMasterKey) => {
     setModalVisible(false);
     setCurrent(account);
   };
@@ -64,7 +63,9 @@ function Navbar({}: INavbarProps) {
         />
         <Button
           icon="swap-horizontal-bold"
+          title={network ? network.symbol : DNETWORK.symbol}
           onPress={() => setNetworksVisible(true)}
+          iconRight
         />
       </View>
     </View>
