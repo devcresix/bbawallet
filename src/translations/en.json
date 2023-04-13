@@ -57,5 +57,8 @@
   "simple-dialog": {
     "cancel": "Cancel",
     "ok": "OK"
+  },
+  "select-masterkey": {
+    "create-masterkey": "Create Master Key"
   }
 }

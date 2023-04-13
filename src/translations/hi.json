@@ -57,5 +57,8 @@
   "simple-dialog": {
     "cancel": "रद्द करना",
     "ok": "ठीक"
+  },
+  "select-masterkey": {
+    "create-masterkey": "मास्टर कुंजी बनाएं"
   }
 }

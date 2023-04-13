@@ -9,9 +9,10 @@ import {withTranslation} from '../../hooks/useTranslations';
 interface ISelectAccountsProps {
   onPress: (account: IAccountState) => void;
   onCreate: () => void;
+  t: any;
 }
 
-function SelectAccounts({onPress, onCreate}: ISelectAccountsProps) {
+function SelectAccounts({onPress, onCreate, t}: ISelectAccountsProps) {
   const {current, accounts} = useAccounts();
 
   return (
@@ -32,7 +33,7 @@ function SelectAccounts({onPress, onCreate}: ISelectAccountsProps) {
         />
       ))}
       <List.Item
-        title="Create Account"
+        title={t('select-masterkey.create-masterkey')}
         left={props => <List.Icon {...props} icon="plus" />}
         style={{...styles.listItem}}
         onPress={onCreate}
