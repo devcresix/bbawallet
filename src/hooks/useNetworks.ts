@@ -14,7 +14,7 @@ const useNetworks = () => {
     try {
       let networkStorage = await storage.getItem(storageKeys.CURRENT_NETWORK);
       if (!networkStorage) {
-        networkStorage = DNETWORK;
+        networkStorage = JSON.parse(JSON.stringify(DNETWORK));
       }
       dispatch(setNetworkStore(networkStorage));
     } finally {
