@@ -1,4 +1,4 @@
-import {INetwork} from '@bbachain/prolibbti';
+import {INetwork, IMasterKey} from '@bbachain/prolibbti';
 
 export interface IAppState {
   loaded: boolean;
@@ -7,16 +7,8 @@ export interface IAppState {
   language: string;
 }
 
-export interface IAccountState {
-  id: string;
-  name: string;
-  seed: string;
-  mnemonic: string;
-  verified: boolean;
-}
-
 export interface ISessionState {
-  accounts: IAccountState[];
-  current: IAccountState;
+  accounts: IMasterKey[];
+  current: IMasterKey;
   network: INetwork;
 }

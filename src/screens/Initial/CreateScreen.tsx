@@ -5,10 +5,9 @@ import {ActivityIndicator, TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Snackbar from 'react-native-snackbar';
 import {useTheme} from '@react-navigation/native';
-import {create} from '@bbachain/prolibbti';
+import {IMasterKey, create} from '@bbachain/prolibbti';
 
 import {withTranslation} from '../../hooks/useTranslations';
-import {IAccountState} from '../../types';
 import {RootState} from '../../store';
 
 // Components
@@ -22,7 +21,7 @@ function CreateScreen({route, navigation, t}: any) {
   const {addAccount, setCurrent} = useAccounts();
 
   const {accounts} = useSelector((state: RootState) => state.session);
-  const [account, setAccount] = useState(null as unknown as IAccountState);
+  const [account, setAccount] = useState(null as unknown as IMasterKey);
   const [text, setText] = useState('');
 
   function handleClickStart() {
@@ -42,7 +41,7 @@ function CreateScreen({route, navigation, t}: any) {
   useEffect(() => {
     if (!account) {
       create(`Master Key ${accounts.length + 1}`, words).then(newAccount => {
-        setAccount({...newAccount, verified: false});
+        setAccount(newAccount);
         setText(newAccount.mnemonic);
       });
     }

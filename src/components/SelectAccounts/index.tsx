@@ -2,12 +2,13 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {List} from 'react-native-paper';
+import {IMasterKey} from '@bbachain/prolibbti';
+
 import useAccounts from '../../hooks/useAccounts';
-import {IAccountState} from '../../types';
 import {withTranslation} from '../../hooks/useTranslations';
 
 interface ISelectAccountsProps {
-  onPress: (account: IAccountState) => void;
+  onPress: (account: IMasterKey) => void;
   onCreate: () => void;
   t: any;
 }

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {INetwork} from '@bbachain/prolibbti';
+import {INetwork, IMasterKey} from '@bbachain/prolibbti';
 
 // Components
 import SelectAccounts from '../SelectAccounts';
@@ -12,7 +12,6 @@ import Button from '../Button';
 import useAccounts from '../../hooks/useAccounts';
 import useNetworks from '../../hooks/useNetworks';
 import {withTranslation} from '../../hooks/useTranslations';
-import {IAccountState} from '../../types';
 
 interface INavbarProps {}
 
@@ -23,7 +22,7 @@ function Navbar({}: INavbarProps) {
   const [modalVisible, setModalVisible] = useState(false);
   const [networksVisible, setNetworksVisible] = useState(false);
 
-  const handleSelectAccount = (account: IAccountState) => {
+  const handleSelectAccount = (account: IMasterKey) => {
     setModalVisible(false);
     setCurrent(account);
   };
