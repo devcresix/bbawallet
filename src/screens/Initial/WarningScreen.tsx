@@ -1,5 +1,7 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {RadioButton} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 
 // Components
@@ -9,8 +11,16 @@ import {withTranslation} from '../../hooks/useTranslations';
 
 function WarningScreen({navigation, t}: any) {
   const {colors} = useTheme();
+
+  const [words, setWords] = React.useState('12');
+
   const handleStart = () => {
-    navigation.push('Create');
+    const wordsNumber = Number(words);
+    if (wordsNumber) {
+      navigation.push('Create', {
+        words: wordsNumber,
+      });
+    }
   };
 
   return (
@@ -50,6 +60,44 @@ function WarningScreen({navigation, t}: any) {
       <View style={styles.paddingStyle} />
 
       <View style={styles.optionsStyle}>
+        <RadioButton.Group onValueChange={v => setWords(v)} value={words}>
+          <View
+            style={{
+              flexDirection: 'row',
+              width: '100%',
+            }}>
+            <View style={{width: '50%'}}>
+              <RadioButton.Item
+                label="12 words"
+                value="12"
+                position="leading"
+              />
+              <RadioButton.Item
+                label="15 words"
+                value="15"
+                position="leading"
+              />
+              <RadioButton.Item
+                label="18 words"
+                value="18"
+                position="leading"
+              />
+            </View>
+            <View style={{width: '50%'}}>
+              <RadioButton.Item
+                label="21 words"
+                value="21"
+                position="leading"
+              />
+              <RadioButton.Item
+                label="24 words"
+                value="24"
+                position="leading"
+              />
+            </View>
+          </View>
+        </RadioButton.Group>
+        <View style={styles.paddingStyle} />
         <View style={styles.paddingStyle} />
         <Button
           mode="contained"

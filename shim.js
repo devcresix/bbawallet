@@ -31,4 +31,4 @@ if (typeof localStorage !== 'undefined') {
 
 // If using the crypto shim, uncomment the following line to ensure
 // crypto is loaded first, so it can populate global.crypto
-global.crypto = require('crypto');
+import 'crypto';

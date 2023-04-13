@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {View, Text, StyleSheet} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {ActivityIndicator, TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Snackbar from 'react-native-snackbar';
 import {useTheme} from '@react-navigation/native';
@@ -16,7 +16,8 @@ import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
 import useAccounts from '../../hooks/useAccounts';
 
-function CreateScreen({navigation, t}: any) {
+function CreateScreen({route, navigation, t}: any) {
+  const {words} = route.params;
   const {colors} = useTheme();
   const {addAccount, setCurrent} = useAccounts();
 
@@ -39,16 +40,13 @@ function CreateScreen({navigation, t}: any) {
   }
 
   useEffect(() => {
-    const onCreatingAccount = async () => {
-      const newAccount = await create(`Account ${accounts.length + 1}`, 24);
-      setAccount({...newAccount, verified: false});
-      setText(newAccount.mnemonic);
-    };
-
     if (!account) {
-      onCreatingAccount();
+      create(`Account ${accounts.length + 1}`, words).then(newAccount => {
+        setAccount({...newAccount, verified: false});
+        setText(newAccount.mnemonic);
+      });
     }
-  }, [account, accounts]);
+  });
 
   return (
     <InitLayout>
@@ -74,22 +72,27 @@ function CreateScreen({navigation, t}: any) {
       </View>
       <View style={styles.paddingStyle} />
       <View style={styles.paddingStyle} />
-
-      <View style={styles.optionsStyle}>
-        <Button
-          mode="contained"
-          icon="content-copy"
-          title={t('create-screen.copy')}
-          onPress={handleClickCopy}
-        />
-        <View style={styles.paddingStyle} />
-        <Button
-          mode="contained"
-          icon="skip-next"
-          title={t('create-screen.next')}
-          onPress={handleClickStart}
-        />
-      </View>
+      {text !== '' ? (
+        <>
+          <View style={styles.optionsStyle}>
+            <Button
+              mode="contained"
+              icon="content-copy"
+              title={t('create-screen.copy')}
+              onPress={handleClickCopy}
+            />
+            <View style={styles.paddingStyle} />
+            <Button
+              mode="contained"
+              icon="skip-next"
+              title={t('create-screen.next')}
+              onPress={handleClickStart}
+            />
+          </View>
+        </>
+      ) : (
+        <ActivityIndicator animating={true} color={colors.primary} />
+      )}
     </InitLayout>
   );
 }
