@@ -73,20 +73,15 @@ function WarningScreen({navigation, t}: any) {
                 position="leading"
               />
               <RadioButton.Item
-                label="15 words"
-                value="15"
-                position="leading"
-              />
-              <RadioButton.Item
-                label="18 words"
-                value="18"
+                label="21 words"
+                value="21"
                 position="leading"
               />
             </View>
             <View style={{width: '50%'}}>
               <RadioButton.Item
-                label="21 words"
-                value="21"
+                label="18 words"
+                value="18"
                 position="leading"
               />
               <RadioButton.Item

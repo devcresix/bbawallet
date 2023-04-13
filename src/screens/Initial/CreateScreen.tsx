@@ -41,7 +41,7 @@ function CreateScreen({route, navigation, t}: any) {
 
   useEffect(() => {
     if (!account) {
-      create(`Account ${accounts.length + 1}`, words).then(newAccount => {
+      create(`Master Key ${accounts.length + 1}`, words).then(newAccount => {
         setAccount({...newAccount, verified: false});
         setText(newAccount.mnemonic);
       });
