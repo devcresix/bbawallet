@@ -23,17 +23,11 @@ function AppRoutes() {
 
   const {network} = useNetworks();
   const {currentKey, masterKeys} = useMasterKey();
-  const {account, getAccountFromKey} = useAccounts();
+  const {getAccountFromKey} = useAccounts();
 
   const {loaded, initialized, theme} = useSelector(
     (state: RootState) => state.app,
   );
-
-  useEffect(() => {
-    console.log('######################## AppRoutes ########################');
-    console.log(account);
-    console.log('######################## AppRoutes ########################');
-  }, [account]);
 
   useEffect(() => {
     if (loaded && network && currentKey) {

@@ -16,7 +16,9 @@ export const sessionSlice = createSlice({
   reducers: {
     // Master Keys
     addMasterKey: (state, {payload}) => {
-      state.masterKeys = [...state.masterKeys, payload];
+      if (state.masterKeys.indexOf(payload) === -1) {
+        state.masterKeys = [...state.masterKeys, payload];
+      }
     },
     setCurrentKey: (state, {payload}) => {
       state.currentKey = payload;
