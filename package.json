@@ -13,7 +13,7 @@
     "postinstall": "rn-nodeify --install stream,events,process,crypto --hack --yarn"
   },
   "dependencies": {
-    "@bbachain/prolibbti": "^0.0.10",
+    "@bbachain/prolibbti": "^0.0.11",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/material-bottom-tabs": "^6.2.15",
@@ -21,6 +21,7 @@
     "@react-navigation/native-stack": "^6.9.12",
     "@react-navigation/stack": "^6.3.16",
     "@reduxjs/toolkit": "^1.9.3",
+    "base-64": "^1.0.0",
     "buffer": "^6.0.3",
     "events": "^1.0.0",
     "i18next": "^22.4.10",

@@ -31,11 +31,15 @@ function AssetsScreen(): JSX.Element {
   const [refreshing, setRefreshing] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
   const [address, setAddress] = useState('');
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     if (network && current) {
       const newAddr = AccountUtils.getDeriveAddress(current, network);
       setAddress(newAddr);
+      AccountUtils.getDeriveAddressBalance(current, network).then(newBalance =>
+        setBalance(newBalance),
+      );
     }
   }, [network, current]);
 
@@ -60,7 +64,9 @@ function AssetsScreen(): JSX.Element {
                 backgroundColor: 'orange',
               },
             ]}>
-            <Text style={{fontSize: 20}}>0.0 BBA</Text>
+            <Text style={{fontSize: 20}}>
+              {balance} {network ? network.symbol : ''}
+            </Text>
             {/* <Ionicons name="eye" style={{fontSize: 24}} /> */}
           </View>
           <View
@@ -148,11 +154,11 @@ function AssetsScreen(): JSX.Element {
                 <Text
                   style={styles.viewTokenListScrollItemTrailingText}
                   {...props}>
-                  1,000
+                  0
                 </Text>
               )}
             />
-            <ListItem
+            {/* <ListItem
               title="BUSD"
               description="Binance USD"
               left={props => (
@@ -169,7 +175,7 @@ function AssetsScreen(): JSX.Element {
                   2,345,678
                 </Text>
               )}
-            />
+            /> */}
           </View>
         </View>
       </ScrollView>
