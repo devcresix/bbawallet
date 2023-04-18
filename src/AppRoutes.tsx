@@ -10,30 +10,37 @@ import LoadingScreen from './screens/Initial/LoadingScreen';
 import themes from './config/theme';
 import storage from './utils/storage';
 import storageKeys from './config/storageKeys';
+import useTranslations from './hooks/useTranslations';
 import useAppConfig from './hooks/useAppConfig';
 import useMasterKey from './hooks/useMasterKey';
 import useNetworks from './hooks/useNetworks';
-import useTranslations from './hooks/useTranslations';
+import useAccounts from './hooks/useAccounts';
 import {RootState} from './store';
 
 function AppRoutes() {
   useAppConfig();
   useTranslations();
 
-  const {currentKey, masterKeys, loadMasterKeys} = useMasterKey();
-  const {network, loadNetwork} = useNetworks();
+  const {network} = useNetworks();
+  const {currentKey, masterKeys} = useMasterKey();
+  const {account, getAccountFromKey} = useAccounts();
 
   const {loaded, initialized, theme} = useSelector(
     (state: RootState) => state.app,
   );
 
   useEffect(() => {
-    setTimeout(async () => {
-      await loadMasterKeys();
-      await loadNetwork();
-    }, 1000);
+    console.log('######################## AppRoutes ########################');
+    console.log(account);
+    console.log('######################## AppRoutes ########################');
+  }, [account]);
+
+  useEffect(() => {
+    if (loaded && network && currentKey) {
+      getAccountFromKey(currentKey, network);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loaded, network, currentKey]);
 
   useEffect(() => {
     if (masterKeys.length > 0) {

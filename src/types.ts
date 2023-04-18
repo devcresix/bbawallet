@@ -1,4 +1,5 @@
 import {INetwork, IMasterKey} from '@bbachain/prolibbti';
+import {Account} from '@bbachain/prolibbti/dist/Account';
 
 export interface IAppState {
   loaded: boolean;
@@ -8,10 +9,8 @@ export interface IAppState {
 }
 
 export interface ISessionState {
-  accounts: IMasterKey[];
-  current: IMasterKey;
   network: INetwork;
-  // Master Keys
   masterKeys: IMasterKey[];
   currentKey: IMasterKey;
+  account: Account;
 }

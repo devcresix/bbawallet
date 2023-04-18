@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {
   Image,
@@ -10,7 +9,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
 
@@ -19,14 +17,12 @@ import Layout from '../../components/Layout';
 import ListItem from '../../components/ListItem';
 import Button from '../../components/Button';
 import QRCodeDialog from '../../components/Dialog/QRCodeDialog';
-import AccountUtils from '../../utils/AccountUtils';
 import useNetworks from '../../hooks/useNetworks';
-import useMasterKey from '../../hooks/useMasterKey';
+import useAccounts from '../../hooks/useAccounts';
 
 function AssetsScreen(): JSX.Element {
-  // const dispatch = useDispatch();
   const {network} = useNetworks();
-  const {currentKey} = useMasterKey();
+  const {account} = useAccounts();
 
   const [refreshing, setRefreshing] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
@@ -34,14 +30,11 @@ function AssetsScreen(): JSX.Element {
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
-    if (network && currentKey) {
-      const newAddr = AccountUtils.getDeriveAddress(currentKey, network);
-      setAddress(newAddr);
-      AccountUtils.getDeriveAddressBalance(currentKey, network).then(
-        newBalance => setBalance(newBalance),
-      );
+    if (account) {
+      setAddress(account.toAddress());
+      account.getBalance().then(newBalance => setBalance(newBalance));
     }
-  }, [network, currentKey]);
+  }, [account]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);

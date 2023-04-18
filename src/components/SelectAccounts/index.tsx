@@ -6,8 +6,9 @@ import {IMasterKey} from '@bbachain/prolibbti';
 
 import useMasterKey from '../../hooks/useMasterKey';
 import {withTranslation} from '../../hooks/useTranslations';
-import useNetworks from '../../hooks/useNetworks';
-import AccountUtils from '../../utils/AccountUtils';
+import useAccounts from '../../hooks/useAccounts';
+// import useNetworks from '../../hooks/useNetworks';
+// import AccountUtils from '../../utils/AccountUtils';
 
 interface ISelectAccountsProps {
   onPress: (account: IMasterKey) => void;
@@ -16,8 +17,9 @@ interface ISelectAccountsProps {
 }
 
 function SelectAccounts({onPress, onCreate, t}: ISelectAccountsProps) {
-  const {network} = useNetworks();
+  // const {network} = useNetworks();
   const {currentKey, masterKeys} = useMasterKey();
+  const {account} = useAccounts();
 
   return (
     <>
@@ -25,7 +27,7 @@ function SelectAccounts({onPress, onCreate, t}: ISelectAccountsProps) {
         <List.Item
           key={k.id}
           title={k.name}
-          description={AccountUtils.getDeriveAddress(currentKey, network)}
+          description={account.toAddress()}
           left={props => <List.Icon {...props} icon="key" />}
           right={props =>
             currentKey.mnemonic === k.mnemonic ? (

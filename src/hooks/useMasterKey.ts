@@ -41,13 +41,11 @@ const useMasterKey = () => {
   };
 
   const addMasterKey = async (newKey: IMasterKey) => {
-    const parsed = JSON.parse(JSON.stringify(newKey));
-    dispatch(addMasterKeySlice(parsed));
+    dispatch(addMasterKeySlice(newKey));
   };
 
   const setCurrentKey = async (newKey: IMasterKey) => {
-    const parsed = JSON.parse(JSON.stringify(newKey));
-    dispatch(setCurrentKeySlice(parsed));
+    dispatch(setCurrentKeySlice(newKey));
   };
 
   const verifyMasterKey = (newKey: IMasterKey) => {
