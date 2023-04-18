@@ -9,14 +9,14 @@ import BlurModal from '../BlurModal';
 import Button from '../Button';
 
 // Utils
-import useAccounts from '../../hooks/useAccounts';
+import useMasterKey from '../../hooks/useMasterKey';
 import useNetworks from '../../hooks/useNetworks';
 import {withTranslation} from '../../hooks/useTranslations';
 
 interface INavbarProps {}
 
 function Navbar({}: INavbarProps) {
-  const {current, setCurrent} = useAccounts();
+  const {currentKey, setCurrentKey} = useMasterKey();
   const {network, setNetwork} = useNetworks();
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -24,7 +24,7 @@ function Navbar({}: INavbarProps) {
 
   const handleSelectAccount = (account: IMasterKey) => {
     setModalVisible(false);
-    setCurrent(account);
+    setCurrentKey(account);
   };
 
   const handleCreateAccount = () => {
@@ -57,7 +57,7 @@ function Navbar({}: INavbarProps) {
       <View style={styles.content}>
         <Button
           icon="chevron-down"
-          title={current.name}
+          title={currentKey.name}
           onPress={() => setModalVisible(true)}
           iconRight
         />

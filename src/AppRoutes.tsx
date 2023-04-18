@@ -8,35 +8,44 @@ import MainStackNavigation from './navigation/MainStackNavigation';
 import LoadingScreen from './screens/Initial/LoadingScreen';
 
 import themes from './config/theme';
-import useTranslations from './hooks/useTranslations';
-import {RootState} from './store';
-import useAccounts from './hooks/useAccounts';
 import storage from './utils/storage';
 import storageKeys from './config/storageKeys';
 import useAppConfig from './hooks/useAppConfig';
+import useMasterKey from './hooks/useMasterKey';
 import useNetworks from './hooks/useNetworks';
+import useTranslations from './hooks/useTranslations';
+import {RootState} from './store';
 
 function AppRoutes() {
   useAppConfig();
   useTranslations();
-  const {network} = useNetworks();
-  const {current, accounts} = useAccounts();
+
+  const {currentKey, masterKeys, loadMasterKeys} = useMasterKey();
+  const {network, loadNetwork} = useNetworks();
 
   const {loaded, initialized, theme} = useSelector(
     (state: RootState) => state.app,
   );
 
   useEffect(() => {
-    if (accounts.length > 0) {
-      storage.setItem(storageKeys.ACCOUNTS, accounts);
-    }
-  }, [accounts]);
+    setTimeout(async () => {
+      await loadMasterKeys();
+      await loadNetwork();
+    }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    if (current) {
-      storage.setItem(storageKeys.CURRENT_ACCOUNT, current);
+    if (masterKeys.length > 0) {
+      storage.setItem(storageKeys.MASTERKEYS, masterKeys);
     }
-  }, [current]);
+  }, [masterKeys]);
+
+  useEffect(() => {
+    if (currentKey) {
+      storage.setItem(storageKeys.CURRENTKEY, currentKey);
+    }
+  }, [currentKey]);
 
   useEffect(() => {
     if (network) {

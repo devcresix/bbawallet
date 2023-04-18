@@ -14,7 +14,7 @@ import SimpleDialog from '../../components/Dialog';
 
 // Utils
 import {withTranslation} from '../../hooks/useTranslations';
-import {setAccounts, setNetwork} from '../../store/sessionSlice';
+import {setMasterKeys, setNetwork} from '../../store/sessionSlice';
 
 function SettingScreen({navigation, t}: any) {
   const dispatch = useDispatch();
@@ -27,12 +27,12 @@ function SettingScreen({navigation, t}: any) {
 
   async function handleResetDevice() {
     await Promise.all([
-      await storage.removeItem(storageKeys.ACCOUNTS),
-      await storage.removeItem(storageKeys.CURRENT_ACCOUNT),
+      await storage.removeItem(storageKeys.MASTERKEYS),
+      await storage.removeItem(storageKeys.CURRENTKEY),
       await storage.removeItem(storageKeys.CURRENT_NETWORK),
       await storage.removeItem(storageKeys.INITIALIZED),
     ]);
-    dispatch(setAccounts([]));
+    dispatch(setMasterKeys([]));
     dispatch(setNetwork(null));
     dispatch(setInitialized(false));
     dispatch(setLoaded(false));

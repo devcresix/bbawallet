@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 import {List} from 'react-native-paper';
 import {IMasterKey} from '@bbachain/prolibbti';
 
-import useAccounts from '../../hooks/useAccounts';
+import useMasterKey from '../../hooks/useMasterKey';
 import {withTranslation} from '../../hooks/useTranslations';
 import useNetworks from '../../hooks/useNetworks';
 import AccountUtils from '../../utils/AccountUtils';
@@ -17,23 +17,23 @@ interface ISelectAccountsProps {
 
 function SelectAccounts({onPress, onCreate, t}: ISelectAccountsProps) {
   const {network} = useNetworks();
-  const {current, accounts} = useAccounts();
+  const {currentKey, masterKeys} = useMasterKey();
 
   return (
     <>
-      {accounts.map(account => (
+      {masterKeys.map(k => (
         <List.Item
-          key={account.id}
-          title={account.name}
-          description={AccountUtils.getDeriveAddress(current, network)}
+          key={k.id}
+          title={k.name}
+          description={AccountUtils.getDeriveAddress(currentKey, network)}
           left={props => <List.Icon {...props} icon="key" />}
           right={props =>
-            current.mnemonic === account.mnemonic ? (
+            currentKey.mnemonic === k.mnemonic ? (
               <List.Icon {...props} icon="check" />
             ) : null
           }
           style={{...styles.listItem}}
-          onPress={() => onPress(account)}
+          onPress={() => onPress(k)}
         />
       ))}
       <List.Item

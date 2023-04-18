@@ -21,12 +21,12 @@ import Button from '../../components/Button';
 import QRCodeDialog from '../../components/Dialog/QRCodeDialog';
 import AccountUtils from '../../utils/AccountUtils';
 import useNetworks from '../../hooks/useNetworks';
-import useAccounts from '../../hooks/useAccounts';
+import useMasterKey from '../../hooks/useMasterKey';
 
 function AssetsScreen(): JSX.Element {
   // const dispatch = useDispatch();
   const {network} = useNetworks();
-  const {current} = useAccounts();
+  const {currentKey} = useMasterKey();
 
   const [refreshing, setRefreshing] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
@@ -34,14 +34,14 @@ function AssetsScreen(): JSX.Element {
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
-    if (network && current) {
-      const newAddr = AccountUtils.getDeriveAddress(current, network);
+    if (network && currentKey) {
+      const newAddr = AccountUtils.getDeriveAddress(currentKey, network);
       setAddress(newAddr);
-      AccountUtils.getDeriveAddressBalance(current, network).then(newBalance =>
-        setBalance(newBalance),
+      AccountUtils.getDeriveAddressBalance(currentKey, network).then(
+        newBalance => setBalance(newBalance),
       );
     }
-  }, [network, current]);
+  }, [network, currentKey]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);

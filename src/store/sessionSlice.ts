@@ -1,11 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {ISessionState} from '../types';
 import {INetwork, IMasterKey} from '@bbachain/prolibbti';
+
+import {ISessionState} from '../types';
 
 const initialState: ISessionState = {
   accounts: [],
   current: null as unknown as IMasterKey,
   network: null as unknown as INetwork,
+  masterKeys: [],
+  currentKey: null as unknown as IMasterKey,
 };
 
 export const sessionSlice = createSlice({
@@ -22,6 +25,16 @@ export const sessionSlice = createSlice({
     setAccounts: (state, {payload}) => {
       state.accounts = payload;
     },
+    // Master Keys
+    addMasterKey: (state, {payload}) => {
+      state.masterKeys = [...state.masterKeys, payload];
+    },
+    setCurrentKey: (state, {payload}) => {
+      state.currentKey = payload;
+    },
+    setMasterKeys: (state, {payload}) => {
+      state.masterKeys = payload;
+    },
     // Networks Management
     setNetwork: (state, {payload}) => {
       state.network = payload;
@@ -34,6 +47,10 @@ export const {
   addAccount,
   setCurrentAccount,
   setAccounts,
+  // Master Keys
+  addMasterKey,
+  setCurrentKey,
+  setMasterKeys,
   // Networks Management
   setNetwork,
 } = sessionSlice.actions;

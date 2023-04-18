@@ -11,4 +11,7 @@ export interface ISessionState {
   accounts: IMasterKey[];
   current: IMasterKey;
   network: INetwork;
+  // Master Keys
+  masterKeys: IMasterKey[];
+  currentKey: IMasterKey;
 }
