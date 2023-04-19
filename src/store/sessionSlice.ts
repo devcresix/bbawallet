@@ -8,6 +8,7 @@ const initialState: ISessionState = {
   currentKey: null as unknown as IMasterKey,
   network: null as unknown as INetwork,
   account: null as unknown as Account,
+  addresses: [],
 };
 
 export const sessionSlice = createSlice({
@@ -34,6 +35,15 @@ export const sessionSlice = createSlice({
     setAccount: (state, {payload}) => {
       state.account = payload;
     },
+    // Addresses Book
+    setAddressBook: (state, {payload}) => {
+      state.addresses = payload;
+    },
+    addAddressBook: (state, {payload}) => {
+      if (state.addresses.indexOf(payload) === -1) {
+        state.addresses = [...state.addresses, payload];
+      }
+    },
   },
 });
 
@@ -46,6 +56,9 @@ export const {
   setNetwork,
   // Derived Account
   setAccount,
+  // Addresses Book
+  setAddressBook,
+  addAddressBook,
 } = sessionSlice.actions;
 
 export default sessionSlice.reducer;

@@ -7,7 +7,10 @@
     "copied": "Copied",
     "paste": "Paste",
     "pasted": "Pasted",
-    "next": "Next"
+    "next": "Next",
+    "name": "Name",
+    "address": "Address",
+    "save": "Save"
   },
   "onboarding": {
     "title": "Multi Chain Crypto",

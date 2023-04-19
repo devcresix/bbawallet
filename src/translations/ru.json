@@ -7,7 +7,10 @@
     "copied": "Скопированный",
     "paste": "Вставить",
     "pasted": "Вставлено",
-    "next": "Следующий"
+    "next": "Следующий",
+    "name": "Name",
+    "address": "Address",
+    "save": "Save"
   },
   "onboarding": {
     "title": "Многоцепочечный крипто",

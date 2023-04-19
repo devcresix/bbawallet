@@ -4,14 +4,22 @@ import {StyleSheet} from 'react-native';
 import TextInput from '../../components/Input';
 import Button from '../../components/Button';
 import {withTranslation} from '../../hooks/useTranslations';
+import useAddressBook from '../../hooks/useAddressBook';
+import {IAddress} from '../../types';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function AddressBookScreen({navigation, t}: any) {
+  const {addAddress} = useAddressBook();
+
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
 
   const handlePressSave = () => {
-    console.log('Save Pressed');
+    if (!name || !address) {
+      return;
+    }
+
+    addAddress({name, address} as IAddress);
+    navigation.goBack();
   };
 
   return (

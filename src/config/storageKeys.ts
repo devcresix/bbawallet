@@ -10,6 +10,9 @@ const STORAGE_KEYS = {
   CURRENT_NETWORK: 'current-network',
   MASTERKEYS: 'master-key',
   CURRENTKEY: 'current-key',
+
+  // Addresses Book
+  ADDRESSBOOK: 'address-book',
 };
 
 export default STORAGE_KEYS;

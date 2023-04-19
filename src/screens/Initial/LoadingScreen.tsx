@@ -5,16 +5,19 @@ import {name as appName} from '../../../app.json';
 import InitLayout from '../../components/Layout/InitLayout';
 import useNetworks from '../../hooks/useNetworks';
 import useMasterKey from '../../hooks/useMasterKey';
+import useAddressBook from '../../hooks/useAddressBook';
 
 function LoadingScreen() {
   const {loadNetwork} = useNetworks();
   const {loadMasterKeys} = useMasterKey();
+  const {loadAddresses} = useAddressBook();
 
   useEffect(() => {
     setTimeout(async () => {
       await loadNetwork();
       await loadMasterKeys();
-    }, 2500);
+      await loadAddresses();
+    }, 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
