@@ -4,7 +4,10 @@
     "key": "Key #{{key}}",
     "close": "Close",
     "copy": "Copy",
-    "copied": "Copied"
+    "copied": "Copied",
+    "paste": "Paste",
+    "pasted": "Pasted",
+    "next": "Next"
   },
   "onboarding": {
     "title": "Multi Chain Crypto",
@@ -35,6 +38,11 @@
     "title": "Verifying",
     "description": "Verifying",
     "incorrect": "Incorrect recovery seed verification"
+  },
+  "recovery-screen": {
+    "title": "Recover Your Mnemonic",
+    "description": "Recovering...",
+    "incorrect":"Incorrect recovery seed verification"
   },
   "assets": "Assets",
   "transactions": "Transactions",

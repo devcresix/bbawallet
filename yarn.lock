@@ -1079,10 +1079,10 @@
   dependencies:
     buffer "~6.0.3"
 
-"@bbachain/prolibbti@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@bbachain/prolibbti/-/prolibbti-0.0.12.tgz#dbaa4cc4fa3331e34f249ca416348cda6c0c09bb"
-  integrity sha512-yf9tyCROyviLhCvCzjKRFiySpoSAYGABu/K7dsyniPHRyIDX8QRWR5UKJWFNooJa5kMpE8Nh7DpQCjN31MdORw==
+"@bbachain/prolibbti@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@bbachain/prolibbti/-/prolibbti-0.0.13.tgz#d155ba947ac25965147c76a70592bf3f8a9e63c9"
+  integrity sha512-PSs3fh+RncZvxjPQZv0TxXw5/q7CaLQENqJB7A9VG2rhkESSbuIBftaI5AeZCauAx5aSpXjUB8c+89sRC9ofAQ==
   dependencies:
     "@bbachain/web3.js" "^1.1.0"
     assert "^2.0.0"

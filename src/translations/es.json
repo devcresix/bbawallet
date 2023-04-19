@@ -4,7 +4,10 @@
     "key": "Llave #{{key}}",
     "close": "Cerca",
     "copy": "Copiar",
-    "copied": "Copiada"
+    "copied": "Copiada",
+    "paste": "Pegar",
+    "pasted": "Pegado",
+    "next": "Próxima"
   },
   "onboarding": {
     "title": "Cripto de cadena múltiple",
@@ -35,6 +38,11 @@
     "title": "Verificación",
     "description": "Verificación",
     "incorrect": "Verificación de semillas de recuperación incorrecta"
+  },
+  "recovery-screen": {
+    "title": "Recupere su mnemónico",
+    "description": "Recuperación...",
+    "incorrect":"Verificación de semillas de recuperación incorrecta"
   },
   "assets": "Activos",
   "transactions": "Actas",
