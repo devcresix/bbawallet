@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   Image,
   RefreshControl,
@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
+import {ActivityIndicator} from 'react-native-paper';
 
 // Components
 import Layout from '../../components/Layout';
@@ -24,23 +25,37 @@ function AssetsScreen(): JSX.Element {
   const {network} = useNetworks();
   const {account} = useAccounts();
 
+  const [processing, setProcessing] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
   const [address, setAddress] = useState('');
-  const [balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState('');
 
   useEffect(() => {
-    if (account) {
-      setAddress(account.toAddress());
-      account.getBalance().then(newBalance => setBalance(newBalance));
-    }
+    setProcessing(true);
   }, [account]);
 
-  const onRefresh = React.useCallback(() => {
+  useEffect(() => {
+    if (account && processing) {
+      setAddress(account.toAddress());
+      account
+        .getBalance()
+        .then(newBalance => {
+          setBalance(`${newBalance}`);
+        })
+        .catch(() => {
+          setBalance('ERROR');
+        })
+        .finally(() => {
+          setProcessing(false);
+          setRefreshing(false);
+        });
+    }
+  }, [account, processing]);
+
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 1000);
+    setProcessing(true);
   }, []);
 
   return (
@@ -50,25 +65,16 @@ function AssetsScreen(): JSX.Element {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         <View style={[styles.viewBalance]}>
-          <View
-            style={[
-              styles.rowContainer,
-              {
-                backgroundColor: 'orange',
-              },
-            ]}>
-            <Text style={{fontSize: 20}}>
-              {balance} {network ? network.symbol : ''}
-            </Text>
-            {/* <Ionicons name="eye" style={{fontSize: 24}} /> */}
+          <View style={[styles.rowContainer, {}]}>
+            {processing ? (
+              <ActivityIndicator animating={true} />
+            ) : (
+              <Text style={{fontSize: 24}}>
+                {balance} {network ? network.symbol : ''}
+              </Text>
+            )}
           </View>
-          <View
-            style={[
-              styles.rowContainer,
-              {
-                backgroundColor: 'yellow',
-              },
-            ]}>
+          <View style={[styles.rowContainer, {}]}>
             <Foundation
               style={{fontSize: 15, marginHorizontal: 5}}
               name="euro"
@@ -112,6 +118,7 @@ function AssetsScreen(): JSX.Element {
                 icon="transfer"
                 title="Transfer"
                 mode="contained"
+                loading={processing}
                 onPress={() => console.log('Pressed Transfer')}
               />
             </View>
@@ -124,6 +131,7 @@ function AssetsScreen(): JSX.Element {
                 icon="qrcode"
                 title="QRCode"
                 mode="contained"
+                loading={processing}
                 onPress={() => setShowQRCode(true)}
               />
             </View>
