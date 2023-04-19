@@ -91,6 +91,7 @@ function RecoveryScreen({navigation, t}: any) {
         </Text>
         <TextInput
           value={text}
+          placeholder={t('recovery-screen.title')}
           style={styles.inputSeedStyle}
           contentStyle={styles.inputSeedContentStyle}
           onChangeText={handleTextChange}

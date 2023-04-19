@@ -40,8 +40,8 @@
     "incorrect": "Incorrect recovery seed verification"
   },
   "recovery-screen": {
-    "title": "Recover Your Mnemonic",
-    "description": "Recovering...",
+    "title": "Security Recovery Phrase",
+    "description": "Restore an existing wallet with your 12 or 24-word secret recovery phrase",
     "incorrect":"Incorrect recovery seed verification"
   },
   "assets": "Assets",
