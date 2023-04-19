@@ -3,9 +3,9 @@ import {useSelector} from 'react-redux';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 
+import LoadingScreen from './screens/Loading';
 import InitialStackNavigation from './navigation/InitialStackNavigation';
 import MainStackNavigation from './navigation/MainStackNavigation';
-import LoadingScreen from './screens/Initial/LoadingScreen';
 
 import themes from './config/theme';
 import storage from './utils/storage';
