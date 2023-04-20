@@ -21,7 +21,7 @@ import QRCodeDialog from '../../components/Dialog/QRCodeDialog';
 import useNetworks from '../../hooks/useNetworks';
 import useAccounts from '../../hooks/useAccounts';
 
-function AssetsScreen(): JSX.Element {
+function AssetsScreen({navigation}: any) {
   const {network} = useNetworks();
   const {account} = useAccounts();
 
@@ -119,7 +119,7 @@ function AssetsScreen(): JSX.Element {
                 title="Transfer"
                 mode="contained"
                 loading={processing}
-                onPress={() => console.log('Pressed Transfer')}
+                onPress={() => navigation.push('Transfer')}
               />
             </View>
             <View

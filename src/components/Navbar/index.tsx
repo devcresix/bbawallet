@@ -57,7 +57,7 @@ function Navbar({}: INavbarProps) {
       <View style={styles.content}>
         <Button
           icon="chevron-down"
-          title={currentKey.name}
+          title={currentKey ? currentKey.name : ''}
           onPress={() => setModalVisible(true)}
           iconRight
         />

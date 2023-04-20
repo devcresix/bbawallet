@@ -14,6 +14,7 @@ import Appbar from '../components/Appbar';
 
 // Screens
 import AssetsScreen from '../screens/Assets';
+import TransferScreen from '../screens/Transfer';
 import TransactionsScreen from '../screens/Transactions';
 import SettingScreen from '../screens/Setting';
 import AddressBookScreen from '../screens/Setting/AddressBookScreen';
@@ -21,9 +22,11 @@ import AddAddressBookScreen from '../screens/Setting/AddAddressBookScreen';
 import LanguageScreen from '../screens/Setting/LanguageScreen';
 import ThemeScreen from '../screens/Setting/ThemeScreen';
 import AboutScreen from '../screens/Setting/AboutScreen';
+import CameraScreen from '../screens/Transfer/CameraScreen';
 
 // Store
 import constants from '../config/constants';
+import useNetworks from '../hooks/useNetworks';
 import {RootState} from '../store';
 
 const Sta = createStackNavigator();
@@ -85,6 +88,8 @@ function BottomBarNavigation() {
 
 function MainStackNavigation() {
   const navigation = useNavigation();
+  const {network} = useNetworks();
+
   return (
     <>
       <Sta.Navigator
@@ -95,6 +100,30 @@ function MainStackNavigation() {
           name="Home"
           component={BottomBarNavigation}
           options={{headerShown: false}}
+        />
+        <Sta.Screen
+          name="Transfer"
+          component={TransferScreen}
+          options={{
+            cardStyle: styles.cardStyle,
+            header: props => (
+              <Appbar
+                {...props}
+                back={props.back}
+                title={`Transfer ${network.symbol}`}
+              />
+            ),
+          }}
+        />
+        <Sta.Screen
+          name="Camera"
+          component={CameraScreen}
+          options={{
+            cardStyle: styles.cardStyle,
+            header: props => (
+              <Appbar {...props} back={props.back} title={'Scan QRCode'} />
+            ),
+          }}
         />
         <Sta.Screen
           name="AddressBook"
