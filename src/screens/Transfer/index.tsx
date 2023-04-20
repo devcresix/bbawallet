@@ -1,18 +1,28 @@
 import React, {useState} from 'react';
-// import {StyleSheet, View} from 'react-native';
-
-import {withTranslation} from '../../hooks/useTranslations';
 
 import TextInput from '../../components/Input';
-import useAccounts from '../../hooks/useAccounts';
 import Button from '../../components/Button';
+import ScanQR from '../../components/ScanQR';
 
-function TransferScreen({navigation, t}: any) {
+import useAccounts from '../../hooks/useAccounts';
+import {withTranslation} from '../../hooks/useTranslations';
+
+function TransferScreen({_navigation, t}: any) {
+  const [enableScan, setEnableScan] = useState(false);
   const [destination, setDestination] = useState('');
   const {account} = useAccounts();
 
   const handlePressScan = () => {
-    navigation.push('Camera');
+    setEnableScan(true);
+  };
+
+  const handleDetected = (detected: string) => {
+    setEnableScan(false);
+    setDestination(detected);
+  };
+
+  const handleChangeText = (text: string) => {
+    setDestination(text.trim());
   };
 
   const handlePressNext = () => {
@@ -21,21 +31,27 @@ function TransferScreen({navigation, t}: any) {
 
   return (
     <>
-      <TextInput
-        label={t('common.destination')}
-        variant="outlined"
-        margin={2}
-        value={destination}
-        onChangeText={(text: string) => setDestination(text)}
-        right="qrcode-scan"
-        rightOnPress={handlePressScan}
-      />
-      <Button
-        mode="contained"
-        icon="page-next"
-        title={t('common.next')}
-        onPress={handlePressNext}
-      />
+      {enableScan ? (
+        <ScanQR onDetected={handleDetected} />
+      ) : (
+        <>
+          <TextInput
+            label={t('common.destination')}
+            variant="outlined"
+            margin={2}
+            value={destination}
+            onChangeText={handleChangeText}
+            right="qrcode-scan"
+            rightOnPress={handlePressScan}
+          />
+          <Button
+            mode="contained"
+            icon="page-next"
+            title={t('common.next')}
+            onPress={handlePressNext}
+          />
+        </>
+      )}
     </>
   );
 }

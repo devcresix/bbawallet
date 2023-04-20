@@ -22,7 +22,6 @@ import AddAddressBookScreen from '../screens/Setting/AddAddressBookScreen';
 import LanguageScreen from '../screens/Setting/LanguageScreen';
 import ThemeScreen from '../screens/Setting/ThemeScreen';
 import AboutScreen from '../screens/Setting/AboutScreen';
-import CameraScreen from '../screens/Transfer/CameraScreen';
 
 // Store
 import constants from '../config/constants';
@@ -112,16 +111,6 @@ function MainStackNavigation() {
                 back={props.back}
                 title={`Transfer ${network.symbol}`}
               />
-            ),
-          }}
-        />
-        <Sta.Screen
-          name="Camera"
-          component={CameraScreen}
-          options={{
-            cardStyle: styles.cardStyle,
-            header: props => (
-              <Appbar {...props} back={props.back} title={'Scan QRCode'} />
             ),
           }}
         />

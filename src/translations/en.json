@@ -10,6 +10,7 @@
     "next": "Next",
     "name": "Name",
     "address": "Address",
+    "destination": "Destination",
     "save": "Save"
   },
   "onboarding": {
