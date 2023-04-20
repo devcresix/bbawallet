@@ -17,12 +17,23 @@ function TransferScreen({_navigation, t}: any) {
   };
 
   const handleDetected = (detected: string) => {
-    setEnableScan(false);
-    setDestination(detected);
+    const addr = detected.trim();
+    if (validateDestination(addr)) {
+      setDestination(addr);
+      setEnableScan(false);
+    }
   };
 
   const handleChangeText = (text: string) => {
     setDestination(text.trim());
+  };
+
+  const validateDestination = (address: string) => {
+    try {
+      return account.validateAddress(address);
+    } catch (error) {
+      return false;
+    }
   };
 
   const handlePressNext = () => {
