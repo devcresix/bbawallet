@@ -15,6 +15,7 @@ import Appbar from '../components/Appbar';
 // Screens
 import AssetsScreen from '../screens/Assets';
 import TransferScreen from '../screens/Transfer';
+import AmountScreen from '../screens/Amount';
 import TransactionsScreen from '../screens/Transactions';
 import SettingScreen from '../screens/Setting';
 import AddressBookScreen from '../screens/Setting/AddressBookScreen';
@@ -103,6 +104,20 @@ function MainStackNavigation() {
         <Sta.Screen
           name="Transfer"
           component={TransferScreen}
+          options={{
+            cardStyle: styles.cardStyle,
+            header: props => (
+              <Appbar
+                {...props}
+                back={props.back}
+                title={`Transfer ${network.symbol}`}
+              />
+            ),
+          }}
+        />
+        <Sta.Screen
+          name="Amount"
+          component={AmountScreen}
           options={{
             cardStyle: styles.cardStyle,
             header: props => (

@@ -7,7 +7,7 @@ import ScanQR from '../../components/ScanQR';
 import useAccounts from '../../hooks/useAccounts';
 import {withTranslation} from '../../hooks/useTranslations';
 
-function TransferScreen({_navigation, t}: any) {
+function TransferScreen({navigation, t}: any) {
   const [enableScan, setEnableScan] = useState(false);
   const [destination, setDestination] = useState('');
   const {account} = useAccounts();
@@ -37,7 +37,9 @@ function TransferScreen({_navigation, t}: any) {
   };
 
   const handlePressNext = () => {
-    console.log('Pressed Next', account);
+    navigation.push('Amount', {
+      destination: destination,
+    });
   };
 
   return (
