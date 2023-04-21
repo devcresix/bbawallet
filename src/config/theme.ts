@@ -14,8 +14,7 @@ const themes: any = {
     colors: {
       ...PaperDefaultTheme.colors,
       ...NavigationDefaultTheme.colors,
-      // background: '#3F5740',
-      primaryContainer: '#FFFFFF',
+      background: '#B1E5DB',
     },
   },
   // TODO
@@ -25,8 +24,7 @@ const themes: any = {
     colors: {
       ...PaperDarkTheme.colors,
       ...NavigationDarkTheme.colors,
-      // background: '#010a13',
-      primaryContainer: 'gray',
+      background: '#130E56',
     },
   },
 };

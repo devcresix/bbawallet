@@ -1,27 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/no-unstable-nested-components */
 import React, {useCallback, useEffect, useState} from 'react';
-import {
-  Image,
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {RefreshControl, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
-import {ActivityIndicator} from 'react-native-paper';
+import {ActivityIndicator, useTheme} from 'react-native-paper';
 
 // Components
 import Layout from '../../components/Layout';
-import ListItem from '../../components/ListItem';
 import Button from '../../components/Button';
 import QRCodeDialog from '../../components/Dialog/QRCodeDialog';
 import useNetworks from '../../hooks/useNetworks';
 import useAccounts from '../../hooks/useAccounts';
 
 function AssetsScreen({navigation}: any) {
+  const {colors} = useTheme();
   const {network} = useNetworks();
   const {account} = useAccounts();
 
@@ -64,7 +56,11 @@ function AssetsScreen({navigation}: any) {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        <View style={[styles.viewBalance]}>
+        <View
+          style={{
+            ...styles.viewBalance,
+            backgroundColor: colors.background,
+          }}>
           <View style={[styles.rowContainer, {}]}>
             {processing ? (
               <ActivityIndicator animating={true} />
@@ -137,9 +133,8 @@ function AssetsScreen({navigation}: any) {
             </View>
           </View>
         </View>
-        <View style={[]}>
+        {/* <View style={[]}>
           <Text>Tokens</Text>
-          {/* List of tokens */}
           <View style={styles.viewTokenListScroll}>
             <ListItem
               title="USDT"
@@ -159,26 +154,8 @@ function AssetsScreen({navigation}: any) {
                 </Text>
               )}
             />
-            {/* <ListItem
-              title="BUSD"
-              description="Binance USD"
-              left={props => (
-                <Image
-                  {...props}
-                  source={require('../../assets/images/tokens/busd.png')}
-                  style={{...styles.leftImage}}
-                />
-              )}
-              right={props => (
-                <Text
-                  style={styles.viewTokenListScrollItemTrailingText}
-                  {...props}>
-                  2,345,678
-                </Text>
-              )}
-            /> */}
           </View>
-        </View>
+        </View> */}
       </ScrollView>
       <QRCodeDialog
         visible={showQRCode}
