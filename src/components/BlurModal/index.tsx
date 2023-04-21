@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import {StyleSheet, View, Modal} from 'react-native';
-import {Portal, useTheme} from 'react-native-paper';
+import {Portal} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 function BlurModal({visible, children, onClose}: Props) {
-  const {colors} = useTheme();
+  // const {colors} = useTheme();
   return (
     <Portal>
       <Modal animationType="slide" transparent={true} visible={visible}>
@@ -18,7 +18,7 @@ function BlurModal({visible, children, onClose}: Props) {
           <View
             style={{
               ...styles.modalView,
-              backgroundColor: colors.background,
+              // backgroundColor: colors.background,
             }}>
             <Icon
               size={25}
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     paddingBottom: 35,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

@@ -1,7 +1,9 @@
 import React, {ReactNode} from 'react';
 import {SafeAreaView, StyleSheet, View, ScrollView} from 'react-native';
 import {Divider} from 'react-native-paper';
+
 import Navbar from '../Navbar';
+import BackgroundGradient from './BackgroundGradient';
 
 interface Props {
   children?: ReactNode;
@@ -10,6 +12,7 @@ interface Props {
 function Layout({children}: Props) {
   return (
     <SafeAreaView>
+      <BackgroundGradient />
       <Navbar />
       <Divider />
       <View style={styles.viewStyles}>

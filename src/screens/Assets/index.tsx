@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useCallback, useEffect, useState} from 'react';
 import {RefreshControl, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
-import {ActivityIndicator, useTheme} from 'react-native-paper';
 
 // Components
 import Layout from '../../components/Layout';
@@ -13,7 +13,7 @@ import useNetworks from '../../hooks/useNetworks';
 import useAccounts from '../../hooks/useAccounts';
 
 function AssetsScreen({navigation}: any) {
-  const {colors} = useTheme();
+  // const {colors} = useTheme();
   const {network} = useNetworks();
   const {account} = useAccounts();
 
@@ -59,7 +59,7 @@ function AssetsScreen({navigation}: any) {
         <View
           style={{
             ...styles.viewBalance,
-            backgroundColor: colors.background,
+            // backgroundColor: colors.background,
           }}>
           <View style={[styles.rowContainer, {}]}>
             {processing ? (
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   viewBalance: {
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     alignItems: 'center',
   },
   viewTokenListScroll: {},

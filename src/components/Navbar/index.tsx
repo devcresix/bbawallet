@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {useTheme} from 'react-native-paper';
+// import {useTheme} from 'react-native-paper';
 import {INetwork, IMasterKey, DNETWORK} from '@bbachain/prolibbti';
 
 // Components
@@ -17,7 +17,7 @@ import {withTranslation} from '../../hooks/useTranslations';
 interface INavbarProps {}
 
 function Navbar({}: INavbarProps) {
-  const {colors} = useTheme();
+  // const {colors} = useTheme();
   const {currentKey, setCurrentKey} = useMasterKey();
   const {network, setNetwork} = useNetworks();
 
@@ -43,7 +43,7 @@ function Navbar({}: INavbarProps) {
     <View
       style={{
         ...styles.container,
-        backgroundColor: colors.inverseOnSurface,
+        // backgroundColor: colors.inverseOnSurface,
       }}>
       <BlurModal
         visible={modalVisible}
