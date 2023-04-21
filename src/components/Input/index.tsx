@@ -8,6 +8,8 @@ interface IInputProps {
   value: string;
   onChangeText: (text: string) => void;
   onBlur?: () => void;
+  right?: string;
+  rightOnPress?: () => void;
 }
 
 function TextInput({
@@ -17,6 +19,8 @@ function TextInput({
   value,
   onChangeText,
   onBlur,
+  right,
+  rightOnPress,
 }: IInputProps) {
   return (
     <PaperTextInput
@@ -27,6 +31,13 @@ function TextInput({
       value={value}
       onChangeText={onChangeText}
       onBlur={onBlur}
+      right={
+        right ? (
+          <PaperTextInput.Icon icon={right} onPress={rightOnPress} />
+        ) : (
+          <></>
+        )
+      }
     />
   );
 }

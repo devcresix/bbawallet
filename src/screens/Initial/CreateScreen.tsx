@@ -9,20 +9,20 @@ import {IMasterKey, create} from '@bbachain/prolibbti';
 // Components
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
-import useAccounts from '../../hooks/useAccounts';
+import useMasterKey from '../../hooks/useMasterKey';
 import {withTranslation} from '../../hooks/useTranslations';
 
 function CreateScreen({route, navigation, t}: any) {
   const {words} = route.params;
   const {colors} = useTheme();
-  const {accounts, addAccount, setCurrent} = useAccounts();
+  const {masterKeys, addMasterKey, setCurrentKey} = useMasterKey();
 
-  const [account, setAccount] = useState(null as unknown as IMasterKey);
+  const [masterkey, setMasterkey] = useState(null as unknown as IMasterKey);
   const [text, setText] = useState('');
 
   function handleClickStart() {
-    addAccount(account);
-    setCurrent(account);
+    addMasterKey(masterkey);
+    setCurrentKey(masterkey);
     navigation.push('Confirm');
   }
 
@@ -31,14 +31,14 @@ function CreateScreen({route, navigation, t}: any) {
       text: t('create-screen.seeds-copied'),
       duration: Snackbar.LENGTH_LONG,
     });
-    Clipboard.setString(account.mnemonic);
+    Clipboard.setString(masterkey.mnemonic);
   }
 
   useEffect(() => {
-    if (!account) {
-      create(`Master Key ${accounts.length + 1}`, words).then(newAccount => {
-        setAccount(newAccount);
-        setText(newAccount.mnemonic);
+    if (!masterkey) {
+      create(`Key ${masterKeys.length + 1}`, words).then(newKey => {
+        setMasterkey(newKey);
+        setText(newKey.mnemonic);
       });
     }
   });

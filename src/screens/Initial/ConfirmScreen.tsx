@@ -9,7 +9,7 @@ import TextInput from '../../components/Input';
 import Button from '../../components/Button';
 import InitLayout from '../../components/Layout/InitLayout';
 import {withTranslation} from '../../hooks/useTranslations';
-import useAccounts from '../../hooks/useAccounts';
+import useMasterKey from '../../hooks/useMasterKey';
 import storageKeys from '../../config/storageKeys';
 import storage from '../../utils/storage';
 
@@ -17,7 +17,7 @@ import storage from '../../utils/storage';
 function ConfirmScreen({navigation, t}: any) {
   const dispatch = useDispatch();
   const {colors} = useTheme();
-  const {current, verifyAccount} = useAccounts();
+  const {currentKey, verifyMasterKey} = useMasterKey();
 
   const [seeds, setSeeds] = useState([] as string[]);
 
@@ -42,7 +42,7 @@ function ConfirmScreen({navigation, t}: any) {
     }
 
     // On success validate
-    verifyAccount(current);
+    verifyMasterKey(currentKey);
     storage.setItem(storageKeys.INITIALIZED, true).then(() => {
       dispatch(setInitialized(true));
     });
@@ -61,8 +61,8 @@ function ConfirmScreen({navigation, t}: any) {
   };
 
   useEffect(() => {
-    if (current && current.mnemonic) {
-      const items = current.mnemonic.split(' ');
+    if (currentKey && currentKey.mnemonic) {
+      const items = currentKey.mnemonic.split(' ');
       const random = getRandom(items);
 
       setSeeds(items);
@@ -70,7 +70,7 @@ function ConfirmScreen({navigation, t}: any) {
       setKey2(random[1]);
       setKey3(random[2]);
     }
-  }, [current]);
+  }, [currentKey]);
 
   return (
     <InitLayout>
@@ -82,8 +82,7 @@ function ConfirmScreen({navigation, t}: any) {
             ...styles.textWarningStyle,
             color: colors.text,
           }}>
-          {/* {t('confirm-screen.description')} */}
-          {current.mnemonic}
+          {t('confirm-screen.description')}
         </Text>
       </View>
       <View style={styles.paddingStyle} />

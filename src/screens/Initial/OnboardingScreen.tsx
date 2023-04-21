@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Dimensions, Image, StyleSheet} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import Onboarding from 'react-native-onboarding-swiper';
 import {withTranslation} from '../../hooks/useTranslations';
@@ -46,8 +46,8 @@ function OnboardingScreen({navigation, t}: any) {
 
 const styles = StyleSheet.create({
   viewOnboardingImage: {
-    width: 200,
-    height: 200,
+    width: Dimensions.get('window').width - 85,
+    height: 230,
   },
 });
 

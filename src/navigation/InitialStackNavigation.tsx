@@ -6,6 +6,7 @@ import ChooseScreen from '../screens/Initial/ChooseScreen';
 import WarningScreen from '../screens/Initial/WarningScreen';
 import CreateScreen from '../screens/Initial/CreateScreen';
 import ConfirmScreen from '../screens/Initial/ConfirmScreen';
+import RecoveryScreen from '../screens/Initial/RecoveryScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ function InitialStackNavigation() {
       <Stack.Screen name="Warning" component={WarningScreen} />
       <Stack.Screen name="Create" component={CreateScreen} />
       <Stack.Screen name="Confirm" component={ConfirmScreen} />
+      <Stack.Screen name="Recovery" component={RecoveryScreen} />
     </Stack.Navigator>
   );
 }

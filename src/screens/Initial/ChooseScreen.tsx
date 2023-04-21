@@ -7,8 +7,8 @@ import InitLayout from '../../components/Layout/InitLayout';
 import {withTranslation} from '../../hooks/useTranslations';
 
 function ChooseScreen({navigation, t}: any) {
-  const handleCreateAccount = () => {
-    navigation.push('Warning');
+  const handlePressOption = (route: string) => {
+    navigation.push(route);
   };
 
   return (
@@ -22,14 +22,14 @@ function ChooseScreen({navigation, t}: any) {
           mode="contained"
           icon="plus"
           title={t('choose-screen.create-account')}
-          onPress={handleCreateAccount}
+          onPress={() => handlePressOption('Warning')}
         />
         <View style={styles.paddingStyle} />
         <Button
           mode="contained"
           icon="lock-reset"
           title={t('choose-screen.recover-account')}
-          // onPress={}
+          onPress={() => handlePressOption('Recovery')}
         />
       </View>
     </InitLayout>

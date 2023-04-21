@@ -1,24 +1,29 @@
 import React, {useEffect} from 'react';
 import {Text, StyleSheet, ActivityIndicator} from 'react-native';
+
+import {name as appName} from '../../../app.json';
 import InitLayout from '../../components/Layout/InitLayout';
-import useAccounts from '../../hooks/useAccounts';
 import useNetworks from '../../hooks/useNetworks';
+import useMasterKey from '../../hooks/useMasterKey';
+import useAddressBook from '../../hooks/useAddressBook';
 
 function LoadingScreen() {
-  const {loadAccounts} = useAccounts();
   const {loadNetwork} = useNetworks();
+  const {loadMasterKeys} = useMasterKey();
+  const {loadAddresses} = useAddressBook();
 
   useEffect(() => {
     setTimeout(async () => {
-      await loadAccounts();
       await loadNetwork();
-    }, 1000);
+      await loadMasterKeys();
+      await loadAddresses();
+    }, 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <InitLayout>
-      <Text style={styles.textStyles}>BBA Wallet</Text>
+      <Text style={styles.textStyles}>{appName}</Text>
       <ActivityIndicator animating={true} style={styles.indicatorStyle} />
     </InitLayout>
   );

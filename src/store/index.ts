@@ -7,6 +7,9 @@ export const store = configureStore({
     app: appSlice,
     session: sessionSlice,
   },
+  middleware(getDefaultMiddleware) {
+    return getDefaultMiddleware({serializableCheck: false});
+  },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

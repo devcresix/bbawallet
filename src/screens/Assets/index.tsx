@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   Image,
   RefreshControl,
@@ -10,24 +9,53 @@ import {
   Text,
   View,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
+import {ActivityIndicator} from 'react-native-paper';
 
 // Components
-import type {RootState} from '../../store';
 import Layout from '../../components/Layout';
 import ListItem from '../../components/ListItem';
+import Button from '../../components/Button';
+import QRCodeDialog from '../../components/Dialog/QRCodeDialog';
+import useNetworks from '../../hooks/useNetworks';
+import useAccounts from '../../hooks/useAccounts';
 
-function AssetsScreen(): JSX.Element {
-  // const dispatch = useDispatch();
-  const [refreshing, setRefreshing] = React.useState(false);
+function AssetsScreen({navigation}: any) {
+  const {network} = useNetworks();
+  const {account} = useAccounts();
 
-  const onRefresh = React.useCallback(() => {
+  const [processing, setProcessing] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [showQRCode, setShowQRCode] = useState(false);
+  const [address, setAddress] = useState('');
+  const [balance, setBalance] = useState('');
+
+  useEffect(() => {
+    setProcessing(true);
+  }, [account]);
+
+  useEffect(() => {
+    if (account && processing) {
+      setAddress(account.toAddress());
+      account
+        .getBalance()
+        .then(newBalance => {
+          setBalance(`${newBalance}`);
+        })
+        .catch(() => {
+          setBalance('ERROR');
+        })
+        .finally(() => {
+          setProcessing(false);
+          setRefreshing(false);
+        });
+    }
+  }, [account, processing]);
+
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 1000);
+    setProcessing(true);
   }, []);
 
   return (
@@ -37,23 +65,16 @@ function AssetsScreen(): JSX.Element {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         <View style={[styles.viewBalance]}>
-          <View
-            style={[
-              styles.rowContainer,
-              {
-                backgroundColor: 'orange',
-              },
-            ]}>
-            <Text style={{fontSize: 20}}>0.0 BBA</Text>
-            {/* <Ionicons name="eye" style={{fontSize: 24}} /> */}
+          <View style={[styles.rowContainer, {}]}>
+            {processing ? (
+              <ActivityIndicator animating={true} />
+            ) : (
+              <Text style={{fontSize: 24}}>
+                {balance} {network ? network.symbol : ''}
+              </Text>
+            )}
           </View>
-          <View
-            style={[
-              styles.rowContainer,
-              {
-                backgroundColor: 'yellow',
-              },
-            ]}>
+          <View style={[styles.rowContainer, {}]}>
             <Foundation
               style={{fontSize: 15, marginHorizontal: 5}}
               name="euro"
@@ -87,6 +108,34 @@ function AssetsScreen(): JSX.Element {
               </Text>
             </View>
           </View>
+          <View style={[styles.rowContainer]}>
+            <View
+              style={{
+                alignItems: 'center',
+                marginHorizontal: 5,
+              }}>
+              <Button
+                icon="transfer"
+                title="Transfer"
+                mode="contained"
+                loading={processing}
+                onPress={() => navigation.push('Transfer')}
+              />
+            </View>
+            <View
+              style={{
+                alignItems: 'center',
+                marginHorizontal: 5,
+              }}>
+              <Button
+                icon="qrcode"
+                title="QRCode"
+                mode="contained"
+                loading={processing}
+                onPress={() => setShowQRCode(true)}
+              />
+            </View>
+          </View>
         </View>
         <View style={[]}>
           <Text>Tokens</Text>
@@ -106,11 +155,11 @@ function AssetsScreen(): JSX.Element {
                 <Text
                   style={styles.viewTokenListScrollItemTrailingText}
                   {...props}>
-                  1,000
+                  0
                 </Text>
               )}
             />
-            <ListItem
+            {/* <ListItem
               title="BUSD"
               description="Binance USD"
               left={props => (
@@ -127,10 +176,16 @@ function AssetsScreen(): JSX.Element {
                   2,345,678
                 </Text>
               )}
-            />
+            /> */}
           </View>
         </View>
       </ScrollView>
+      <QRCodeDialog
+        visible={showQRCode}
+        title={network ? network.name : ''}
+        value={address}
+        onPressClose={() => setShowQRCode(false)}
+      />
     </Layout>
   );
 }

@@ -1,9 +1,9 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {DNETWORK, INetwork} from '@bbachain/prolibbti';
 
+import storage from '../utils/storage';
 import storageKeys from '../config/storageKeys';
 import {setNetwork as setNetworkStore} from '../store/sessionSlice';
-import storage from '../utils/storage';
 import {RootState} from '../store';
 
 const useNetworks = () => {
@@ -14,7 +14,7 @@ const useNetworks = () => {
     try {
       let networkStorage = await storage.getItem(storageKeys.CURRENT_NETWORK);
       if (!networkStorage) {
-        networkStorage = JSON.parse(JSON.stringify(DNETWORK));
+        networkStorage = DNETWORK;
       }
       dispatch(setNetworkStore(networkStorage));
     } finally {
@@ -22,8 +22,7 @@ const useNetworks = () => {
   };
 
   const setNetwork = (n: INetwork) => {
-    const parsed = JSON.parse(JSON.stringify(n));
-    dispatch(setNetworkStore(parsed));
+    dispatch(setNetworkStore(n));
   };
 
   return {

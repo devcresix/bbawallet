@@ -2,7 +2,21 @@ import React from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 import {Appbar as DefaultAppbar} from 'react-native-paper';
 
-function Appbar({navigation, back}: any): any {
+interface IAppbarProps {
+  title?: string;
+  rightIcon?: string;
+  rightPress?: () => void;
+  navigation: any;
+  back: any;
+}
+
+function Appbar({
+  title,
+  rightIcon,
+  rightPress,
+  navigation,
+  back,
+}: IAppbarProps) {
   return (
     <DefaultAppbar.Header style={styles.appBarHeader}>
       {back ? (
@@ -10,6 +24,10 @@ function Appbar({navigation, back}: any): any {
           onPress={navigation.goBack}
           containerColor=""
         />
+      ) : null}
+      {title ? <DefaultAppbar.Content title={title} /> : null}
+      {rightIcon ? (
+        <DefaultAppbar.Action icon={rightIcon} onPress={rightPress} />
       ) : null}
     </DefaultAppbar.Header>
   );
@@ -30,10 +48,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-  },
-  textSwitchAccount: {
-    fontWeight: '700',
-    alignContent: 'center',
   },
 });
 

@@ -1,7 +1,6 @@
-/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {Button as PaperButton} from 'react-native-paper';
+import {ActivityIndicator, Button as PaperButton} from 'react-native-paper';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {withTranslation} from '../../hooks/useTranslations';
 
@@ -11,6 +10,7 @@ interface IButtonProps {
   icon?: string;
   uppercase?: boolean;
   iconRight?: boolean;
+  loading?: boolean;
   onPress?: () => void;
 }
 
@@ -20,15 +20,29 @@ function Button({
   icon,
   uppercase,
   iconRight,
+  loading,
   onPress,
 }: IButtonProps) {
+  const iconToShow = (props: any) => {
+    return loading ? (
+      <ActivityIndicator {...props} animating={true} />
+    ) : icon ? (
+      <Icons {...props} name={icon} />
+    ) : null;
+  };
+
   return (
     <PaperButton
       mode={mode ?? 'text'}
       contentStyle={iconRight ? styles.iconRight : {}}
       uppercase={uppercase ?? false}
-      icon={props => (icon ? <Icons {...props} name={icon} /> : null)}
-      onPress={onPress}>
+      icon={props => iconToShow(props)}
+      disabled={loading}
+      onPress={() => {
+        if (onPress && !loading) {
+          onPress();
+        }
+      }}>
       {title}
     </PaperButton>
   );
