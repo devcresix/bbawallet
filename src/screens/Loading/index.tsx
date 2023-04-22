@@ -31,7 +31,6 @@ function LoadingScreen() {
 
 const styles = StyleSheet.create({
   textStyles: {
-    color: 'black',
     fontSize: 32,
     fontWeight: 'bold',
   },

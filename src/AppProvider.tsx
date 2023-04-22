@@ -1,6 +1,9 @@
 import React from 'react';
 import {LogBox} from 'react-native';
 import {Provider as StoreProvider} from 'react-redux';
+import {elementsTheme} from './config/theme';
+import {ThemeProvider} from '@rneui/themed';
+
 import {store} from './store';
 
 const AppProvider = ({children}: any) => {
@@ -8,7 +11,11 @@ const AppProvider = ({children}: any) => {
     "The provided value 'moz",
     "The provided value 'ms-stream",
   ]);
-  return <StoreProvider store={store}>{children}</StoreProvider>;
+  return (
+    <StoreProvider store={store}>
+      <ThemeProvider theme={elementsTheme}>{children}</ThemeProvider>
+    </StoreProvider>
+  );
 };
 
 export default AppProvider;

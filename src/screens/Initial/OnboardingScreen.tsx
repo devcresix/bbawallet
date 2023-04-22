@@ -1,11 +1,13 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet} from 'react-native';
-import {useTheme} from 'react-native-paper';
 import Onboarding from 'react-native-onboarding-swiper';
+import {useTheme} from '@rneui/themed';
+
 import {withTranslation} from '../../hooks/useTranslations';
 
 function OnboardingScreen({navigation, t}: any) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
+
   const handleGetStarted = () => {
     navigation.push('Choose');
   };
@@ -20,7 +22,7 @@ function OnboardingScreen({navigation, t}: any) {
         {
           title: t('onboarding.title'),
           subtitle: t('onboarding.description'),
-          backgroundColor: colors.background,
+          backgroundColor: theme.colors.background,
           image: (
             <Image
               style={styles.viewOnboardingImage}
@@ -31,7 +33,7 @@ function OnboardingScreen({navigation, t}: any) {
         {
           title: t('onboarding.title'),
           subtitle: t('onboarding.description'),
-          backgroundColor: colors.background,
+          backgroundColor: theme.colors.background,
           image: (
             <Image
               style={styles.viewOnboardingImage}
