@@ -6,7 +6,6 @@ import {
 //   DefaultTheme as NavigationDefaultTheme,
 //   DarkTheme as NavigationDarkTheme,
 // } from '@react-navigation/native';
-import {createTheme} from '@rneui/themed';
 
 const themes: any = {
   light: {
@@ -26,15 +25,5 @@ const themes: any = {
     },
   },
 };
-
-export const elementsTheme = createTheme({
-  lightColors: {
-    // background: 'rgb(67, 156, 224)',
-  },
-  darkColors: {
-    // background: '#130E56',
-  },
-  mode: 'light',
-});
 
 export default themes;
