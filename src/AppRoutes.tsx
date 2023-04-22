@@ -62,15 +62,15 @@ function AppRoutes() {
 
   return (
     <PaperProvider theme={themes[theme]}>
-      <NavigationContainer theme={themes[theme]}>
-        <GestureHandlerRootView style={styles.gestureRoot}>
+      <GestureHandlerRootView style={styles.gestureRoot}>
+        <NavigationContainer>
           {loaded && initialized ? (
             <MainStackNavigation />
           ) : (
             <InitialStackNavigation />
           )}
-        </GestureHandlerRootView>
-      </NavigationContainer>
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </PaperProvider>
   );
 }
