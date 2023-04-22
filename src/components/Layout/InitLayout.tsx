@@ -1,18 +1,18 @@
 import React, {ReactNode} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
-import {useTheme} from 'react-native-paper';
+import {useTheme} from '@rneui/themed';
 
 interface Props {
   children?: ReactNode;
 }
 
 function InitLayout({children}: Props) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   return (
     <View
       style={{
         ...styles.viewStyles,
-        backgroundColor: colors.background,
+        backgroundColor: theme.colors.background,
       }}>
       <View
         style={{
@@ -37,11 +37,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   containerStyles: {
-    // position: 'absolute',
-    // // top: 0,
-    // // left: 0,
-    // // right: 0,
-    // // bottom: 0,
     alignItems: 'center',
   },
   logoStyle: {

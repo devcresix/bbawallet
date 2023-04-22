@@ -1,34 +1,34 @@
 import React, {ReactNode} from 'react';
-import {SafeAreaView, StyleSheet, View, ScrollView} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-paper';
+import {useTheme} from '@rneui/themed';
 
 import Navbar from '../Navbar';
-import BackgroundGradient from './BackgroundGradient';
 
 interface Props {
   children?: ReactNode;
 }
 
 function Layout({children}: Props) {
+  const {theme} = useTheme();
   return (
     <SafeAreaView>
-      <BackgroundGradient />
       <Navbar />
       <Divider />
-      <View style={styles.viewStyles}>
-        <ScrollView style={styles.viewScrollView}>{children}</ScrollView>
+      <View
+        style={{
+          ...styles.container,
+          backgroundColor: theme.colors.background,
+        }}>
+        {children}
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  viewStyles: {
+  container: {
     height: '100%',
-    // backgroundColor: 'gray',
-  },
-  viewScrollView: {
-    // backgroundColor: 'green',
   },
 });
 
