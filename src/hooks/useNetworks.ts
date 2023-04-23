@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {DNETWORK, INetwork} from '@bbachain/prolibbti';
+import {DefaultNetwork, INetwork} from '@bbachain/prolibbti';
 
 import storage from '../utils/storage';
 import storageKeys from '../config/storageKeys';
@@ -14,7 +14,7 @@ const useNetworks = () => {
     try {
       let networkStorage = await storage.getItem(storageKeys.CURRENT_NETWORK);
       if (!networkStorage) {
-        networkStorage = DNETWORK;
+        networkStorage = DefaultNetwork;
       }
       dispatch(setNetworkStore(networkStorage));
     } finally {

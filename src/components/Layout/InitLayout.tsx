@@ -1,18 +1,16 @@
 import React, {ReactNode} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
-import {useTheme} from '@rneui/themed';
 
 interface Props {
   children?: ReactNode;
 }
 
 function InitLayout({children}: Props) {
-  const {theme} = useTheme();
   return (
     <View
       style={{
         ...styles.viewStyles,
-        backgroundColor: theme.colors.background,
+        // backgroundColor: theme.colors.background,
       }}>
       <View
         style={{

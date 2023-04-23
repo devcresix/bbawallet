@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {List} from 'react-native-paper';
-import {NETWORKS, INetwork} from '@bbachain/prolibbti';
+import {Networks, INetwork} from '@bbachain/prolibbti';
 
 import {withTranslation} from '../../hooks/useTranslations';
 import useNetworks from '../../hooks/useNetworks';
@@ -14,7 +14,7 @@ function SelectNetworks({onPress}: ISelectNetworksProps) {
   const {network} = useNetworks();
   return (
     <>
-      {NETWORKS.map(n => (
+      {Networks.map(n => (
         <List.Item
           key={n.symbol}
           title={n.name}

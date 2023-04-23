@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
 // import {useTheme} from 'react-native-paper';
-import {INetwork, IMasterKey, DNETWORK} from '@bbachain/prolibbti';
+import {INetwork, IMasterKey, DefaultNetwork} from '@bbachain/prolibbti';
 
 // Components
 import SelectAccounts from '../SelectAccounts';
@@ -69,7 +69,7 @@ function Navbar({}: INavbarProps) {
         />
         <Button
           icon="swap-horizontal-bold"
-          title={network ? network.symbol : DNETWORK.symbol}
+          title={network ? network.symbol : DefaultNetwork.symbol}
           onPress={() => setNetworksVisible(true)}
           iconRight
         />

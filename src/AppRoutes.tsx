@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {StyleSheet} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 import LoadingScreen from './screens/Loading';
 import InitialStackNavigation from './navigation/InitialStackNavigation';
@@ -62,23 +60,15 @@ function AppRoutes() {
 
   return (
     <PaperProvider theme={themes[theme]}>
-      <GestureHandlerRootView style={styles.gestureRoot}>
-        <NavigationContainer>
-          {loaded && initialized ? (
-            <MainStackNavigation />
-          ) : (
-            <InitialStackNavigation />
-          )}
-        </NavigationContainer>
-      </GestureHandlerRootView>
+      <NavigationContainer>
+        {loaded && initialized ? (
+          <MainStackNavigation />
+        ) : (
+          <InitialStackNavigation />
+        )}
+      </NavigationContainer>
     </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  gestureRoot: {
-    flex: 1,
-  },
-});
 
 export default AppRoutes;

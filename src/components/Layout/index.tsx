@@ -1,7 +1,6 @@
 import React, {ReactNode} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-paper';
-import {useTheme} from '@rneui/themed';
 
 import Navbar from '../Navbar';
 
@@ -10,7 +9,6 @@ interface Props {
 }
 
 function Layout({children}: Props) {
-  const {theme} = useTheme();
   return (
     <SafeAreaView>
       <Navbar />
@@ -18,7 +16,6 @@ function Layout({children}: Props) {
       <View
         style={{
           ...styles.container,
-          backgroundColor: theme.colors.background,
         }}>
         {children}
       </View>
