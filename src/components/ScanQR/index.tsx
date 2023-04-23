@@ -33,7 +33,7 @@ function ScanQR({onDetected, t}: IScanQRProps) {
       cameraRatioOverlay={undefined}
       captureButtonImage={undefined}
       captureButtonImageStyle={styles.captureButtonImageStyle}
-      cameraFlipImage={require('../../assets/images/scanqr/cameraFlipIcon.png')}
+      cameraFlipImage={require('../../../assets/images/scanqr/cameraFlipIcon.png')}
       cameraFlipImageStyle={styles.cameraFlipImageStyle}
       torchOnImage={undefined}
       torchOffImage={undefined}

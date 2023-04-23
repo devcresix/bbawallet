@@ -54,7 +54,6 @@ function QRCodeDialog({
             // logoSize={100}
             // logoBorderRadius={15}
             // backgroundColor="white"
-            // logo={require('../../assets/images/Logo.png')}
           />
           <Text style={{marginTop: 30}}>{value}</Text>
         </Dialog.Content>

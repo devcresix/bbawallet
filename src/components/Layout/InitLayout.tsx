@@ -21,7 +21,7 @@ function InitLayout({children}: Props) {
             ...styles.logoStyle,
           }}
           resizeMode="contain"
-          source={require('../../assets/images/Logo.png')}
+          source={require('../../../assets/images/Logo.png')}
         />
         {children}
       </View>

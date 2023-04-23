@@ -142,7 +142,7 @@ function AssetsScreen({navigation}: any) {
               left={props => (
                 <Image
                   {...props}
-                  source={require('../../assets/images/tokens/usdt.png')}
+                  source={require('../../../assets/images/tokens/usdt.png')}
                   style={{...styles.leftImage}}
                 />
               )}

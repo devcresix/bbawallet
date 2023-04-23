@@ -8,7 +8,7 @@ function EmptyComponent({t}: any) {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/3024049.png')}
+        source={require('../../../assets/images/3024049.png')}
         style={styles.imageItem}
         alt={t('No Data')}
       />

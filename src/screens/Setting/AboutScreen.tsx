@@ -17,7 +17,7 @@ function AboutScreen({t}: any) {
         <Image
           style={styles.logoStyle}
           resizeMode="contain"
-          source={require('../../assets/images/Logo.png')}
+          source={require('../../../assets/images/Logo.png')}
         />
         <Text style={styles.textStyles}>{appName}</Text>
       </View>

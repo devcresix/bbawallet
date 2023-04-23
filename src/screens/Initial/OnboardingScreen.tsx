@@ -23,7 +23,7 @@ function OnboardingScreen({navigation, t}: any) {
           image: (
             <Image
               style={styles.viewOnboardingImage}
-              source={require('../../assets/images/welcome/welcome1.png')}
+              source={require('../../../assets/images/welcome/welcome1.png')}
             />
           ),
         },
@@ -34,7 +34,7 @@ function OnboardingScreen({navigation, t}: any) {
           image: (
             <Image
               style={styles.viewOnboardingImage}
-              source={require('../../assets/images/welcome/welcome2.png')}
+              source={require('../../../assets/images/welcome/welcome2.png')}
             />
           ),
         },

@@ -11,18 +11,22 @@ export const LANGUAGES = [
   {
     name: 'en',
     label: 'English',
-    flag: require('../assets/images/flags/en.png'),
+    flag: require('../../assets/images/flags/en.png'),
   },
   {
     name: 'es',
     label: 'Spanish',
-    flag: require('../assets/images/flags/es.png'),
+    flag: require('../../assets/images/flags/es.png'),
   },
-  {name: 'hi', label: 'Hindi', flag: require('../assets/images/flags/hi.png')},
+  {
+    name: 'hi',
+    label: 'Hindi',
+    flag: require('../../assets/images/flags/hi.png'),
+  },
   {
     name: 'ru',
     label: 'Russian',
-    flag: require('../assets/images/flags/ru.png'),
+    flag: require('../../assets/images/flags/ru.png'),
   },
 ];
 
