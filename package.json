@@ -21,6 +21,7 @@
   "dependencies": {
     "@bbachain/masterkey": "^0.0.17",
     "@react-native-clipboard/clipboard": "^1.11.2",
+    "@react-native-community/blur": "^4.3.0",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/material-bottom-tabs": "^6.2.15",
     "@react-navigation/native": "^6.1.6",

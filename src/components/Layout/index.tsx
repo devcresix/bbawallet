@@ -1,5 +1,6 @@
 import React, {ReactNode} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {Divider} from 'react-native-paper';
 
 import Navbar from '../Navbar';
@@ -9,23 +10,37 @@ interface Props {
 }
 
 function Layout({children}: Props) {
+  const tabBarheight = useBottomTabBarHeight();
+
   return (
-    <SafeAreaView>
+    <View style={styles.container}>
       <Navbar />
       <Divider />
-      <View
-        style={{
-          ...styles.container,
-        }}>
-        {children}
+
+      {/* Scrollable Content */}
+      <View style={styles.scrollContainer}>
+        <ScrollView
+          contentContainerStyle={{
+            ...styles.scrollContentContainer,
+            paddingBottom: tabBarheight,
+          }}>
+          {children}
+        </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
+    flex: 1,
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  scrollContentContainer: {
+    marginTop: 5,
+    alignItems: 'center',
   },
 });
 
