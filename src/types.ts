@@ -1,5 +1,5 @@
-import {INetwork, IMasterKey} from '@bbachain/masterkeyprolibbti';
-import {Account} from '@bbachain/masterkeyprolibbti/dist/Account';
+import {INetwork, IMasterKey} from '@bbachain/masterkey';
+import {Account} from '@bbachain/masterkey/dist/Account';
 
 export interface IAddress {
   name: string;
