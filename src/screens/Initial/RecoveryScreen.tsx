@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {recovery} from '@bbachain/prolibbti';
+import {recovery} from '@bbachain/masterkey';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Snackbar from 'react-native-snackbar';
 

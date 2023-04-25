@@ -2,7 +2,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {List} from 'react-native-paper';
-import {IMasterKey} from '@bbachain/prolibbti';
+import {IMasterKey} from '@bbachain/masterkey';
 
 import useMasterKey from '../../hooks/useMasterKey';
 import {withTranslation} from '../../hooks/useTranslations';

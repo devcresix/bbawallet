@@ -1086,10 +1086,10 @@
   dependencies:
     buffer "~6.0.3"
 
-"@bbachain/prolibbti@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@bbachain/prolibbti/-/prolibbti-0.0.16.tgz#52f132af68c08ad302f9decb4add2f122b86c7ad"
-  integrity sha512-LXCZpmv1zI7BYzlHYhII7IBzVJchXgbchv4phmlhCR+PU0qehtgzGqpdRKfH55QEnr2RIJuPGmbnvRVPqg67BQ==
+"@bbachain/masterkey@^0.0.17":
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@bbachain/masterkey/-/masterkey-0.0.17.tgz#4ae7e37f9e652d78f75947fb25b55f9d47f71c0b"
+  integrity sha512-FQUx6hnji7E9JSc9Gh6GG17S2657tc213BKLMKT/mode6al0yGzpNomsYKBmVSpjoRFHWbPdm8Ek5Du1v4VPAA==
   dependencies:
     "@bbachain/web3.js" "^1.1.0"
     assert "^2.0.0"
@@ -8387,9 +8387,9 @@ mkdirp-promise@^5.0.1:
     mkdirp "*"
 
 mkdirp@*:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-3.0.0.tgz#758101231418bda24435c0888a91d9bd91f1372d"
-  integrity sha512-7+JDnNsyCvZXoUJdkMR0oUE2AmAdsNXGTmRbiOjYIwQ6q+bL6NwrozGQdPcmYaNcrhH37F50HHBUzoaBV6FITQ==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-3.0.1.tgz#e44e4c5607fb279c168241713cc6e0fea9adcb50"
+  integrity sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==
 
 mkdirp@^0.5.1, mkdirp@^0.5.5:
   version "0.5.6"

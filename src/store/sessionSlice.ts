@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {INetwork, IMasterKey} from '@bbachain/prolibbti';
-import {Account} from '@bbachain/prolibbti/dist/Account';
+import {INetwork, IMasterKey} from '@bbachain/masterkey';
+import {Account} from '@bbachain/masterkey/dist/Account';
 import {ISessionState} from '../types';
 
 const initialState: ISessionState = {

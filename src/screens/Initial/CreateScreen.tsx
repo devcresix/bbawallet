@@ -4,7 +4,7 @@ import {ActivityIndicator, TextInput} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Snackbar from 'react-native-snackbar';
 import {useTheme} from '@react-navigation/native';
-import {IMasterKey, create} from '@bbachain/prolibbti';
+import {IMasterKey, create} from '@bbachain/masterkey';
 
 // Components
 import Button from '../../components/Button';

@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {IMasterKey, INetwork, asignMasterKey} from '@bbachain/prolibbti';
+import {IMasterKey, INetwork, asignMasterKey} from '@bbachain/masterkey';
 import {setAccount} from '../store/sessionSlice';
 import {RootState} from '../store';
 

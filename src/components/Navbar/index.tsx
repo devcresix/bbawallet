@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
 // import {useTheme} from 'react-native-paper';
-import {INetwork, IMasterKey, DefaultNetwork} from '@bbachain/prolibbti';
+import {INetwork, IMasterKey, DefaultNetwork} from '@bbachain/masterkey';
 
 // Components
 import SelectAccounts from '../SelectAccounts';
