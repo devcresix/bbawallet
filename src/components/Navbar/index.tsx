@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-// import {useTheme} from 'react-native-paper';
+import {Dimensions, Platform, StyleSheet, View} from 'react-native';
+import {useTheme} from 'react-native-paper';
 import {INetwork, IMasterKey, DefaultNetwork} from '@bbachain/masterkey';
 
 // Components
@@ -17,7 +17,8 @@ import {withTranslation} from '../../hooks/useTranslations';
 interface INavbarProps {}
 
 function Navbar({}: INavbarProps) {
-  // const {colors} = useTheme();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const {colors} = useTheme();
   const {currentKey, setCurrentKey} = useMasterKey();
   const {network, setNetwork} = useNetworks();
 
@@ -39,11 +40,15 @@ function Navbar({}: INavbarProps) {
     setNetwork(n);
   };
 
+  const containerPlatform =
+    Platform.OS === 'ios' ? styles.containerIOS : styles.containerAndroid;
+
   return (
     <View
       style={{
         ...styles.container,
-        // backgroundColor: colors.inverseOnSurface,
+        ...containerPlatform,
+        // backgroundColor: colors.tertiaryContainer,
       }}>
       <BlurModal
         visible={modalVisible}
@@ -82,8 +87,14 @@ const styles = StyleSheet.create({
   container: {
     width: Dimensions.get('window').width,
     zIndex: 10,
-    height: 50,
+    height: 40,
+    marginTop: 6,
   },
+  containerIOS: {
+    width: Dimensions.get('window').width - 40,
+    marginHorizontal: 20,
+  },
+  containerAndroid: {},
   content: {
     flex: 1,
     justifyContent: 'space-between',
