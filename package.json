@@ -19,7 +19,7 @@
     "np": "np --no-publish --no-tests"
   },
   "dependencies": {
-    "@bbachain/prolibbti": "^0.0.16",
+    "@bbachain/masterkey": "^0.0.17",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/material-bottom-tabs": "^6.2.15",

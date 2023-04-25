@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {DefaultNetwork, INetwork} from '@bbachain/prolibbti';
+import {DefaultNetwork, INetwork} from '@bbachain/masterkeyprolibbti';
 
 import storage from '../utils/storage';
 import storageKeys from '../config/storageKeys';

@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {setInitialized, setLoaded} from '../store/appSlice';
-import {IMasterKey} from '@bbachain/prolibbti';
+import {IMasterKey} from '@bbachain/masterkeyprolibbti';
 
 import storage from '../utils/storage';
 import storageKeys from '../config/storageKeys';
