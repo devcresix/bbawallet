@@ -59,7 +59,9 @@ function AssetsScreen({navigation}: any) {
         <View
           style={{
             ...styles.viewBalance,
-            // backgroundColor: colors.background,
+           backgroundColor: 'lightblue',
+           padding:10,
+           borderRadius:15
           }}>
           <View style={[styles.rowContainer, {}]}>
             {processing ? (

@@ -107,7 +107,7 @@ function WarningScreen({navigation, t}: any) {
 
 const styles = StyleSheet.create({
   paddingStyle: {
-    height: 16,
+    height: 10,
   },
   titleStyles: {
     fontSize: 24,
